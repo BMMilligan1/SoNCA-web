@@ -23,13 +23,13 @@ export const links = {
   newsletter: null as string | null,
 
   /** Partnership and sponsorship enquiries. */
-  partnership: `mailto:information@naturalcapitalaccounting.org?subject=Partnership%20enquiry`,
+  partnership: `mailto:inquiries@naturalcapitalaccounting.org?subject=Partnership%20enquiry`,
 
   /** General contact. */
-  contact: `mailto:information@naturalcapitalaccounting.org`,
+  contact: `mailto:inquiries@naturalcapitalaccounting.org`,
 
   /** Complaints and concerns under the member participation code. */
-  complaints: `mailto:information@naturalcapitalaccounting.org?subject=Concern%20under%20the%20member%20participation%20code`,
+  complaints: `mailto:inquiries@naturalcapitalaccounting.org?subject=Concern%20under%20the%20member%20participation%20code`,
 
   /** ACT model rules on the ACT Legislation Register (authorised version). */
   modelRules: 'https://www.legislation.act.gov.au/di/2016-220/',

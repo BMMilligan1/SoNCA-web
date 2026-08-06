@@ -13,7 +13,7 @@ export const site = {
     'The Society for Natural Capital Accounting connects practitioners across government, business, research and civil society; supports professional development; and advances credible methods and standards. Incorporated in Australia, with members worldwide.',
   url: 'https://naturalcapitalaccounting.org',
   locale: 'en_AU',
-  email: 'information@naturalcapitalaccounting.org',
+  email: 'inquiries@naturalcapitalaccounting.org',
   linkedin: 'https://www.linkedin.com/company/sonca', // TO CONFIRM — exact LinkedIn page URL
   foundingYear: '2026–27',
 } as const;
