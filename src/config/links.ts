@@ -14,8 +14,9 @@ export const links = {
   join: null as string | null,
 
   /** Launch seminar registration form. */
-  registerLaunch: null as string | null,
-
+    /** Launch seminar registration form. */
+  registerLaunch: 'https://events.humanitix.com/sonca',
+  
   /** Single expression-of-interest form (sessions, conference, working group, mailing list). */
   expressInterest: null as string | null,
 
