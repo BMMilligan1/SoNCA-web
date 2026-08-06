@@ -55,6 +55,6 @@ export const launchEvent = {
   duration: '60 minutes',
   platform: 'Online via Microsoft Teams',
   summary:
-    'An introduction to the Society and its aims, with a presentation by Carl Obst on the update to the SEEA Central Framework, followed by questions.',
+    'An introduction to the Society and its aims by Michael Vardon, with a presentation by Carl Obst on the update to the SEEA Central Framework, followed by questions.',
   audience: 'Open to all',
 } as const;
