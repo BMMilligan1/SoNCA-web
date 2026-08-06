@@ -1,0 +1,100 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+  /** Small label above the title, e.g. a date or stream name. */
+  meta?: string;
+  /** Large numeral shown in the corner. */
+  index?: string;
+  class?: string;
+}
+
+const { title, href, meta, index, class: className } = Astro.props;
+---
+
+<article class:list={['card', href && 'card--linked', className]}>
+  {index && <span class="card__index" aria-hidden="true">{index}</span>}
+  {meta && <p class="card__meta">{meta}</p>}
+  <h3 class="card__title">
+    {href ? <a href={href}>{title}</a> : title}
+  </h3>
+  <div class="card__body">
+    <slot />
+  </div>
+  <slot name="footer" />
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-l);
+    background-color: var(--c-paper-raised);
+    border: 1px solid var(--c-rule);
+    border-radius: var(--radius-md);
+    transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
+  }
+
+  .card--linked:hover {
+    border-color: var(--c-rule-strong);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .card__index {
+    position: absolute;
+    inset-block-start: var(--space-m);
+    inset-inline-end: var(--space-m);
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 600;
+    line-height: 1;
+    /* Decorative and aria-hidden: a ghosted numeral, deliberately quiet. */
+    color: var(--c-rule-strong);
+    font-variant-numeric: lining-nums;
+  }
+
+  .card__meta {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-highlight);
+    font-variant-numeric: lining-nums;
+  }
+
+  .card__title {
+    font-size: var(--step-1);
+    padding-inline-end: 1.5rem;
+  }
+
+  .card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Whole card is the hit area. */
+  .card__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .card__title a:hover {
+    color: var(--c-accent);
+  }
+
+  .card__body {
+    color: var(--c-text-muted);
+    font-size: var(--step--1);
+  }
+
+  .card__body :global(> * + *) {
+    margin-block-start: var(--space-s);
+  }
+</style>

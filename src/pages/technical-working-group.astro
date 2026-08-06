@@ -1,0 +1,67 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import Cta from '../components/Cta.astro';
+import { links } from '../config/links';
+
+const title = 'Technical working group';
+const lead =
+  'A forum for members to work through the harder measurement and implementation questions — and the Society’s channel for coordinated practitioner input to the SEEA update.';
+---
+
+<Page title={title} eyebrow="Programme" lead={lead}>
+  <p class="lead">
+    The technical working group is where the Society does its detailed work. It is a forum for
+    members to work through more complex measurement and implementation questions, and a channel for
+    coordinated practitioner input to the SEEA Central Framework update, including the global
+    consultations scheduled through 2026.
+  </p>
+
+  <h2>The SEEA as reference point, not boundary</h2>
+  <p>
+    The Society's technical work is anchored in the <a href={links.seea} rel="noopener">SEEA</a> while
+    engaging constructively with related public, corporate and community sector frameworks. The SEEA
+    is the Society's principal technical reference point rather than a boundary on valid activity.
+  </p>
+
+  <h2>Terms of reference</h2>
+  <p>The group's terms of reference will set out:</p>
+  <ul>
+    <li>who may participate;</li>
+    <li>how topics are selected;</li>
+    <li>the outputs the group is expected to produce;</li>
+    <li>how positions or submissions are approved;</li>
+    <li>whether dissenting views may be recorded; and</li>
+    <li>the relationship between the group and the Society's committee.</li>
+  </ul>
+
+  <Callout tone="pending" title="In preparation">
+    <p>
+      The terms of reference are being drafted, and the group's leadership will be confirmed by the
+      founding committee. Members who register their interest will be notified when they are
+      published.
+    </p>
+  </Callout>
+
+  <h2>Topic-based groups over time</h2>
+  <p>
+    The technical programme could support topic-based groups — for example on ecosystem accounting,
+    water, oceans, corporate applications, valuation, data quality, and the use of accounts in
+    policy. These should emerge from member demand rather than all being promised at launch.
+  </p>
+
+  <h2>Taking part</h2>
+  <p>
+    Participation is open to members. Register your interest and we will contact you when the group
+    convenes.
+  </p>
+  <p>
+    <Cta href={links.expressInterest} variant="primary">
+      Express interest in the technical working group
+    </Cta>
+  </p>
+  <p class="text-small text-muted">
+    Not yet a member? <a href="/membership/">Join the Society</a> first — working groups are a
+    member benefit.
+  </p>
+</Page>

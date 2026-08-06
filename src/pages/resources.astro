@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Card from '../components/Card.astro';
+import Cta from '../components/Cta.astro';
+import Callout from '../components/Callout.astro';
+import { links } from '../config/links';
+
+const title = 'Resources and news';
+const lead =
+  'Standards, guidance and explainers, plus recordings and materials from the Society’s own programme as it builds up.';
+
+const standards = [
+  {
+    title: 'System of Environmental-Economic Accounting',
+    href: links.seea,
+    detail:
+      'The United Nations statistical standard for environmental-economic accounting, and the Society’s principal technical reference point.',
+    meta: 'United Nations',
+  },
+  {
+    title: 'SEEA Central Framework',
+    href: links.seeaCentralFramework,
+    detail:
+      'Physical flows, environmental assets and environmental activity, in the terms of the national accounts. Currently being updated.',
+    meta: 'Standard',
+  },
+  {
+    title: 'SEEA Ecosystem Accounting',
+    href: links.seeaEcosystemAccounting,
+    detail:
+      'The extent and condition of ecosystems and the services they supply to the economy and to people.',
+    meta: 'Standard',
+  },
+  {
+    title: 'The SEEA Central Framework update',
+    href: links.seeaUpdate,
+    detail:
+      'Global consultations run through 2026, with completion expected in 2028. The Society’s technical working group coordinates practitioner input.',
+    meta: 'Consultation',
+  },
+];
+
+const planned = [
+  'Introductory explainers on accounting concepts and methods',
+  'Recordings and slides from Society seminars and workshops',
+  'Society submissions to consultations',
+  'Conference materials and selected papers',
+  'Member-written practice notes',
+  'News about consultations and professional opportunities',
+];
+---
+
+<Base title={title} description={lead}>
+  <PageHeader title={title} eyebrow="Programme" lead={lead} />
+
+  <section class="section">
+    <div class="page">
+      <SectionHeading num="01" eyebrow="Reference" title="Standards and guidance">
+        Where to start if you are new to the field, and where to follow the standard as it changes.
+      </SectionHeading>
+
+      <div class="grid grid--2">
+        {
+          standards.map((item) => (
+            <Card title={item.title} href={item.href} meta={item.meta}>
+              <p>{item.detail}</p>
+            </Card>
+          ))
+        }
+      </div>
+
+      <p class="resources__more">
+        <Cta href="/natural-capital-accounting/" variant="arrow">
+          Our own introduction to natural capital accounting
+        </Cta>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--panel section--ruled">
+    <div class="page resources-block">
+      <SectionHeading num="02" eyebrow="Coming" title="What will be published here" />
+      <div>
+        <ul class="planned">
+          {planned.map((item) => <li>{item}</li>)}
+        </ul>
+        <Callout class="resources__note">
+          <p>
+            The resource area fills out as the foundation-year programme runs. Members receive
+            recordings and presentation materials from every session.
+          </p>
+        </Callout>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page newsletter-block">
+      <div>
+        <SectionHeading num="03" eyebrow="Keep in touch" title="Newsletter">
+          Not ready to join yet? Quarterly updates on the Society, its programme and the SEEA update.
+          Unsubscribe at any time.
+        </SectionHeading>
+      </div>
+      <div class="button-row">
+        <Cta href={links.newsletter} variant="primary">Subscribe to the newsletter</Cta>
+        <Cta href="/membership/" variant="arrow">Or become a member</Cta>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .resources__more {
+    margin-block-start: var(--space-xl);
+    padding-block-start: var(--space-l);
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .resources-block,
+  .newsletter-block {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .resources-block,
+    .newsletter-block {
+      grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+    .resources-block :global(.section-heading),
+    .newsletter-block :global(.section-heading) {
+      margin-block-end: 0;
+    }
+  }
+
+  .planned {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .planned li {
+    position: relative;
+    padding: var(--space-s) 0 var(--space-s) 1.75rem;
+    border-block-end: 1px solid var(--c-rule);
+    font-size: var(--step--1);
+  }
+
+  .planned li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 1.55em;
+    inline-size: 0.75rem;
+    block-size: 1px;
+    background-color: var(--c-accent-soft);
+  }
+
+  /* :global — the class is passed to <Callout>, so it carries no scope hash. */
+  :global(.resources__note) {
+    margin-block-start: var(--space-l);
+  }
+
+  .newsletter-block {
+    align-items: center;
+  }
+</style>

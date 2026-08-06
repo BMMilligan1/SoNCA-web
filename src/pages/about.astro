@@ -1,0 +1,220 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
+import Cta from '../components/Cta.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import JoinBanner from '../components/JoinBanner.astro';
+import { streams, priorities } from '../data/programme';
+import { links } from '../config/links';
+
+const title = 'About the Society';
+const lead =
+  'A professional association for a field that has grown into one, established to give practitioners the shared home, standards and voice they have not had.';
+---
+
+<Base title={title} description={lead}>
+  <PageHeader title={title} eyebrow="About" lead={lead} />
+
+  <section class="section">
+    <div class="page about-grid">
+      <div class="prose">
+        <h2>Why the Society is needed</h2>
+        <p>
+          Natural capital accounting is becoming an established field of professional practice. It
+          is undertaken in statistical offices, government agencies, universities, consultancies,
+          businesses and civil society organisations around the world. Until now, practitioners have
+          lacked an association dedicated to their shared professional development and practice. The
+          Society has been established to fill that gap.
+        </p>
+        <p>
+          One timely opportunity is the update of the United Nations System of Environmental-Economic
+          Accounting (SEEA), with global consultations running through 2026 and completion expected
+          in 2028. An organised profession can bring practitioner experience to that process in a way
+          scattered individuals cannot. The professional need, however, is enduring and does not
+          depend on any single standards revision.
+        </p>
+        <p>
+          Governments, businesses and financial institutions are developing related approaches to
+          natural capital measurement, accounting and disclosure. The Society provides a forum for
+          examining where these approaches align, where they differ, and how practice can become more
+          coherent — avoiding duplication and building on established practice.
+        </p>
+
+        <h2>What the Society does</h2>
+        <p>
+          We will develop professional pathways, beginning with a competency framework and
+          recognition of continuing professional development, and explore the case for professional
+          accreditation or certification in consultation with members and employers.
+        </p>
+        <p>
+          A technical working group provides a forum for more complex measurement and implementation
+          questions. The Society's technical work is anchored in the SEEA while engaging
+          constructively with related public, corporate and community sector frameworks.
+        </p>
+        <p>
+          <Cta href="/technical-working-group/" variant="arrow">About the technical working group</Cta>
+        </p>
+
+        <h2>Scope and reach</h2>
+        <p>
+          The Society is incorporated in Australia and welcomes members from all countries. Its
+          initial programme is delivered primarily online, enabling participation across regions and
+          disciplines. Membership is individual: members join in their own right rather than as
+          representatives of their organisations.
+        </p>
+      </div>
+
+      <aside class="about-aside">
+        <h2 class="about-aside__title">In brief</h2>
+        <dl class="definition-list">
+          <div>
+            <dt>Established</dt>
+            <dd>2026, in the Australian Capital Territory</dd>
+          </div>
+          <div>
+            <dt>Membership</dt>
+            <dd>Individual, cross-disciplinary, international</dd>
+          </div>
+          <div>
+            <dt>Technical anchor</dt>
+            <dd>
+              The UN <a href={links.seea} rel="noopener">System of Environmental-Economic
+              Accounting</a>
+            </dd>
+          </div>
+          <div>
+            <dt>First year</dt>
+            <dd>2026–27, reporting against five stated priorities</dd>
+          </div>
+        </dl>
+        <p class="about-aside__links">
+          <Cta href="/leadership/" variant="arrow">Leadership and governance</Cta>
+          <Cta href="/priorities/" variant="arrow">Foundation-year priorities</Cta>
+          <Cta href="/faq/" variant="arrow">Frequently asked questions</Cta>
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--panel section--ruled">
+    <div class="page">
+      <SectionHeading num="01" eyebrow="Our work" title="Four streams of work" />
+      <div class="grid grid--4">
+        {
+          streams.map((stream, i) => (
+            <Card title={stream.name} index={String(i + 1).padStart(2, '0')}>
+              <p><strong>{stream.summary}</strong></p>
+              <p>{stream.detail}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page">
+      <SectionHeading num="02" eyebrow="Foundation year" title="What we will be judged on">
+        Five priorities for 2026–27, against which the Society will report to members.
+      </SectionHeading>
+      <ol class="priority-list">
+        {
+          priorities.map((item, i) => (
+            <li>
+              <span class="priority-list__num">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <JoinBanner />
+</Base>
+
+<style>
+  .about-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .about-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .about-aside {
+    padding: var(--space-l);
+    background-color: var(--c-panel);
+    border-radius: var(--radius-md);
+    position: sticky;
+    inset-block-start: 6.5rem;
+  }
+
+  .about-aside__title {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    margin-block-end: var(--space-s);
+  }
+
+  .about-aside :global(.definition-list) > :global(div) {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+    padding-block: var(--space-s);
+  }
+
+  .about-aside__links {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--space-2xs);
+    margin-block-start: var(--space-m);
+  }
+
+  .priority-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-block-start: 1px solid var(--c-rule);
+    max-width: var(--width-page);
+  }
+
+  .priority-list li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-s) var(--space-m);
+    padding-block: var(--space-l);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .priority-list__num {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--c-highlight);
+    font-variant-numeric: lining-nums;
+  }
+
+  .priority-list h3 {
+    font-size: var(--step-1);
+  }
+
+  .priority-list p {
+    margin-block-start: var(--space-2xs);
+    color: var(--c-text-muted);
+    max-width: var(--measure);
+  }
+</style>

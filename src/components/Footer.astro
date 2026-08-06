@@ -1,0 +1,220 @@
+---
+import Logo from './Logo.astro';
+import Cta from './Cta.astro';
+import { footerNav } from '../config/nav';
+import { site, incorporation } from '../config/site';
+import { links } from '../config/links';
+
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="page--wide">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <Logo size={54} />
+        <p class="site-footer__name">Society for Natural&nbsp;Capital Accounting</p>
+        <p class="site-footer__blurb">
+          A professional home for people who produce, use and improve natural capital accounts.
+          Incorporated in Australia; members worldwide.
+        </p>
+        <p class="site-footer__contact">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Footer">
+        {
+          footerNav.map((column) => (
+            <div class="site-footer__column">
+              <h2 class="site-footer__heading">{column.title}</h2>
+              <ul>
+                {column.items.map((item) => (
+                  <li>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div class="site-footer__newsletter">
+      <div>
+        <h2 class="site-footer__heading">Keep in touch</h2>
+        <p class="text-small">
+          Occasional updates on the Society, its programme and the SEEA update. Unsubscribe at any
+          time.
+        </p>
+      </div>
+      <Cta href={links.newsletter} variant="secondary">Subscribe to the newsletter</Cta>
+    </div>
+
+    <div class="site-footer__meta">
+      <p>
+        © {year} Society for Natural Capital Accounting. An incorporated association under the {
+          incorporation.act
+        }.
+        {
+          incorporation.number ? (
+            <> Incorporation number {incorporation.number}, incorporated {incorporation.date}.</>
+          ) : (
+            <> Incorporation number to be added on issue of the certificate.</>
+          )
+        }
+      </p>
+      <ul class="site-footer__meta-nav">
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/participation-code/">Code of conduct</a></li>
+        <li><a href="/rules/">Rules</a></li>
+        <li><a href="/complaints/">Complaints</a></li>
+        {site.linkedin && <li><a href={site.linkedin} rel="noopener">LinkedIn</a></li>}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: auto;
+    padding-block: var(--space-3xl) var(--space-l);
+    background-color: var(--c-inverse-bg);
+    color: var(--c-inverse-muted);
+    font-size: var(--step--1);
+  }
+
+  .site-footer a {
+    color: var(--c-inverse-muted);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .site-footer__top {
+    display: grid;
+    gap: var(--space-2xl);
+    padding-block-end: var(--space-2xl);
+    border-block-end: 1px solid var(--c-inverse-rule);
+  }
+
+  @media (min-width: 58rem) {
+    .site-footer__top {
+      grid-template-columns: minmax(16rem, 22rem) 1fr;
+      gap: var(--space-3xl);
+    }
+  }
+
+  .site-footer__name {
+    margin-block-start: var(--space-s);
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--c-inverse-text);
+    letter-spacing: -0.015em;
+    max-width: 16ch;
+  }
+
+  .site-footer__blurb {
+    margin-block-start: var(--space-s);
+    max-width: 38ch;
+  }
+
+  .site-footer__contact {
+    margin-block-start: var(--space-s);
+  }
+
+  .site-footer__contact a {
+    color: var(--c-inverse-accent);
+  }
+
+  .site-footer__nav {
+    display: grid;
+    gap: var(--space-l) var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+
+  .site-footer__heading {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-inverse-text);
+    margin-block-end: var(--space-s);
+  }
+
+  .site-footer__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .site-footer__newsletter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding-block: var(--space-l);
+    border-block-end: 1px solid var(--c-inverse-rule);
+  }
+
+  .site-footer__newsletter > div {
+    max-width: 46ch;
+  }
+
+  .site-footer__newsletter :global(.button--secondary) {
+    color: var(--c-inverse-text);
+    border-color: var(--c-inverse-rule);
+  }
+
+  .site-footer__newsletter :global(.button--secondary:hover) {
+    color: #fff;
+    border-color: var(--c-inverse-text);
+    background-color: rgba(255, 255, 255, 0.06);
+    text-decoration: none;
+  }
+
+  .site-footer__newsletter :global(.cta-pending) {
+    border-color: var(--c-inverse-rule);
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .site-footer__newsletter :global(.cta-pending__label) {
+    color: var(--c-inverse-text);
+  }
+
+  .site-footer__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s) var(--space-l);
+    padding-block-start: var(--space-l);
+    font-size: var(--step--2);
+    color: var(--c-inverse-muted);
+  }
+
+  .site-footer__meta > p {
+    max-width: 62ch;
+    opacity: 0.85;
+  }
+
+  .site-footer__meta-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

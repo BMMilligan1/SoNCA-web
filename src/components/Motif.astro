@@ -1,0 +1,124 @@
+---
+/**
+ * Decorative graphics drawn from the logo: undulating strata that flatten into
+ * ledger rules — landscape and accounts in the same gesture. Purely decorative,
+ * hidden from assistive technology and from print.
+ */
+interface Props {
+  variant?: 'strata' | 'contour' | 'rule';
+  class?: string;
+}
+
+const { variant = 'strata', class: className } = Astro.props;
+
+const W = 120;
+
+/** One undulating line across the field. */
+function strand(y: number, amp: number, phase: number): string {
+  const p = (x: number) => y + amp * Math.sin((x / W) * Math.PI * 2 + phase);
+  const steps = 6;
+  const dx = W / steps;
+  let d = `M0 ${p(0).toFixed(2)}`;
+  for (let i = 0; i < steps; i++) {
+    const x0 = i * dx;
+    const x1 = x0 + dx;
+    d += ` C ${(x0 + dx / 3).toFixed(2)} ${p(x0 + dx / 3).toFixed(2)}, ${(x1 - dx / 3).toFixed(2)} ${p(
+      x1 - dx / 3,
+    ).toFixed(2)}, ${x1.toFixed(2)} ${p(x1).toFixed(2)}`;
+  }
+  return d;
+}
+
+const lines = Array.from({ length: 26 }, (_, i) => {
+  const t = i / 25;
+  return {
+    d: strand(6 + t * 108, 7 * (1 - t) ** 1.6 + 0.4, 0.55 + t * 1.35),
+    /** Lines thin and fade as they settle. */
+    width: (1.4 - t * 0.75).toFixed(2),
+    opacity: (0.78 - t * 0.5).toFixed(2),
+    accent: i % 7 === 2,
+  };
+});
+
+/** Concentric contour rings for the alternate variant. */
+const rings = Array.from({ length: 9 }, (_, i) => ({
+  rx: 12 + i * 6.5,
+  ry: 8 + i * 4.6,
+  opacity: (0.6 - i * 0.055).toFixed(2),
+}));
+---
+
+{
+  variant === 'rule' ? (
+    <svg
+      class:list={['rule-motif', className]}
+      viewBox="0 0 240 8"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M0 4 H240" stroke="currentColor" stroke-width="1" opacity="0.25" />
+      <path d="M0 4 H44" stroke="currentColor" stroke-width="2" />
+    </svg>
+  ) : variant === 'contour' ? (
+    <svg
+      class:list={['motif motif--contour', className]}
+      viewBox="0 0 120 120"
+      aria-hidden="true"
+      focusable="false"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <g fill="none" stroke="currentColor" stroke-width="0.9">
+        {rings.map((r) => (
+          <ellipse cx="60" cy="62" rx={r.rx} ry={r.ry} opacity={r.opacity} />
+        ))}
+      </g>
+    </svg>
+  ) : (
+    <svg
+      class:list={['motif motif--strata', className]}
+      viewBox="0 0 120 120"
+      aria-hidden="true"
+      focusable="false"
+      preserveAspectRatio="none"
+    >
+      <g fill="none" stroke-linecap="round">
+        {lines.map((l) => (
+          <path
+            d={l.d}
+            stroke="currentColor"
+            stroke-width={l.width}
+            opacity={l.opacity}
+            class:list={[l.accent && 'motif__accent']}
+          />
+        ))}
+      </g>
+    </svg>
+  )
+}
+
+<style>
+  .motif {
+    width: 100%;
+    height: 100%;
+    color: var(--c-accent-soft);
+    pointer-events: none;
+  }
+
+  .motif__accent {
+    color: var(--c-highlight-decor);
+  }
+
+  .rule-motif {
+    display: block;
+    width: 100%;
+    height: 8px;
+    color: var(--c-highlight-decor);
+  }
+
+  @media print {
+    .motif {
+      display: none;
+    }
+  }
+</style>

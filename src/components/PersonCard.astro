@@ -1,0 +1,123 @@
+---
+import type { CommitteeMember } from '../data/committee';
+
+interface Props {
+  person: CommitteeMember;
+  /** `brief` for the home-page block; `full` for the leadership page. */
+  detail?: 'brief' | 'full';
+}
+
+const { person, detail = 'brief' } = Astro.props;
+
+/** Monogram stands in until head-and-shoulders photographs are supplied (C6). */
+const initials = person.name
+  .split(' ')
+  .map((part) => part[0])
+  .join('');
+const slug = person.name.toLowerCase().replace(/[^a-z]+/g, '-');
+---
+
+<article class:list={['person', `person--${detail}`]} id={detail === 'full' ? slug : undefined}>
+  <div class="person__portrait" aria-hidden="true">
+    <span>{initials}</span>
+  </div>
+
+  <div class="person__text">
+    <h3 class="person__name">{person.name}</h3>
+    <p class="person__role">{person.role}</p>
+
+    {
+      detail === 'brief' ? (
+        <p class="person__summary">{person.summary}</p>
+      ) : (
+        <div class="person__bio">
+          {person.bio.map((para) => (
+            <p>{para}</p>
+          ))}
+          {person.pending && <p class="person__pending">{person.pending}</p>}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .person {
+    display: flex;
+    gap: var(--space-m);
+  }
+
+  .person--full {
+    padding-block: var(--space-l);
+    border-block-start: 1px solid var(--c-rule);
+    scroll-margin-block-start: 7rem;
+  }
+
+  .person--brief {
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .person__portrait {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    inline-size: 4.25rem;
+    block-size: 4.25rem;
+    border-radius: 50%;
+    background-color: var(--c-panel-strong);
+    border: 1px solid var(--c-rule);
+    color: var(--c-accent-soft);
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .person--full .person__portrait {
+    inline-size: 5rem;
+    block-size: 5rem;
+    font-size: 1.35rem;
+  }
+
+  .person__name {
+    font-size: var(--step-1);
+  }
+
+  .person--full .person__name {
+    font-size: var(--step-2);
+  }
+
+  .person__role {
+    margin-block-start: 0.15rem;
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-highlight);
+  }
+
+  .person__summary {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+    max-width: 34ch;
+  }
+
+  .person__bio {
+    margin-block-start: var(--space-s);
+    max-width: var(--measure);
+    color: var(--c-text-muted);
+  }
+
+  .person__bio > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  .person__pending {
+    font-size: var(--step--1);
+    font-style: italic;
+    color: var(--c-text-faint);
+  }
+</style>

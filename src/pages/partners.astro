@@ -1,0 +1,62 @@
+---
+import Page from '../layouts/Page.astro';
+import Cta from '../components/Cta.astro';
+import Callout from '../components/Callout.astro';
+import { links } from '../config/links';
+
+const title = 'Organisational partners';
+const lead =
+  'Membership of the Society is individual. Organisations that want to support it do so as partners.';
+---
+
+<Page title={title} eyebrow="Support" lead={lead}>
+  <p class="lead">
+    Organisations that want to support the Society can do so through sponsorship, event
+    partnerships, venue support or commissioned activities.
+  </p>
+
+  <h2>What partnership does not buy</h2>
+  <p>
+    Financial or in-kind support does not purchase control over the Society's technical positions.
+    Partnership arrangements will be transparent and consistent with the Society's sponsorship and
+    partnership policy.
+  </p>
+  <p>
+    This matters for a professional body whose value rests on the independence of its technical work.
+    Partners are acknowledged; they do not set the agenda.
+  </p>
+
+  <h2>Ways to support the Society</h2>
+  <ul>
+    <li><strong>Sponsorship</strong> — general support for the Society's programme.</li>
+    <li>
+      <strong>Event partnership</strong> — supporting a seminar, workshop or the inaugural
+      conference.
+    </li>
+    <li><strong>Venue support</strong> — hosting an in-person event.</li>
+    <li>
+      <strong>Commissioned activities</strong> — work the Society undertakes at an organisation's
+      request, on terms consistent with its independence.
+    </li>
+  </ul>
+
+  <h2>Supporting your people</h2>
+  <p>
+    Many organisations support their staff's professional development directly, by meeting the cost
+    of individual memberships and by making time available for the Society's programme. Members join
+    in their own right, which is what allows them to take part in professional discussion without
+    every contribution being read as their employer's position.
+  </p>
+
+  <Callout title="Sponsorship and partnership policy">
+    <p>
+      The Society's sponsorship and partnership policy is in preparation and will be published
+      alongside its other governance documents.
+    </p>
+  </Callout>
+
+  <h2>Get in touch</h2>
+  <p>
+    <Cta href={links.partnership} variant="primary">Enquire about partnership</Cta>
+  </p>
+</Page>

@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import Motif from '../components/Motif.astro';
+import Cta from '../components/Cta.astro';
+
+const title = 'Page not found';
+---
+
+<Base title={title} description="The page you were looking for could not be found.">
+  <section class="notfound">
+    <div class="notfound__motif" aria-hidden="true"><Motif variant="strata" /></div>
+    <div class="page notfound__inner">
+      <p class="eyebrow"><span class="eyebrow__num">404</span><span class="eyebrow__rule" />Not found</p>
+      <h1>This page could not be found</h1>
+      <p class="lead">
+        The address may be mistyped, or the page may have moved as the site is built out ahead of
+        the Society's launch.
+      </p>
+      <div class="button-row notfound__actions">
+        <Cta href="/" variant="primary">Return to the home page</Cta>
+        <Cta href="/contact/" variant="arrow">Tell us what you were looking for</Cta>
+      </div>
+
+      <nav class="notfound__links" aria-label="Popular pages">
+        <h2>Perhaps you wanted</h2>
+        <ul>
+          <li><a href="/about/">About the Society</a></li>
+          <li><a href="/membership/">Membership</a></li>
+          <li><a href="/events/">Events and get involved</a></li>
+          <li><a href="/leadership/">Leadership and governance</a></li>
+          <li><a href="/natural-capital-accounting/">What is natural capital accounting?</a></li>
+          <li><a href="/faq/">Frequently asked questions</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--section-y);
+  }
+
+  .notfound__motif {
+    display: none;
+  }
+
+  @media (min-width: 48rem) {
+    .notfound__motif {
+      display: block;
+      position: absolute;
+      inset-block: -20%;
+      inset-inline-end: -8%;
+      inline-size: min(60%, 40rem);
+      opacity: 0.4;
+      -webkit-mask-image: radial-gradient(110% 90% at 100% 40%, #000 20%, transparent 78%);
+      mask-image: radial-gradient(110% 90% at 100% 40%, #000 20%, transparent 78%);
+      pointer-events: none;
+    }
+  }
+
+  .notfound__inner {
+    position: relative;
+  }
+
+  .notfound h1 {
+    margin-block-start: var(--space-s);
+    font-size: var(--step-4);
+    max-width: 16ch;
+  }
+
+  .notfound .lead {
+    margin-block-start: var(--space-m);
+    color: var(--c-text-muted);
+  }
+
+  .notfound__actions {
+    margin-block-start: var(--space-xl);
+  }
+
+  .notfound__links {
+    margin-block-start: var(--space-3xl);
+    padding-block-start: var(--space-l);
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .notfound__links h2 {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+
+  .notfound__links ul {
+    display: grid;
+    gap: var(--space-2xs) var(--space-l);
+    list-style: none;
+    margin: var(--space-m) 0 0;
+    padding: 0;
+    font-size: var(--step--1);
+  }
+
+  @media (min-width: 46rem) {
+    .notfound__links ul {
+      grid-template-columns: repeat(2, minmax(0, 22rem));
+    }
+  }
+
+  .notfound__links a {
+    text-decoration: none;
+    font-weight: 550;
+  }
+
+  .notfound__links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>
