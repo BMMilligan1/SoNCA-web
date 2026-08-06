@@ -1,0 +1,117 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import Cta from '../components/Cta.astro';
+import { links } from '../config/links';
+
+const title = 'Member participation code';
+const lead =
+  'The shared standards that keep the Society a genuine cross-disciplinary forum, where practitioners from very different backgrounds can exchange ideas honestly and respectfully.';
+---
+
+<Page title={title} eyebrow="Governance" lead={lead}>
+  <Callout tone="pending" title="Draft">
+    <p>
+      This code is a draft, for adoption at the Society's first general meeting. It will be reviewed
+      by the committee within two years of adoption.
+    </p>
+  </Callout>
+
+  <p class="lead">
+    The code applies to members' participation in the Society's activities — meetings, online forums,
+    events, publications and committee work. It does not regulate members' professional work outside
+    the Society, though it reflects the standards the profession aspires to. When you join the
+    Society, you agree to abide by it.
+  </p>
+
+  <p class="text-small text-muted">
+    It is called a <em>participation code</em> because that is what it currently is. If professional
+    certification is later introduced, a wider professional code may be required.
+  </p>
+
+  <h2>Professional integrity</h2>
+  <ul>
+    <li>
+      Be honest and accurate in contributions to the Society's forums, events and publications,
+      including about data, methods, assumptions and the limits of what accounts can show.
+    </li>
+    <li>
+      Represent your qualifications, experience and affiliations truthfully, and do not claim the
+      Society's endorsement of your views, services or products.
+    </li>
+    <li>Acknowledge the work of others and respect intellectual property.</li>
+    <li>
+      Support good practice in natural capital accounting, anchored in the
+      {' '}<a href={links.seea} rel="noopener">UN System of Environmental-Economic Accounting</a> and
+      other relevant standards, while engaging openly with methodological debate.
+    </li>
+  </ul>
+
+  <h2>Respect for others</h2>
+  <ul>
+    <li>
+      Treat other members and participants with courtesy and respect. Harassment, bullying and
+      discrimination have no place in the Society's activities, online or in person.
+    </li>
+    <li>
+      Debate ideas vigorously and people kindly: criticise methods and evidence, not individuals. The
+      Society exists to exchange ideas and experience across disciplines — accountants, ecologists,
+      economists, statisticians and policy-makers — and that only works if every discipline is heard
+      with respect.
+    </li>
+    <li>Welcome newcomers and early-career members; share knowledge generously.</li>
+  </ul>
+
+  <h2>Acting in the Society's interests</h2>
+  <ul>
+    <li>
+      Participate as an individual, not as a representative of your employer or clients, unless
+      expressly stated otherwise.
+    </li>
+    <li>
+      Declare conflicts of interest where they arise in Society roles — committee decisions,
+      reviewing papers, organising events or commissioning work — and step back where appropriate.
+    </li>
+    <li>Do not present personal views as positions of the Society unless authorised.</li>
+    <li>Respect information shared in confidence in Society roles.</li>
+  </ul>
+
+  <h2>Upholding the code</h2>
+  <ul>
+    <li>
+      Concerns about conduct may be raised with the Secretary or President and will be handled by the
+      committee fairly, confidentially and in accordance with the association's rules.
+    </li>
+    <li>
+      Serious or repeated breaches may lead to action under the rules, including suspension or
+      termination of membership.
+    </li>
+  </ul>
+
+  <Callout tone="pending" title="Still to be settled">
+    <p>
+      A fuller enforcement pathway is being drafted: how to raise a concern and who receives
+      complaints; how conflicts of interest are managed; what procedural fairness applies; the
+      possible outcomes or sanctions; and whether there is an appeal process.
+    </p>
+  </Callout>
+
+  <h2>Raising a concern</h2>
+  <p>
+    If something in the Society's activities has fallen short of this code, tell us. Concerns are
+    treated confidentially.
+  </p>
+  <p>
+    <Cta href={links.complaints} variant="primary">Raise a concern</Cta>
+  </p>
+  <p>
+    <Cta href="/complaints/" variant="arrow">How complaints are handled</Cta>
+  </p>
+
+  <hr />
+
+  <p class="text-small text-muted">
+    Adopted: at the first general meeting (date to be set). To be reviewed by the committee within
+    two years of adoption.
+  </p>
+</Page>

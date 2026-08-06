@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import JoinBanner from '../components/JoinBanner.astro';
+import { priorities } from '../data/programme';
+
+const title = 'Foundation-year priorities';
+const lead =
+  'Five commitments for 2026–27. The Society will report against each of them to members at the first annual general meeting.';
+---
+
+<Base title={title} description={lead}>
+  <PageHeader title={title} eyebrow="Foundation year" lead={lead} />
+
+  <section class="section">
+    <div class="page">
+      <ol class="priorities">
+        {
+          priorities.map((item, i) => (
+            <li>
+              <span class="priorities__num">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h2>{item.title}</h2>
+                <p>{item.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="priorities__note">
+        A foundation-year report will be published alongside the first annual general meeting in the
+        first half of 2027, setting out what was achieved against each priority and what was not.
+      </p>
+    </div>
+  </section>
+
+  <JoinBanner title="Have a hand in setting the next set" />
+</Base>
+
+<style>
+  .priorities {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .priorities li {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: var(--space-s) var(--space-m);
+    padding-block: var(--space-xl);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  @media (min-width: 48rem) {
+    .priorities li {
+      grid-template-columns: 6rem 1fr;
+    }
+  }
+
+  .priorities__num {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--c-highlight);
+    font-variant-numeric: lining-nums;
+  }
+
+  .priorities h2 {
+    font-size: var(--step-2);
+    max-width: 24ch;
+  }
+
+  .priorities p {
+    margin-block-start: var(--space-s);
+    color: var(--c-text-muted);
+    max-width: var(--measure);
+  }
+
+  .priorities__note {
+    margin-block-start: var(--space-xl);
+    max-width: var(--measure);
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+    padding-inline-start: var(--space-m);
+    border-inline-start: 2px solid var(--c-accent-soft);
+  }
+</style>

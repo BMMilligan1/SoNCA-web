@@ -1,0 +1,100 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import Cta from '../components/Cta.astro';
+import { links } from '../config/links';
+
+const title = 'What is natural capital accounting?';
+const lead =
+  'An introduction to the field: what accounts are, how they differ from one-off assessments, and where the international standard fits.';
+---
+
+<Page title={title} eyebrow="The field" lead={lead}>
+  <p class="lead">
+    Natural capital accounting organises information about ecosystems, environmental assets and
+    their relationships with the economy and society. It provides consistent measures that can be
+    repeated over time and used in public policy, business decisions, research and community debate.
+  </p>
+
+  <h2>How accounts differ from one-off assessments</h2>
+  <p>
+    Unlike a single environmental study or valuation, accounts are structured, repeatable and
+    comparable. They use agreed definitions and classifications so that measures can be compared
+    across places and updated year after year — in much the same way that economic accounts track
+    the economy.
+  </p>
+  <p>
+    That repeatability is what makes accounts useful in decisions. A one-off study answers a
+    question at a moment in time; an account lets you ask the same question next year, and the year
+    after, and see what has changed.
+  </p>
+
+  <h2>Natural capital, ecosystem and environmental-economic accounting</h2>
+  <p>
+    <strong>Environmental-economic accounting</strong> is the broad field that links environmental
+    information to the economy. <strong>Ecosystem accounting</strong> focuses on ecosystems — their
+    extent, condition and the services they provide. <strong>Natural capital accounting</strong>{' '}
+    often describes the same work from the perspective of the assets, or stocks, that underpin those
+    services.
+  </p>
+  <p>
+    The terms overlap, and the Society uses <em>natural capital accounting</em> as an inclusive label
+    for the field.
+  </p>
+
+  <h2>The role of the SEEA</h2>
+  <p>
+    The United Nations <a href={links.seea} rel="noopener">System of Environmental-Economic
+    Accounting</a> (SEEA) is the international statistical standard for this work. It provides the
+    concepts, classifications and accounting rules that make accounts consistent and comparable. The
+    SEEA has two main parts:
+  </p>
+  <ul>
+    <li>
+      <a href={links.seeaCentralFramework} rel="noopener">The Central Framework</a> — physical flows,
+      environmental assets and environmental activity, in the terms of the national accounts.
+    </li>
+    <li>
+      <a href={links.seeaEcosystemAccounting} rel="noopener">Ecosystem Accounting</a> — the extent and
+      condition of ecosystems and the services they supply to the economy and to people.
+    </li>
+  </ul>
+  <p>
+    The Central Framework is currently being updated, with global consultations running through 2026
+    and completion expected in 2028. The Society's technical working group is a channel for
+    coordinated practitioner input to that process.
+  </p>
+
+  <h2>Links with corporate reporting and disclosure</h2>
+  <p>
+    Businesses and financial institutions are developing their own approaches to measuring and
+    disclosing their dependence and impact on nature. These build on many of the same ideas as the
+    SEEA. A shared professional community can help public and private approaches learn from one
+    another, rather than duplicating each other's work.
+  </p>
+
+  <h2>Decisions informed by accounts</h2>
+  <p>
+    Accounts have informed water management, land use planning, environmental policy, corporate
+    sustainability strategy and national reporting on progress. In each case the value came from
+    having a consistent, repeatable picture rather than a single snapshot.
+  </p>
+
+  <Callout tone="pending" title="To be added before launch">
+    <p>
+      Two or three concrete, referenced examples of decisions informed by accounts — Australian and
+      international, short, verifiable and linked.
+    </p>
+  </Callout>
+
+  <h2>Where to go next</h2>
+  <p>
+    <Cta href="/technical-working-group/" variant="arrow">The Society's technical working group</Cta>
+  </p>
+  <p>
+    <Cta href="/resources/" variant="arrow">Resources, standards and guidance</Cta>
+  </p>
+  <p>
+    <Cta href="/membership/" variant="arrow">Join the Society</Cta>
+  </p>
+</Page>

@@ -1,0 +1,230 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import JoinBanner from '../components/JoinBanner.astro';
+import Cta from '../components/Cta.astro';
+import { faqs, faqGroups } from '../data/faq';
+import { links } from '../config/links';
+
+const title = 'Frequently asked questions';
+const lead = 'The questions we are asked most often about the Society, the field and membership.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer.join(' ') },
+  })),
+};
+---
+
+<Base title={title} description={lead}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+
+  <PageHeader title={title} eyebrow="About" lead={lead} />
+
+  <section class="section">
+    <div class="page faq">
+      <nav class="faq__nav" aria-label="Question groups">
+        <h2 class="faq__nav-title">Contents</h2>
+        <ul>
+          {
+            faqGroups.map((group) => (
+              <li>
+                <a href={`#${group.toLowerCase().replace(/\s+/g, '-')}`}>{group}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="faq__body">
+        {
+          faqGroups.map((group) => (
+            <section class="faq__group">
+              <h2 id={group.toLowerCase().replace(/\s+/g, '-')} class="faq__group-title">
+                {group}
+              </h2>
+              <div class="faq__items">
+                {faqs
+                  .filter((faq) => faq.group === group)
+                  .map((faq) => (
+                    <details class="faq__item">
+                      <summary>
+                        <span>{faq.question}</span>
+                        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                          <path
+                            d="M8 3v10M3 8h10"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </summary>
+                      <div class="faq__answer">
+                        {faq.answer.map((para) => (
+                          <p>{para}</p>
+                        ))}
+                      </div>
+                    </details>
+                  ))}
+              </div>
+            </section>
+          ))
+        }
+
+        <p class="faq__more">
+          Still have a question? <Cta href={links.contact} variant="arrow">Write to us</Cta>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <JoinBanner />
+</Base>
+
+<script>
+  // Every answer visible when the page is printed or saved to PDF.
+  const details = () => Array.from(document.querySelectorAll<HTMLDetailsElement>('.faq__item'));
+  let restore: HTMLDetailsElement[] = [];
+
+  window.addEventListener('beforeprint', () => {
+    restore = details().filter((el) => !el.open);
+    restore.forEach((el) => (el.open = true));
+  });
+
+  window.addEventListener('afterprint', () => {
+    restore.forEach((el) => (el.open = false));
+    restore = [];
+  });
+</script>
+
+<style>
+  .faq {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .faq {
+      grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .faq__nav {
+    position: sticky;
+    inset-block-start: 6.5rem;
+  }
+
+  .faq__nav-title {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    padding-block-end: var(--space-2xs);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .faq__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .faq__nav li {
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .faq__nav a {
+    display: block;
+    padding-block: 0.6rem;
+    font-size: var(--step--1);
+    font-weight: 550;
+    color: var(--c-heading);
+    text-decoration: none;
+  }
+
+  .faq__nav a:hover {
+    color: var(--c-accent);
+  }
+
+  .faq__group + .faq__group {
+    margin-block-start: var(--space-2xl);
+  }
+
+  .faq__group-title {
+    font-size: var(--step-2);
+    padding-block-end: var(--space-s);
+    border-block-end: 1px solid var(--c-rule-strong);
+    scroll-margin-block-start: 7rem;
+  }
+
+  .faq__item {
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding-block: var(--space-m);
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--c-heading);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--dur) var(--ease-out);
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary:hover {
+    color: var(--c-accent);
+  }
+
+  .faq__item summary svg {
+    flex: 0 0 auto;
+    color: var(--c-highlight);
+    transition: transform var(--dur) var(--ease-out);
+  }
+
+  .faq__item[open] summary svg {
+    transform: rotate(45deg);
+  }
+
+  .faq__answer {
+    padding-block-end: var(--space-m);
+    max-width: var(--measure);
+    color: var(--c-text-muted);
+  }
+
+  .faq__answer > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  .faq__more {
+    margin-block-start: var(--space-2xl);
+    padding-block-start: var(--space-l);
+    border-block-start: 1px solid var(--c-rule);
+    color: var(--c-text-muted);
+    font-size: var(--step--1);
+  }
+
+</style>

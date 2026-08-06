@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://naturalcapitalaccounting.org/sitemap-index.xml

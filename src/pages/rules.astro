@@ -1,0 +1,114 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import Cta from '../components/Cta.astro';
+import { links } from '../config/links';
+import { incorporation } from '../config/site';
+
+const title = 'Rules';
+const lead =
+  'The Society has adopted the ACT model rules. This page explains what that means in plain language, and links to the authorised version.';
+---
+
+<Page title={title} eyebrow="Governance" lead={lead}>
+  <Callout title="Which version prevails">
+    <p>
+      The authorised version of the model rules on the ACT Legislation Register prevails over any
+      copy or summary, including this page. The Society may adopt different rules by special
+      resolution.
+    </p>
+  </Callout>
+
+  <h2>What the rules are</h2>
+  <p>
+    The Society for Natural Capital Accounting is an incorporated association under the{' '}
+    <em>{incorporation.act}</em>. Rather than draft its own constitution at the outset, the Society
+    has adopted the ACT model rules — the standard set of rules provided under that Act. This is a
+    common and deliberate choice for a new association: the rules are tested, publicly available, and
+    familiar to the regulator.
+  </p>
+  <p>
+    <Cta href={links.modelRules} variant="primary">Read the full rules on the ACT Legislation Register</Cta>
+  </p>
+
+  <h2>Plain-language summary</h2>
+  <p>The rules cover, among other things:</p>
+
+  <dl class="definition-list">
+    <div>
+      <dt>Membership</dt>
+      <dd>
+        Who may join, how applications are dealt with, the register of members, subscriptions, and
+        how membership ends.
+      </dd>
+    </div>
+    <div>
+      <dt>General meetings</dt>
+      <dd>
+        The annual general meeting and any special general meetings — how they are called, what
+        notice is required, what constitutes a quorum, and how members vote.
+      </dd>
+    </div>
+    <div>
+      <dt>The committee</dt>
+      <dd>
+        The composition of the management committee, how members are elected, terms of office,
+        casual vacancies, and how the committee meets and decides.
+      </dd>
+    </div>
+    <div>
+      <dt>Officers</dt>
+      <dd>
+        The roles of President, Vice-President, Secretary, Treasurer and Public Officer, and their
+        duties.
+      </dd>
+    </div>
+    <div>
+      <dt>Finances</dt>
+      <dd>
+        How funds are managed and applied, the keeping of accounts, and the audit or review of
+        financial statements.
+      </dd>
+    </div>
+    <div>
+      <dt>Disputes and discipline</dt>
+      <dd>
+        How disputes between members, or between members and the Society, are resolved, and the
+        procedure for disciplinary action.
+      </dd>
+    </div>
+    <div>
+      <dt>Changing the rules</dt>
+      <dd>How the Society may amend or replace its rules, by special resolution.</dd>
+    </div>
+  </dl>
+
+  <h2>The founding committee</h2>
+  <p>
+    The current committee is a founding committee. It will guide the Society through its
+    establishment period, and members will elect the committee in accordance with the rules at the
+    first annual general meeting — to be held within eighteen months of incorporation.
+  </p>
+  <p>
+    <Cta href="/leadership/" variant="arrow">The founding committee and governance</Cta>
+  </p>
+
+  <h2>What else the Society will publish</h2>
+  <ul>
+    <li>Annual reports and financial statements</li>
+    <li>Committee and election arrangements</li>
+    <li>Conflicts-of-interest policy</li>
+    <li><a href="/privacy/">Privacy policy</a></li>
+    <li><a href="/complaints/">Complaints policy</a></li>
+    <li>Sponsorship and partnership policy</li>
+    <li><a href="/participation-code/">Member participation code</a></li>
+  </ul>
+
+  <Callout tone="pending" title="To be added">
+    <p>
+      The Society's incorporation number and date, once the certificate issues (application lodged
+      {' '}{incorporation.lodged}), and the founding committee's term and the expected date of the
+      first annual general meeting.
+    </p>
+  </Callout>
+</Page>

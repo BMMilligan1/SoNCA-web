@@ -1,0 +1,35 @@
+---
+import Base from './Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+interface Props {
+  title: string;
+  /** Small label above the page title. */
+  eyebrow?: string;
+  /** Standfirst beneath the title. */
+  lead?: string;
+  description?: string;
+  /** Renders the body inside a `.prose` column. Set false for custom layouts. */
+  prose?: boolean;
+}
+
+const { title, eyebrow, lead, description, prose = true } = Astro.props;
+---
+
+<Base title={title} description={description ?? lead}>
+  <PageHeader title={title} eyebrow={eyebrow} lead={lead}>
+    <slot name="header-extra" />
+  </PageHeader>
+
+  {
+    prose ? (
+      <div class="page section">
+        <div class="prose">
+          <slot />
+        </div>
+      </div>
+    ) : (
+      <slot />
+    )
+  }
+</Base>

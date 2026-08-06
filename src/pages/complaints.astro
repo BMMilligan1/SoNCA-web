@@ -1,0 +1,82 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import Cta from '../components/Cta.astro';
+import { links } from '../config/links';
+import { site } from '../config/site';
+
+const title = 'Complaints and concerns';
+const lead =
+  'How to raise a concern about conduct in the Society’s activities, or about how the Society itself has acted.';
+---
+
+<Page title={title} eyebrow="Governance" lead={lead}>
+  <p class="lead">
+    A professional body is only as good as its willingness to hear when something has gone wrong.
+    Concerns are treated seriously and confidentially.
+  </p>
+
+  <h2>What this covers</h2>
+  <ul>
+    <li>
+      Conduct in the Society's activities — meetings, online forums, events, publications and
+      committee work — that falls short of the
+      {' '}<a href="/participation-code/">member participation code</a>.
+    </li>
+    <li>Decisions or conduct of the Society itself, including its committee.</li>
+    <li>
+      How the Society has handled your personal information (see also the
+      {' '}<a href="/privacy/">privacy policy</a>).
+    </li>
+  </ul>
+
+  <h2>How to raise a concern</h2>
+  <p>
+    Concerns about conduct may be raised with the Secretary or the President. Write to
+    {' '}<a href={`mailto:${site.email}`}>{site.email}</a>, marking your message for their attention, and
+    include:
+  </p>
+  <ul>
+    <li>what happened, and when;</li>
+    <li>who was involved, if you are comfortable saying;</li>
+    <li>any relevant correspondence or materials; and</li>
+    <li>what outcome you are seeking.</li>
+  </ul>
+  <p>
+    <Cta href={links.complaints} variant="primary">Raise a concern</Cta>
+  </p>
+
+  <h2>How concerns are handled</h2>
+  <p>
+    Concerns are handled by the committee fairly, confidentially and in accordance with the
+    association's rules. Committee members with a conflict of interest in the matter step back from
+    considering it.
+  </p>
+  <p>
+    Serious or repeated breaches of the member participation code may lead to action under the rules,
+    including suspension or termination of membership.
+  </p>
+
+  <Callout tone="pending" title="Being finalised">
+    <p>
+      A fuller complaints procedure is in preparation and will be published here. It will set out who
+      receives complaints, how conflicts of interest are managed, what procedural fairness applies,
+      the possible outcomes or sanctions, and whether there is an appeal process.
+    </p>
+  </Callout>
+
+  <h2>If you are not satisfied</h2>
+  <p>
+    The rules provide a process for resolving disputes between members, and between members and the
+    Society. For concerns specifically about personal information, you may lodge a complaint with the
+    Office of the Australian Information Commissioner at
+    {' '}<a href="https://www.oaic.gov.au" rel="noopener">oaic.gov.au</a>, or with the relevant data
+    protection authority in your jurisdiction.
+  </p>
+
+  <h2>Urgent safety concerns</h2>
+  <p>
+    If someone is at immediate risk of harm, contact your local emergency services first. Write to us
+    afterwards so we can act on our side.
+  </p>
+</Page>

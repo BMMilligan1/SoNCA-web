@@ -1,0 +1,214 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import { site, incorporation } from '../config/site';
+
+const title = 'Privacy policy';
+const lead =
+  'What personal information the Society collects, how it is used and protected, and the choices and rights you have.';
+---
+
+<Page title={title} eyebrow="Governance" lead={lead}>
+  <p class="text-small text-muted">Last updated: to be set on publication.</p>
+
+  <h2>1. About this policy</h2>
+  <p>
+    The Society for Natural Capital Accounting (&ldquo;SoNCA&rdquo;, &ldquo;the Society&rdquo;,
+    &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;) is a not-for-profit professional
+    association incorporated in the Australian Capital Territory under the <em>{incorporation.act}</em>{
+      incorporation.number ? ` (Association No. ${incorporation.number})` : ''
+    }.
+  </p>
+  <p>
+    This policy explains what personal information we collect through our website at
+    naturalcapitalaccounting.org and in the course of our activities, how we use and protect it, and
+    the choices and rights you have. It applies to members, prospective members, event participants,
+    subscribers and general visitors to our website.
+  </p>
+  <p>
+    We respect your privacy and handle personal information in a way that is consistent with the
+    Australian Privacy Principles in the <em>Privacy Act 1988</em> (Cth). As a small not-for-profit,
+    some of these obligations may not currently apply to us as a matter of law, but we have chosen to
+    follow them as a matter of good practice. Because the Society has members and correspondents
+    internationally, we also aim to meet the expectations of comparable frameworks such as the
+    European Union General Data Protection Regulation (GDPR) where they apply to you.
+  </p>
+
+  <h2>2. What information we collect</h2>
+  <p>
+    We only collect personal information that is reasonably necessary for our activities as a
+    professional association.
+  </p>
+
+  <h3>Information you provide to us</h3>
+  <p>This includes information you give us when you:</p>
+  <ul>
+    <li>
+      apply for or renew membership — for example your name, email address, postal or organisational
+      address, professional background, area of practice and any concession category you claim (such
+      as student status);
+    </li>
+    <li>
+      pay membership fees or event fees — payment is processed by a third-party payment provider (see
+      section 5); we do not store your full card details;
+    </li>
+    <li>register for the annual meeting, webinars or other events;</li>
+    <li>subscribe to our newsletter or mailing list; or</li>
+    <li>
+      contact us through a web form or by email, in which case we collect your name, email address
+      and the contents of your message.
+    </li>
+  </ul>
+
+  <h3>Information collected automatically</h3>
+  <p>
+    Like most websites, our site and its hosting and analytics providers may automatically record
+    standard technical information, including your IP address, browser type, the pages you view,
+    referring pages and the date and time of access. This is used to keep the site running properly
+    and to understand aggregate visitor traffic. Where possible, IP addresses are anonymised.
+  </p>
+
+  <h3>Cookies</h3>
+  <p>
+    Our site may use small text files (&ldquo;cookies&rdquo;) stored on your device to help the site
+    function and to measure aggregate usage. You can disable or delete cookies through your browser
+    settings, though some parts of the site may not work as intended if you do.
+  </p>
+  <p>
+    This site stores one item locally in your browser: your choice of light or dark theme. It is not
+    sent to us and is not used to identify you.
+  </p>
+  <p>
+    We do not seek to collect sensitive information (such as health, racial or political information)
+    and ask that you do not send it to us.
+  </p>
+
+  <h2>3. How we use your information</h2>
+  <p>We use personal information to:</p>
+  <ul>
+    <li>process and administer membership, including verifying eligibility and any concession claimed;</li>
+    <li>collect fees and issue receipts;</li>
+    <li>provide member services and run our forum, events and the annual meeting;</li>
+    <li>
+      send you newsletters, notices of meetings, and information about the Society's activities (you
+      can unsubscribe at any time);
+    </li>
+    <li>respond to your enquiries; and</li>
+    <li>
+      meet our governance, record-keeping and legal obligations as an incorporated association.
+    </li>
+  </ul>
+  <p>
+    We will only use your information for the purpose for which it was provided, or for a directly
+    related purpose you would reasonably expect, unless you consent otherwise or we are required or
+    permitted by law.
+  </p>
+
+  <h2>4. Consent and choice</h2>
+  <p>
+    By providing information to us you consent to us handling it as described in this policy. You can
+    withdraw consent or change your preferences at any time — for example by unsubscribing from a
+    mailing, or by contacting us using the details in section 11. Withdrawing consent may affect our
+    ability to provide membership or services to you.
+  </p>
+
+  <h2>5. Disclosure and third parties</h2>
+  <p>We do not sell, rent or trade your personal information.</p>
+  <p>
+    We share personal information only with trusted service providers who help us operate, and only
+    to the extent needed for them to perform their service. These may include providers of:
+  </p>
+  <ul>
+    <li>website hosting, which stores site files and server logs;</li>
+    <li>payment processing, for membership and event payments;</li>
+    <li>email and mailing services, which deliver newsletters and manage subscriptions;</li>
+    <li>form and contact services, which deliver messages you send us; and</li>
+    <li>analytics, which provide aggregate visitor statistics.</li>
+  </ul>
+  <p>
+    These providers are required to handle your information in accordance with their own obligations
+    and to use it only for the services they provide to us. We may also disclose personal information
+    where required or authorised by law, or to protect the rights, property or safety of the Society,
+    our members or others.
+  </p>
+
+  <Callout tone="pending" title="To be completed before publication">
+    <p>
+      Name the specific providers used for hosting, payments, mailing, forms and analytics, so that
+      this section is verifiable rather than generic.
+    </p>
+  </Callout>
+
+  <h2>6. Overseas disclosure</h2>
+  <p>
+    Some of our service providers may store or process information on servers located outside
+    Australia. Where this occurs we take reasonable steps to ensure your information is handled
+    consistently with this policy. As the Society grows internationally, we will keep our
+    arrangements for cross-border handling of personal information under review.
+  </p>
+
+  <h2>7. Storage, security and retention</h2>
+  <p>
+    We take reasonable steps to protect personal information from misuse, loss, and unauthorised
+    access, modification or disclosure. We hold most information electronically through the providers
+    described above.
+  </p>
+  <p>
+    We keep personal information only for as long as it is needed for the purposes described in this
+    policy, or as required for our records as an incorporated association and to meet legal
+    obligations. When information is no longer needed, we take reasonable steps to destroy or
+    de-identify it.
+  </p>
+
+  <h2>8. External links</h2>
+  <p>
+    Our website contains links to external sites that we do not operate, including partner
+    organisations and technical resources such as the UN System of Environmental-Economic Accounting.
+    We have no control over, and are not responsible for, the content or privacy practices of those
+    sites. We encourage you to read the privacy policy of any site you visit.
+  </p>
+
+  <h2>9. Your rights</h2>
+  <p>
+    You may request access to the personal information we hold about you, and ask us to correct it if
+    it is inaccurate, out of date or incomplete. You can also ask us to stop sending you
+    communications. To make a request, contact us using the details in section 11. We will respond
+    within a reasonable period. There is generally no charge for making a request, though a
+    reasonable cost may apply in some cases.
+  </p>
+  <p>
+    Depending on where you live, you may have additional rights — for example under the Australian
+    Privacy Principles or, if you are in the European Union or United Kingdom, under the GDPR,
+    including rights to erasure and to object to certain processing. We will honour these rights
+    where they apply to you.
+  </p>
+
+  <h2>10. Complaints</h2>
+  <p>
+    If you have a concern about how we have handled your personal information, please
+    {' '}<a href="/complaints/">contact us</a> first so we can try to resolve it. If you are not satisfied
+    with our response, you may be able to lodge a complaint with the Office of the Australian
+    Information Commissioner at
+    {' '}<a href="https://www.oaic.gov.au" rel="noopener">oaic.gov.au</a>, or with the relevant data
+    protection authority in your jurisdiction.
+  </p>
+
+  <h2>11. Contact us</h2>
+  <p>
+    For any questions about this policy, to update your details, or to make a request or complaint,
+    please contact:
+  </p>
+  <p>
+    The Public Officer<br />
+    Society for Natural Capital Accounting<br />
+    <a href={`mailto:${site.email}`}>{site.email}</a><br />
+    naturalcapitalaccounting.org
+  </p>
+
+  <h2>12. Changes to this policy</h2>
+  <p>
+    We may update this policy from time to time to reflect changes in our activities or in the law.
+    The current version will always be available on our website, and we will note the date it was
+    last updated at the top of this page.
+  </p>
+</Page>

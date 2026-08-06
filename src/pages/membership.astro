@@ -1,0 +1,319 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Cta from '../components/Cta.astro';
+import Callout from '../components/Callout.astro';
+import { links } from '../config/links';
+import { membership, site } from '../config/site';
+import { benefits } from '../data/programme';
+
+const title = 'Membership';
+const lead =
+  'Membership is individual and open to anyone working with, using or studying natural capital accounts, in any country.';
+
+const terms = [
+  {
+    q: 'What does membership cost?',
+    a: `Foundation-year membership is ${membership.currency}${membership.standard}, with a concession rate of ${membership.currency}${membership.concession} for students. Join by ${membership.launchCloses} and the launch discount of ${membership.launchDiscountPct}% applies to both rates: ${membership.currency}${membership.launchStandard} and ${membership.currency}${membership.launchConcession}.`,
+  },
+  {
+    q: 'When does membership run to?',
+    a: `Memberships share a common renewal date of 30 June. The foundation year runs to ${membership.renewalDate}, whenever during the first year you join.`,
+  },
+  {
+    q: 'What is a foundation member?',
+    a: 'Someone who joins in the Society’s first year, 2026–27. It is a permanent designation: everyone who joins in the foundation year keeps it.',
+  },
+  {
+    q: 'Can I vote straight away?',
+    a: 'Yes. Members may vote at general meetings from the date of joining, in accordance with the Society’s rules.',
+  },
+  {
+    q: 'Are other concessions available?',
+    a: 'In the foundation year, the student concession is the only reduced rate. Retired and unwaged concessions will be reviewed at the first annual general meeting.',
+  },
+  {
+    q: 'Will my name be published?',
+    a: 'Only if you choose. The member directory profile is opt-in, and member details are listed publicly only with consent.',
+  },
+  {
+    q: 'Are fees refundable?',
+    a: 'Membership fees are generally not refundable. If you join in error or your circumstances change, write to us within 14 days and the committee will consider the request.',
+  },
+];
+---
+
+<Base title={title} description={lead}>
+  <PageHeader title={title} eyebrow="Join" lead={lead} />
+
+  <section class="section">
+    <div class="page join-grid">
+      <div class="prose">
+        <p class="lead">
+          You do not need to be an accountant by training. Members include ecologists, economists,
+          statisticians, geospatial specialists, data scientists, lawyers, auditors, and finance and
+          sustainability professionals, alongside accountants and decision makers.
+        </p>
+        <p>
+          Members join as individuals, not as representatives of their organisations. This allows
+          members to test ideas, share experience and take part in professional discussion without
+          every contribution being treated as the formal position of their employer.
+        </p>
+        <p>
+          Members agree to support the Society's objects, keep their register details current, and
+          abide by a short <a href="/participation-code/">member participation code</a>.
+        </p>
+        <p>
+          Organisations that want to support the Society do so as{' '}
+          <a href="/partners/">partners</a> rather than as members.
+        </p>
+      </div>
+
+      <aside class="rate-card">
+        <p class="eyebrow"><span class="eyebrow__rule" />Foundation year {site.foundingYear}</p>
+
+        <div class="rate-card__rates">
+          <div class="rate">
+            <p class="rate__label">Standard</p>
+            <p class="rate__now">
+              {membership.currency}{membership.launchStandard}
+            </p>
+            <p class="rate__was">
+              <s>{membership.currency}{membership.standard}</s> until {membership.launchCloses}
+            </p>
+          </div>
+          <div class="rate">
+            <p class="rate__label">Concession</p>
+            <p class="rate__now">
+              {membership.currency}{membership.launchConcession}
+            </p>
+            <p class="rate__was">
+              <s>{membership.currency}{membership.concession}</s> · students
+            </p>
+          </div>
+        </div>
+
+        <p class="rate-card__note">{membership.gstNote}</p>
+        <p class="rate-card__note">
+          Membership runs to {membership.renewalDate}.
+        </p>
+
+        <Cta href={links.join} variant="primary" class="rate-card__cta">
+          Become a foundation member
+        </Cta>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--panel section--ruled">
+    <div class="page benefits-block">
+      <SectionHeading num="01" eyebrow="Membership" title="What you receive" />
+      <ul class="benefits">
+        {benefits.map((benefit) => <li>{benefit}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page">
+      <SectionHeading num="02" eyebrow="Terms" title="Membership questions">
+        The practical detail, settled for the foundation year. Anything the committee revisits will
+        be updated here.
+      </SectionHeading>
+
+      <dl class="definition-list terms">
+        {
+          terms.map((item) => (
+            <div>
+              <dt>{item.q}</dt>
+              <dd>{item.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <Callout tone="pending" title="Before launch" class="terms__pending">
+        <p>
+          GST treatment depends on whether the Society registers for GST. Once confirmed, state the
+          fee as GST-inclusive or note that GST does not apply.
+        </p>
+      </Callout>
+    </div>
+  </section>
+
+  <section class="section section--inverse">
+    <div class="page join-cta">
+      <div>
+        <h2>Ready to join?</h2>
+        <p class="lead">
+          Joining in the first year makes you a foundation member and gives you a hand in shaping the
+          Society's competency framework, code of conduct and early priorities.
+        </p>
+      </div>
+      <div class="button-row">
+        <Cta href={links.join} variant="primary">Become a foundation member</Cta>
+        <Cta href={links.contact} variant="secondary">Ask a question first</Cta>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .join-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .join-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .rate-card {
+    padding: var(--space-l);
+    background-color: var(--c-paper-raised);
+    border: 1px solid var(--c-rule);
+    border-block-start: 2px solid var(--c-highlight);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    inset-block-start: 6.5rem;
+  }
+
+  .rate-card__rates {
+    display: grid;
+    gap: var(--space-m);
+    margin-block: var(--space-m);
+    padding-block: var(--space-m);
+    border-block: 1px solid var(--c-rule);
+  }
+
+  @media (min-width: 30rem) and (max-width: 63.99rem) {
+    .rate-card__rates {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .rate__label {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-faint);
+  }
+
+  .rate__now {
+    font-family: var(--font-serif);
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--c-heading);
+    font-variant-numeric: lining-nums;
+  }
+
+  .rate__was {
+    font-size: var(--step--2);
+    color: var(--c-text-muted);
+  }
+
+  .rate__was s {
+    color: var(--c-text-faint);
+  }
+
+  .rate-card__note {
+    font-size: var(--step--2);
+    color: var(--c-text-muted);
+    margin-block-end: var(--space-2xs);
+  }
+
+  /* :global — these classes are passed to components, so carry no scope hash. */
+  :global(.rate-card__cta) {
+    margin-block-start: var(--space-m);
+    width: 100%;
+  }
+
+  .benefits-block {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .benefits-block {
+      grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+    .benefits-block :global(.section-heading) {
+      margin-block-end: 0;
+    }
+  }
+
+  .benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: benefit;
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .benefits li {
+    counter-increment: benefit;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-s);
+    padding-block: var(--space-s);
+    border-block-end: 1px solid var(--c-rule);
+    font-size: var(--step--1);
+  }
+
+  .benefits li::before {
+    content: counter(benefit, decimal-leading-zero);
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    color: var(--c-highlight);
+    font-variant-numeric: lining-nums tabular-nums;
+    padding-block-start: 0.35em;
+  }
+
+  .terms {
+    max-width: var(--width-page);
+  }
+
+  .terms dt {
+    font-family: var(--font-serif);
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: -0.008em;
+    text-transform: none;
+  }
+
+  :global(.terms__pending) {
+    margin-block-start: var(--space-xl);
+    max-width: var(--measure);
+  }
+
+  .join-cta {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: end;
+  }
+
+  @media (min-width: 58rem) {
+    .join-cta {
+      grid-template-columns: 1fr auto;
+      gap: var(--space-2xl);
+    }
+  }
+
+  .join-cta .lead {
+    margin-block-start: var(--space-m);
+    color: var(--c-inverse-muted);
+    max-width: var(--measure);
+  }
+</style>

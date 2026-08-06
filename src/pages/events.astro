@@ -1,0 +1,291 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Cta from '../components/Cta.astro';
+import Callout from '../components/Callout.astro';
+import JoinBanner from '../components/JoinBanner.astro';
+import { links } from '../config/links';
+import { launchEvent } from '../config/site';
+
+const title = 'Events and get involved';
+const lead =
+  'The launch seminar, the online programme, the inaugural conference — and the ways to take part beyond attending.';
+
+const involvement = [
+  'Offer to deliver or coordinate an online session',
+  'Express interest in attending the inaugural conference',
+  'Suggest a topic for the conference',
+  'Express interest in the technical working group',
+  'Join the mailing list',
+];
+---
+
+<Base title={title} description={lead}>
+  <PageHeader title={title} eyebrow="Programme" lead={lead} />
+
+  <section class="section">
+    <div class="page">
+      <article class="feature">
+        <div class="feature__body">
+          <p class="eyebrow"><span class="eyebrow__rule" />Next event</p>
+          <h2 class="feature__title">{launchEvent.title}</h2>
+          <p class="lead">{launchEvent.summary}</p>
+          <div class="button-row feature__actions">
+            <Cta href={links.registerLaunch} variant="primary">Register for the launch seminar</Cta>
+          </div>
+        </div>
+
+        <dl class="feature__facts">
+          <div>
+            <dt>Date</dt>
+            <dd><time datetime={launchEvent.dateISO}>{launchEvent.date}</time></dd>
+          </div>
+          <div>
+            <dt>Time</dt>
+            <dd>{launchEvent.time}</dd>
+          </div>
+          <div>
+            <dt>Duration</dt>
+            <dd>{launchEvent.duration}</dd>
+          </div>
+          <div>
+            <dt>Format</dt>
+            <dd>{launchEvent.platform}</dd>
+          </div>
+          <div>
+            <dt>Who</dt>
+            <dd>{launchEvent.audience}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <Callout tone="pending" title="To be confirmed" class="feature__pending">
+        <p>
+          The exact start time and time zone for the launch seminar, and whether the session will be
+          recorded and published afterwards.
+        </p>
+      </Callout>
+    </div>
+  </section>
+
+  <section class="section section--panel section--ruled">
+    <div class="page">
+      <SectionHeading num="01" eyebrow="The programme" title="What else is coming" />
+
+      <div class="events">
+        <article class="event">
+          <p class="event__when">August – December 2026</p>
+          <div>
+            <h3>Online programme</h3>
+            <p>
+              A regular series of presentations and workshops — at least six in the foundation year —
+              including technical sessions tracking the SEEA update. Sessions are provided
+              principally for members, with selected sessions opened more widely.
+            </p>
+            <p class="event__aside">Members can offer to deliver or coordinate a session.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <p class="event__when">February 2027 · Canberra</p>
+          <div>
+            <h3>Inaugural conference</h3>
+            <p>
+              One to two days of presentations and papers. Members attend at the reduced member rate.
+              An organising committee will be formed and a call for contributions issued in due
+              course.
+            </p>
+            <p class="event__aside">
+              Presentation materials and selected papers will be published after the conference.
+            </p>
+          </div>
+        </article>
+
+        <article class="event">
+          <p class="event__when">First half of 2027</p>
+          <div>
+            <h3>First annual general meeting</h3>
+            <p>
+              Members elect the committee in accordance with the rules, and the Society publishes its
+              foundation-year report against the priorities it set.
+            </p>
+            <p class="event__aside">
+              <a href="/priorities/">The foundation-year priorities</a>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page interest">
+      <SectionHeading num="02" eyebrow="Get involved" title="Register your interest">
+        One form covers every way of taking part. Tell us which apply and we will be in touch.
+      </SectionHeading>
+
+      <div class="interest__body">
+        <ul class="interest__list">
+          {involvement.map((item) => <li>{item}</li>)}
+        </ul>
+        <Cta href={links.expressInterest} variant="primary">Register your interest</Cta>
+      </div>
+    </div>
+  </section>
+
+  <JoinBanner />
+</Base>
+
+<style>
+  .feature {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+    padding: var(--space-l);
+    background-color: var(--c-paper-raised);
+    border: 1px solid var(--c-rule);
+    border-block-start: 2px solid var(--c-highlight);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 58rem) {
+    .feature {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+      gap: var(--space-2xl);
+      padding: var(--space-xl);
+    }
+  }
+
+  .feature__title {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step-3);
+  }
+
+  .feature__body .lead {
+    margin-block-start: var(--space-m);
+    color: var(--c-text-muted);
+    max-width: var(--measure);
+  }
+
+  .feature__actions {
+    margin-block-start: var(--space-l);
+  }
+
+  .feature__facts {
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .feature__facts > div {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: var(--space-s);
+    padding-block: 0.6rem;
+    border-block-end: 1px solid var(--c-rule);
+    font-size: var(--step--1);
+  }
+
+  .feature__facts dt {
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--c-text-faint);
+    padding-block-start: 0.2em;
+  }
+
+  .feature__facts dd {
+    margin: 0;
+    color: var(--c-heading);
+    font-weight: 500;
+  }
+
+  /* :global — the class is passed to <Callout>, so it carries no scope hash. */
+  :global(.feature__pending) {
+    margin-block-start: var(--space-l);
+    max-width: var(--measure);
+  }
+
+  .events {
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .event {
+    display: grid;
+    gap: var(--space-2xs) var(--space-xl);
+    padding-block: var(--space-l);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  @media (min-width: 48rem) {
+    .event {
+      grid-template-columns: minmax(11rem, 16rem) 1fr;
+    }
+  }
+
+  .event__when {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 650;
+    color: var(--c-text-muted);
+    font-variant-numeric: lining-nums;
+  }
+
+  .event h3 {
+    font-size: var(--step-1);
+  }
+
+  .event p {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+    max-width: var(--measure);
+  }
+
+  .event__aside {
+    padding-block-start: var(--space-2xs);
+    color: var(--c-text-faint);
+    font-style: italic;
+  }
+
+  .interest {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .interest {
+      grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+    .interest :global(.section-heading) {
+      margin-block-end: 0;
+    }
+  }
+
+  .interest__list {
+    list-style: none;
+    margin: 0 0 var(--space-l);
+    padding: 0;
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .interest__list li {
+    position: relative;
+    padding: var(--space-s) 0 var(--space-s) 1.75rem;
+    border-block-end: 1px solid var(--c-rule);
+    font-size: var(--step--1);
+  }
+
+  .interest__list li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 1.55em;
+    inline-size: 0.75rem;
+    block-size: 1px;
+    background-color: var(--c-highlight);
+  }
+</style>
