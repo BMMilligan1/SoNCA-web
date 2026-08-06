@@ -51,8 +51,7 @@ export const launchEvent = {
   date: '18 August 2026',
   dateISO: '2026-08-18',
   dateShort: '18 Aug 2026',
-  /** D18 — TO CONFIRM: start time and time zone. */
-  time: '12.30 to 1.30 pm',
+  time: '12.30 to 1.30 pm AEST',
   duration: '60 minutes',
   platform: 'Online via Microsoft Teams',
   summary:
