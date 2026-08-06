@@ -1,0 +1,51 @@
+---
+interface Props {
+  /** Two-digit section number, e.g. "01". Omit for unnumbered sections. */
+  num?: string;
+  eyebrow?: string;
+  title: string;
+  /** Heading level. */
+  as?: 'h2' | 'h3';
+  id?: string;
+  class?: string;
+}
+
+const { num, eyebrow, title, as: Tag = 'h2', id, class: className } = Astro.props;
+---
+
+<header class:list={['section-heading', className]}>
+  {
+    (num || eyebrow) && (
+      <p class="eyebrow">
+        {num && <span class="eyebrow__num">{num}</span>}
+        <span class="eyebrow__rule" />
+        {eyebrow && <span>{eyebrow}</span>}
+      </p>
+    )
+  }
+  <Tag id={id} class="section-heading__title">{title}</Tag>
+  {
+    Astro.slots.has('default') && (
+      <div class="section-heading__lead lead">
+        <slot />
+      </div>
+    )
+  }
+</header>
+
+<style>
+  .section-heading {
+    max-width: var(--measure);
+    margin-block-end: var(--space-xl);
+  }
+
+  .section-heading__title {
+    margin-block-start: var(--space-s);
+    max-width: 22ch;
+  }
+
+  .section-heading__lead {
+    margin-block-start: var(--space-m);
+    color: var(--c-text-muted);
+  }
+</style>

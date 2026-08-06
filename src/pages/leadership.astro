@@ -1,0 +1,222 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PersonCard from '../components/PersonCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Callout from '../components/Callout.astro';
+import Cta from '../components/Cta.astro';
+import { committee } from '../data/committee';
+import { incorporation } from '../config/site';
+import { links } from '../config/links';
+
+const title = 'Leadership and governance';
+const lead =
+  'The founding committee, the rules under which the Society operates, and what it undertakes to publish.';
+
+const slug = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, '-');
+---
+
+<Base title={title} description={lead}>
+  <PageHeader title={title} eyebrow="Governance" lead={lead} />
+
+  <section class="section">
+    <div class="page leadership">
+      <div class="leadership__index">
+        <h2 class="leadership__index-title">Committee</h2>
+        <ol class="leadership__index-list">
+          {
+            committee.map((person) => (
+              <li>
+                <a href={`#${slug(person.name)}`}>
+                  <span>{person.name}</span>
+                  <span class="leadership__index-role">{person.role}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <div class="leadership__body">
+        <p class="lead">
+          Biographies follow a common structure: current position; principal area of expertise;
+          relevant contribution to accounting or standards; and, where available, a link to an
+          institutional profile.
+        </p>
+        <Callout title="Affiliations">
+          <p>
+            Affiliations are provided for identification only and do not imply institutional
+            endorsement.
+          </p>
+        </Callout>
+
+        <div class="leadership__people">
+          {committee.map((person) => <PersonCard person={person} detail="full" />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--panel section--ruled">
+    <div class="page">
+      <SectionHeading num="01" eyebrow="Governance" title="How the Society is governed" />
+      <div class="governance">
+        <div class="prose">
+          <p>
+            The Society for Natural Capital Accounting is an incorporated association under the{' '}
+            <em>{incorporation.act}</em>. It has adopted the ACT model rules as its rules. The
+            authorised version on the <a href={links.modelRules} rel="noopener">ACT Legislation
+            Register</a> prevails over any copy, and the Society may adopt different rules by special
+            resolution.
+          </p>
+          <p>
+            The current committee is a founding committee. It will guide the Society through its
+            establishment period, and members will elect the committee in accordance with the rules
+            at the Society's first annual general meeting.
+          </p>
+
+          <h3>What the Society will publish</h3>
+          <ul>
+            <li>Its rules, and a plain-language governance summary</li>
+            <li>Annual reports and financial statements</li>
+            <li>Committee and election arrangements</li>
+            <li>
+              Its conflicts-of-interest, privacy, complaints, and sponsorship and partnership
+              policies
+            </li>
+          </ul>
+
+          <p>
+            <Cta href="/rules/" variant="arrow">The rules and a plain-language summary</Cta>
+          </p>
+        </div>
+
+        <aside class="governance__aside">
+          <dl class="definition-list">
+            <div>
+              <dt>Legal form</dt>
+              <dd>Incorporated association, Australian Capital Territory</dd>
+            </div>
+            <div>
+              <dt>Rules</dt>
+              <dd>ACT model rules, as adopted</dd>
+            </div>
+            <div>
+              <dt>Incorporation</dt>
+              <dd>
+                {
+                  incorporation.number
+                    ? `No. ${incorporation.number}, ${incorporation.date}`
+                    : `Application lodged ${incorporation.lodged}; certificate awaited`
+                }
+              </dd>
+            </div>
+            <div>
+              <dt>First AGM</dt>
+              <dd>Within 18 months of incorporation, under the model rules</dd>
+            </div>
+          </dl>
+
+          <Callout tone="pending" title="To be confirmed">
+            <p>
+              The incorporation number and date, and the founding committee's term and the expected
+              date of the first annual general meeting.
+            </p>
+          </Callout>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .leadership {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .leadership {
+      grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .leadership__index {
+    position: sticky;
+    inset-block-start: 6.5rem;
+  }
+
+  .leadership__index-title {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    padding-block-end: var(--space-2xs);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .leadership__index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: person;
+  }
+
+  .leadership__index-list li {
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .leadership__index-list a {
+    display: grid;
+    gap: 0.1rem;
+    padding-block: 0.65rem;
+    font-size: var(--step--1);
+    font-weight: 550;
+    color: var(--c-heading);
+    text-decoration: none;
+  }
+
+  .leadership__index-list a:hover {
+    color: var(--c-accent);
+  }
+
+  .leadership__index-role {
+    font-size: var(--step--2);
+    font-weight: 500;
+    color: var(--c-text-faint);
+  }
+
+  .leadership__body > * + * {
+    margin-block-start: var(--space-m);
+  }
+
+  .leadership__people {
+    margin-block-start: var(--space-xl);
+  }
+
+  .governance {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .governance {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .governance__aside > * + * {
+    margin-block-start: var(--space-l);
+  }
+
+  .governance__aside :global(.definition-list) > :global(div) {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+</style>

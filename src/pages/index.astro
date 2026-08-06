@@ -1,0 +1,730 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Cta from '../components/Cta.astro';
+import Card from '../components/Card.astro';
+import PersonCard from '../components/PersonCard.astro';
+import JoinBanner from '../components/JoinBanner.astro';
+import Motif from '../components/Motif.astro';
+import { links } from '../config/links';
+import { site, membership, launchEvent } from '../config/site';
+import { committee } from '../data/committee';
+import { programme, streams, benefits } from '../data/programme';
+---
+
+<Base title={`${site.name}`} bareTitle description={site.description}>
+  <!-- 1 — Hero -->
+  <section class="hero">
+    <div class="hero__motif" aria-hidden="true">
+      <Motif variant="strata" />
+    </div>
+
+    <div class="page hero__inner">
+      <div class="hero__text">
+        <h1 class="hero__title">Society for<br />Natural Capital<br />Accounting</h1>
+        <Motif variant="rule" class="hero__rule" />
+        <p class="hero__tagline">{site.tagline}</p>
+
+        <div class="hero__body">
+          <p>
+            Natural capital accounting is now practised across government, business, research and
+            civil society. It draws together accountants, ecologists, economists, statisticians, data
+            specialists and decision makers, but until now they have lacked a professional
+            association dedicated to their shared practice.
+          </p>
+          <p>
+            The Society connects this community, supports professional development, and advances
+            credible methods and standards. It is incorporated in Australia and welcomes members
+            internationally.
+          </p>
+        </div>
+
+        <div class="button-row hero__actions">
+          <Cta href={links.join} variant="primary">Become a foundation member</Cta>
+          <Cta href={links.registerLaunch} variant="arrow">Register for the launch seminar</Cta>
+        </div>
+      </div>
+
+      <aside class="hero__aside" aria-labelledby="hero-event">
+        <p class="eyebrow"><span class="eyebrow__rule" />Next</p>
+        <h2 class="hero__aside-title" id="hero-event">{launchEvent.title}</h2>
+        <dl class="hero__event">
+          <div>
+            <dt>Date</dt>
+            <dd><time datetime={launchEvent.dateISO}>{launchEvent.date}</time></dd>
+          </div>
+          <div>
+            <dt>Format</dt>
+            <dd>{launchEvent.platform} · {launchEvent.duration}</dd>
+          </div>
+          <div>
+            <dt>Who</dt>
+            <dd>{launchEvent.audience}</dd>
+          </div>
+        </dl>
+        <p class="hero__event-summary">{launchEvent.summary}</p>
+        <Cta href={links.registerLaunch} variant="secondary">Register</Cta>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2 — What is natural capital accounting? -->
+  <section class="section section--panel" aria-labelledby="what-is">
+    <div class="page what-is">
+      <SectionHeading
+        num="01"
+        eyebrow="The field"
+        title="What is natural capital accounting?"
+        id="what-is"
+      />
+      <div class="what-is__body">
+        <p class="lead">
+          Natural capital accounting organises information about ecosystems, environmental assets
+          and their relationships with the economy and society.
+        </p>
+        <p>
+          It provides consistent measures that can be repeated over time and used in public policy,
+          business decisions, research and community debate. Unlike a single environmental study or
+          valuation, accounts are structured, repeatable and comparable — in much the same way that
+          economic accounts track the economy.
+        </p>
+        <Cta href="/natural-capital-accounting/" variant="arrow">
+          An introduction to natural capital accounting
+        </Cta>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 — Why the Society is needed -->
+  <section class="section" aria-labelledby="why">
+    <div class="page why">
+      <SectionHeading num="02" eyebrow="Purpose" title="Why the Society is needed" id="why" />
+      <div class="why__grid">
+        <div class="prose">
+          <p>
+            Natural capital accounting is becoming an established field of professional practice. It
+            is undertaken in statistical offices, government agencies, universities, consultancies,
+            businesses and civil society organisations around the world. Until now, practitioners
+            have lacked an association dedicated to their shared professional development and
+            practice. The Society has been established to fill that gap.
+          </p>
+          <p>
+            Governments, businesses and financial institutions are developing related approaches to
+            natural capital measurement, accounting and disclosure. The Society provides a forum for
+            examining where these approaches align, where they differ, and how practice can become
+            more coherent — avoiding duplication and building on established practice.
+          </p>
+        </div>
+
+        <aside class="why__note">
+          <p class="eyebrow"><span class="eyebrow__rule" />A timely opportunity</p>
+          <p>
+            The United Nations System of Environmental-Economic Accounting is being updated, with
+            global consultations running through 2026 and completion expected in 2028. An organised
+            profession can bring practitioner experience to that process in a way scattered
+            individuals cannot.
+          </p>
+          <p class="why__note-caveat">
+            The professional need, however, is enduring, and does not depend on any single standards
+            revision.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 — What we do -->
+  <section class="section section--ruled" aria-labelledby="streams">
+    <div class="page">
+      <SectionHeading num="03" eyebrow="Our work" title="Four streams of work" id="streams">
+        The Society's programme is organised around four things practitioners have said they need.
+      </SectionHeading>
+
+      <div class="grid grid--4">
+        {
+          streams.map((stream, i) => (
+            <Card title={stream.name} index={String(i + 1).padStart(2, '0')}>
+              <p class="stream__summary">{stream.summary}</p>
+              <p>{stream.detail}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 & 5 — Membership -->
+  <section class="section section--panel" aria-labelledby="membership">
+    <div class="page membership-block">
+      <div class="membership-block__intro">
+        <SectionHeading num="04" eyebrow="Membership" title="What members receive" id="membership" />
+        <p class="membership-block__price">
+          <span class="membership-block__amount">
+            {membership.currency}{membership.standard}
+          </span>
+          <span class="membership-block__price-note">
+            foundation-year membership, {site.foundingYear} · {membership.currency}
+            {membership.concession} concession
+          </span>
+        </p>
+        <div class="button-row">
+          <Cta href={links.join} variant="primary">Become a foundation member</Cta>
+          <Cta href="/membership/" variant="arrow">Full membership detail</Cta>
+        </div>
+      </div>
+
+      <ul class="benefits">
+        {benefits.map((benefit) => <li>{benefit}</li>)}
+      </ul>
+    </div>
+
+    <div class="page who-for">
+      <div class="who-for__inner">
+        <h3 class="who-for__title">Who it is for</h3>
+        <div class="who-for__body">
+          <p class="lead">
+            Membership is individual and cross-disciplinary. You do not need to be an accountant by
+            training.
+          </p>
+          <div class="who-for__cols">
+            <ul>
+              <li>People who produce or compile accounts</li>
+              <li>People who use accounts in policy, planning, finance or management</li>
+              <li>Researchers and educators who develop the field</li>
+              <li>Students and early-career practitioners entering it</li>
+            </ul>
+            <p>
+              This includes ecologists, economists, statisticians, geospatial specialists, data
+              scientists, lawyers, auditors, and finance and sustainability professionals, alongside
+              accountants and decision makers.
+            </p>
+          </div>
+          <p class="who-for__note">
+            Members join as individuals, not as representatives of their organisations. This allows
+            members to test ideas, share experience and take part in professional discussion without
+            every contribution being treated as the formal position of their employer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 — The foundation-year programme -->
+  <section class="section" aria-labelledby="programme">
+    <div class="page">
+      <SectionHeading
+        num="05"
+        eyebrow="Foundation year"
+        title="The programme for 2026–27"
+        id="programme"
+      />
+
+      <ol class="timeline">
+        {
+          programme.map((item) => (
+            <li class:list={['timeline__item', item.status === 'next' && 'timeline__item--next']}>
+              <p class="timeline__when">
+                {item.when}
+                {item.status === 'next' && <span class="timeline__badge">Next</span>}
+              </p>
+              <div class="timeline__content">
+                <h3 class="timeline__title">
+                  {item.href ? <a href={item.href}>{item.title}</a> : item.title}
+                </h3>
+                <p>{item.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- 8 — Leadership -->
+  <section class="section section--ruled" aria-labelledby="leadership">
+    <div class="page">
+      <SectionHeading num="06" eyebrow="Governance" title="The founding committee" id="leadership">
+        The founding committee will guide the Society through its establishment period. Members will
+        elect the committee in accordance with the rules at the first annual general meeting.
+      </SectionHeading>
+
+      <div class="grid grid--4 committee-grid">
+        {committee.map((person) => <PersonCard person={person} detail="brief" />)}
+      </div>
+
+      <p class="committee-more">
+        <Cta href="/leadership/" variant="arrow">Leadership and governance, with full biographies</Cta>
+      </p>
+    </div>
+  </section>
+
+  <!-- 9 — Latest -->
+  <section class="section section--panel" aria-labelledby="latest">
+    <div class="page latest">
+      <SectionHeading num="07" eyebrow="Latest" title="Launch seminar" id="latest" />
+      <div class="latest__body">
+        <p class="lead">
+          {launchEvent.date} · {launchEvent.platform}
+        </p>
+        <p>{launchEvent.summary} {launchEvent.audience}.</p>
+        <div class="button-row">
+          <Cta href={links.registerLaunch} variant="primary">Register for the launch seminar</Cta>
+          <Cta href="/events/" variant="arrow">All events and ways to take part</Cta>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 — Join -->
+  <JoinBanner />
+</Base>
+
+<style>
+  /* --- hero --------------------------------------------------------------- */
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 1.5rem + 7vw, 6.5rem) clamp(3rem, 1.5rem + 6vw, 5.5rem);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  /* Stretched over a tall narrow box the strata magnify into distracting arcs,
+     so the motif only appears once there is width to lay it out across. */
+  .hero__motif {
+    display: none;
+  }
+
+  @media (min-width: 48rem) {
+    .hero__motif {
+      display: block;
+      position: absolute;
+      inset-block: -10%;
+      inset-inline-end: -10%;
+      inline-size: min(70%, 52rem);
+      opacity: 0.45;
+      -webkit-mask-image: radial-gradient(120% 90% at 100% 40%, #000 20%, transparent 78%);
+      mask-image: radial-gradient(120% 90% at 100% 40%, #000 20%, transparent 78%);
+      pointer-events: none;
+    }
+  }
+
+  .hero__inner {
+    position: relative;
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .hero__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(17rem, 21rem);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .hero__title {
+    font-size: var(--step-6);
+    line-height: 1.02;
+    letter-spacing: -0.032em;
+    max-width: none;
+  }
+
+  /* :global — the class is passed to a component, so it carries no scope hash. */
+  :global(.hero__rule) {
+    inline-size: 8rem;
+    margin-block: var(--space-m);
+  }
+
+  .hero__tagline {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 400;
+    line-height: 1.32;
+    color: var(--c-heading);
+    max-width: 24ch;
+    letter-spacing: -0.012em;
+  }
+
+  .hero__body {
+    margin-block-start: var(--space-l);
+    max-width: var(--measure);
+    color: var(--c-text-muted);
+  }
+
+  .hero__body > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  .hero__actions {
+    margin-block-start: var(--space-xl);
+  }
+
+  .hero__aside {
+    padding: var(--space-l);
+    background-color: var(--c-paper-raised);
+    border: 1px solid var(--c-rule);
+    border-block-start: 2px solid var(--c-highlight);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero__aside-title {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step-2);
+  }
+
+  .hero__event {
+    margin-block-start: var(--space-m);
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .hero__event > div {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: var(--space-s);
+    padding-block: 0.6rem;
+    border-block-end: 1px solid var(--c-rule);
+    font-size: var(--step--1);
+  }
+
+  .hero__event dt {
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--c-text-faint);
+    padding-block-start: 0.15em;
+  }
+
+  .hero__event dd {
+    margin: 0;
+    color: var(--c-heading);
+    font-weight: 500;
+  }
+
+  .hero__event-summary {
+    margin-block: var(--space-m);
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+  }
+
+  /* --- what is ------------------------------------------------------------ */
+
+  .what-is,
+  .why__grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 62rem) {
+    .what-is {
+      grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+    .what-is :global(.section-heading) {
+      margin-block-end: 0;
+    }
+  }
+
+  .what-is__body {
+    max-width: var(--measure);
+  }
+
+  .what-is__body > * + * {
+    margin-block-start: var(--space-m);
+  }
+
+  .what-is__body .lead {
+    max-width: none;
+    color: var(--c-heading);
+  }
+
+  /* --- why ---------------------------------------------------------------- */
+
+  @media (min-width: 62rem) {
+    .why__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+  }
+
+  .why__note {
+    padding: var(--space-l);
+    background-color: var(--c-panel);
+    border-radius: var(--radius-md);
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+  }
+
+  .why__note > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  .why__note-caveat {
+    padding-block-start: var(--space-s);
+    border-block-start: 1px solid var(--c-rule);
+    color: var(--c-text-faint);
+  }
+
+  .stream__summary {
+    font-weight: 600;
+    color: var(--c-heading);
+  }
+
+  /* --- membership --------------------------------------------------------- */
+
+  .membership-block {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .membership-block {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .membership-block__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-s);
+    margin-block: var(--space-l);
+    padding-block: var(--space-m);
+    border-block: 1px solid var(--c-rule);
+  }
+
+  .membership-block__amount {
+    font-family: var(--font-serif);
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--c-heading);
+    font-variant-numeric: lining-nums;
+  }
+
+  .membership-block__price-note {
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+    max-width: 22ch;
+  }
+
+  .benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: benefit;
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .benefits li {
+    counter-increment: benefit;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-s);
+    padding-block: var(--space-s);
+    border-block-end: 1px solid var(--c-rule);
+    font-size: var(--step--1);
+    color: var(--c-text);
+  }
+
+  .benefits li::before {
+    content: counter(benefit, decimal-leading-zero);
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    color: var(--c-highlight);
+    font-variant-numeric: lining-nums tabular-nums;
+    padding-block-start: 0.35em;
+  }
+
+  /* --- who it is for ------------------------------------------------------ */
+
+  .who-for {
+    margin-block-start: var(--space-3xl);
+  }
+
+  .who-for__inner {
+    display: grid;
+    gap: var(--space-l);
+    padding-block-start: var(--space-2xl);
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  @media (min-width: 62rem) {
+    .who-for__inner {
+      grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .who-for__title {
+    font-size: var(--step-3);
+  }
+
+  .who-for__body > * + * {
+    margin-block-start: var(--space-m);
+  }
+
+  .who-for__cols {
+    display: grid;
+    gap: var(--space-m) var(--space-xl);
+  }
+
+  @media (min-width: 46rem) {
+    .who-for__cols {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .who-for__cols ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .who-for__cols li {
+    padding-block: 0.4rem;
+    padding-inline-start: 1.1rem;
+    position: relative;
+    font-size: var(--step--1);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .who-for__cols li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 1.05em;
+    inline-size: 0.4rem;
+    block-size: 1px;
+    background-color: var(--c-accent-soft);
+  }
+
+  .who-for__cols p {
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+  }
+
+  .who-for__note {
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+    padding-inline-start: var(--space-m);
+    border-inline-start: 2px solid var(--c-accent-soft);
+    max-width: var(--measure);
+  }
+
+  /* --- timeline ----------------------------------------------------------- */
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .timeline__item {
+    display: grid;
+    gap: var(--space-2xs) var(--space-xl);
+    padding-block: var(--space-l);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  @media (min-width: 48rem) {
+    .timeline__item {
+      grid-template-columns: minmax(11rem, 16rem) 1fr;
+    }
+  }
+
+  .timeline__when {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 650;
+    color: var(--c-text-muted);
+    font-variant-numeric: lining-nums;
+  }
+
+  .timeline__item--next .timeline__when {
+    color: var(--c-heading);
+  }
+
+  .timeline__badge {
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-highlight);
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 0.1em 0.6em;
+  }
+
+  .timeline__title {
+    font-size: var(--step-1);
+  }
+
+  .timeline__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .timeline__title a:hover {
+    color: var(--c-accent);
+  }
+
+  .timeline__content p {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+    max-width: var(--measure);
+  }
+
+  /* --- committee ---------------------------------------------------------- */
+
+  .committee-grid {
+    gap: var(--space-xl) var(--space-l);
+  }
+
+  .committee-more {
+    margin-block-start: var(--space-2xl);
+    padding-block-start: var(--space-l);
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  /* --- latest ------------------------------------------------------------- */
+
+  @media (min-width: 62rem) {
+    .latest {
+      display: grid;
+      grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+    .latest :global(.section-heading) {
+      margin-block-end: 0;
+    }
+  }
+
+  .latest__body {
+    max-width: var(--measure);
+  }
+
+  .latest__body > * + * {
+    margin-block-start: var(--space-m);
+  }
+
+  .latest__body .lead {
+    color: var(--c-heading);
+    font-variant-numeric: lining-nums;
+  }
+</style>

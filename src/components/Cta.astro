@@ -1,0 +1,107 @@
+---
+/**
+ * A call to action whose destination lives in src/config/links.ts.
+ *
+ * When the destination is still `null` the control renders as a clearly-labelled
+ * "opening soon" chip rather than a dead link — so an unfinished form is visible
+ * to the committee and honest to the visitor.
+ */
+import { isLive } from '../config/links';
+
+interface Props {
+  href: string | null | undefined;
+  variant?: 'primary' | 'secondary' | 'arrow';
+  /** Shown in place of the control when there is no destination yet. */
+  pendingLabel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  pendingLabel = 'Opening soon',
+  class: className,
+} = Astro.props;
+
+const live = isLive(href);
+const external = live && /^(https?:)?\/\//.test(href) && !href.includes('naturalcapitalaccounting.org');
+const variantClass =
+  variant === 'arrow' ? 'arrow-link' : `button button--${variant}`;
+---
+
+{
+  live ? (
+    <a
+      href={href}
+      class:list={[variantClass, className]}
+      {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+    >
+      <slot />
+    </a>
+  ) : (
+    <span class:list={['cta-pending', className]} data-variant={variant}>
+      <span class="cta-pending__label">
+        <slot />
+      </span>
+      <span class="cta-pending__note">{pendingLabel}</span>
+    </span>
+  )
+}
+
+<style>
+  .cta-pending {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35em 0.7em;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 0.85em 1.6em;
+    border: 1px dashed var(--c-rule-strong);
+    border-radius: var(--radius-sm);
+    color: var(--c-text-muted);
+    background-color: color-mix(in srgb, var(--c-panel) 60%, transparent);
+  }
+
+  .cta-pending[data-variant='arrow'] {
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  .cta-pending__label {
+    color: var(--c-heading);
+  }
+
+  .cta-pending[data-variant='arrow'] .cta-pending__label {
+    color: var(--c-text-muted);
+  }
+
+  .cta-pending__note {
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-highlight);
+    white-space: nowrap;
+  }
+
+  :global(.section--inverse) .cta-pending {
+    border-color: var(--c-inverse-rule);
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--c-inverse-muted);
+  }
+
+  :global(.section--inverse) .cta-pending__label,
+  :global(.site-footer) .cta-pending__label {
+    color: var(--c-inverse-text);
+  }
+
+  /* The paper-safe ochre is too dark against the navy inverse background. */
+  :global(.section--inverse) .cta-pending__note,
+  :global(.site-footer) .cta-pending__note {
+    color: var(--c-inverse-highlight);
+  }
+</style>

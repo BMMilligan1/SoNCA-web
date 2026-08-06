@@ -1,0 +1,107 @@
+---
+import Cta from './Cta.astro';
+import Motif from './Motif.astro';
+import { links } from '../config/links';
+import { membership } from '../config/site';
+
+interface Props {
+  title?: string;
+  /** Hide the price line on pages that already state it. */
+  showPrice?: boolean;
+}
+
+const {
+  title = 'Join the Society',
+  showPrice = true,
+} = Astro.props;
+---
+
+<section class="section section--inverse join-banner">
+  <div class="join-banner__motif" aria-hidden="true">
+    <Motif variant="contour" />
+  </div>
+  <div class="page join-banner__inner">
+    <div class="join-banner__text">
+      <h2>{title}</h2>
+      <p class="lead">
+        Foundation membership is open now. Joining in the first year makes you a foundation
+        member and gives you a hand in shaping the Society's competency framework, code of conduct
+        and early priorities.
+      </p>
+      {
+        showPrice && (
+          <p class="join-banner__price">
+            Join by {membership.launchCloses} for the foundation launch rate of{' '}
+            <strong>
+              {membership.currency}
+              {membership.launchStandard}
+            </strong>
+            , or {membership.currency}
+            {membership.launchConcession} concession.
+          </p>
+        )
+      }
+    </div>
+    <div class="join-banner__actions">
+      <Cta href={links.join} variant="primary">Become a foundation member</Cta>
+      <Cta href="/membership/" variant="secondary">What membership includes</Cta>
+    </div>
+  </div>
+</section>
+
+<style>
+  .join-banner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .join-banner__motif {
+    position: absolute;
+    inset-block: -30%;
+    inset-inline-end: -6%;
+    inline-size: min(52%, 40rem);
+    opacity: 0.16;
+    color: var(--c-inverse-accent);
+    pointer-events: none;
+  }
+
+  .join-banner__inner {
+    position: relative;
+    display: grid;
+    gap: var(--space-xl);
+    align-items: end;
+  }
+
+  @media (min-width: 58rem) {
+    .join-banner__inner {
+      grid-template-columns: 1fr auto;
+      gap: var(--space-2xl);
+    }
+  }
+
+  .join-banner__text {
+    max-width: var(--measure);
+  }
+
+  .join-banner__text .lead {
+    margin-block-start: var(--space-m);
+    color: var(--c-inverse-muted);
+    max-width: var(--measure);
+  }
+
+  .join-banner__price {
+    margin-block-start: var(--space-m);
+    font-size: var(--step--1);
+    color: var(--c-inverse-muted);
+  }
+
+  .join-banner__price strong {
+    color: var(--c-inverse-text);
+  }
+
+  .join-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+</style>
