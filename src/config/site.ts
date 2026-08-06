@@ -48,12 +48,12 @@ export const membership = {
 export const launchEvent = {
   title: 'Launch seminar',
   /** C4 — founders' notes indicate the week beginning 17 August 2026. */
-  date: '19 August 2026',
+  date: '18 August 2026',
   dateISO: '2026-08-19',
-  dateShort: '19 Aug 2026',
+  dateShort: '18 Aug 2026',
   /** D18 — TO CONFIRM: start time and time zone. */
-  time: 'Time to be confirmed (AEST)',
-  duration: '90 minutes',
+  time: '12.30 to 1.30 pm',
+  duration: '60 minutes',
   platform: 'Online via Microsoft Teams',
   summary:
     'An introduction to the Society and its aims, with a presentation by Carl Obst on the update to the SEEA Central Framework, followed by questions.',
