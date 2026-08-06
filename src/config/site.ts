@@ -49,7 +49,7 @@ export const launchEvent = {
   title: 'Launch seminar',
   /** C4 — founders' notes indicate the week beginning 17 August 2026. */
   date: '18 August 2026',
-  dateISO: '2026-08-19',
+  dateISO: '2026-08-18',
   dateShort: '18 Aug 2026',
   /** D18 — TO CONFIRM: start time and time zone. */
   time: '12.30 to 1.30 pm',
