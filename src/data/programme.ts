@@ -9,10 +9,10 @@ export interface ProgrammeItem {
 /** The foundation-year programme, 2026–27. */
 export const programme: ProgrammeItem[] = [
   {
-    when: '19 August 2026',
+    when: '18 August 2026',
     title: 'Public launch seminar',
     detail:
-      'An introduction to the Society, with Carl Obst on the SEEA Central Framework update process. Online, 90 minutes, open to all.',
+      'An introduction to the Society, with Carl Obst on the SEEA Central Framework update process. Online, 60 minutes, open to all.',
     href: '/events/',
     status: 'next',
   },
