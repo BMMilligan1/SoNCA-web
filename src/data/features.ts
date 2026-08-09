@@ -34,7 +34,7 @@ export interface Feature {
 
 export const features: Feature[] = [
   {
-    title: 'Meet the London Group: where the SEEA is worked out',
+    title: 'Meet the SEEA: where debate becomes standard',
     author: 'SoNCA editorial',
     image: '/features/london-group-guatemala.jpg',
     imageAlt: 'Guatemala City skyline, host of the 32nd London Group meeting',
@@ -42,7 +42,7 @@ export const features: Feature[] = [
       'Photo: Rene Hernandez, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Guatemala_City_-_Guatemala_-_Zona_14_-_Skyline.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>',
     blurb:
       'Since 1993 the London Group on Environmental-Economic Accounting has been the workshop of the field: an informal group of experts, mostly from national statistical offices, who advance the methods and implementation advice behind the System of Environmental-Economic Accounting (SEEA). Its 32nd meeting is in Guatemala City this September.',
-    date: '2026-08-12',
+    date: '2026-08-09',
     link: 'https://seea.un.org/en/about-seea/unceea-and-london-group/london-group-environmental-accounting',
     body: [
       `The <a href="https://seea.un.org/en" target="_blank" rel="noopener">System of Environmental-Economic Accounting</a> (SEEA) did not arrive fully formed. Much of it was worked out in the <a href="https://seea.un.org/en/about-seea/unceea-and-london-group/london-group-environmental-accounting" target="_blank" rel="noopener">London Group on Environmental-Economic Accounting</a>, established in 1993 and first convened in London in 1994. It is an informal, voluntary group of experts, drawn mainly from national statistical offices and international organisations, that meets each year to advance methodological research and develop implementation advice for the SEEA. Its work fed into the <a href="https://seea.un.org/en/methodology/seea-central-framework" target="_blank" rel="noopener">SEEA Central Framework</a> and <a href="https://seea.un.org/en/methodology/ecosystem-accounting" target="_blank" rel="noopener">SEEA Ecosystem Accounting</a>. This September the London Group holds its <a href="https://seea.un.org/en/events/london-group-environmental-economic-accounting-32nd-meeting" target="_blank" rel="noopener">32nd meeting in Guatemala City</a>, hosted by the Bank of Guatemala.`,
