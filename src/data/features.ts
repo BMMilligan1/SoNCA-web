@@ -34,7 +34,7 @@ export interface Feature {
 
 export const features: Feature[] = [
   {
-    title: 'Meet the SEEA: where debate becomes standard',
+    title: 'Meet the London Group: debating and developing the SEEA',
     author: 'SoNCA editorial',
     image: '/features/london-group-guatemala.jpg',
     imageAlt: 'Guatemala City skyline, host of the 32nd London Group meeting',
