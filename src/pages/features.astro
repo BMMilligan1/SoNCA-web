@@ -1,0 +1,152 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Card from '../components/Card.astro';
+import Cta from '../components/Cta.astro';
+import { features, type Feature } from '../data/features';
+
+const title = 'Features';
+const lead =
+  'A changing spotlight on the people, publications, data and debates shaping natural capital accounting.';
+
+const sorted = [...features].sort(
+  (a, b) => +new Date(b.date) - +new Date(a.date)
+);
+const [current, ...past] = sorted;
+
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString('en-AU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+const paras = (f: Feature) =>
+  Array.isArray(f.body) ? f.body : [f.body ?? f.blurb];
+---
+
+<Base title={title} description={lead}>
+  <PageHeader title={title} eyebrow="From the Society" lead={lead} />
+
+  {
+    current && (
+      <section class="section">
+        <div class="page">
+          <article class="feature-lead">
+            <figure class="feature-lead__figure">
+              <img src={current.image} alt={current.imageAlt} loading="lazy" />
+              {current.imageCredit && (
+                <figcaption class="feature-lead__credit" set:html={current.imageCredit} />
+              )}
+            </figure>
+            <div class="feature-lead__body">
+              <p class="eyebrow">
+                <span class="eyebrow__rule" />This week
+              </p>
+              <h2 class="feature-lead__title">{current.title}</h2>
+              <p class="feature-lead__meta">
+                by {current.author} &middot; {fmt(current.date)}
+              </p>
+              <div class="prose feature-lead__prose">
+                {paras(current).map((p) => (
+                  <p set:html={p} />
+                ))}
+              </div>
+              {current.link && (
+                <p class="feature-lead__more">
+                  <Cta href={current.link} variant="arrow">
+                    More on the London Group
+                  </Cta>
+                </p>
+              )}
+            </div>
+          </article>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    past.length > 0 && (
+      <section class="section section--panel section--ruled">
+        <div class="page">
+          <SectionHeading eyebrow="Archive" title="Past features" />
+          <div class="grid grid--3">
+            {past.map((f) => (
+              <Card title={f.title} meta={fmt(f.date)}>
+                <p>{f.blurb}</p>
+                {f.link && (
+                  <Fragment slot="footer">
+                    <p class="feature-archive__more">
+                      <Cta href={f.link} variant="arrow">Read more</Cta>
+                    </p>
+                  </Fragment>
+                )}
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  .feature-lead {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  .feature-lead__figure {
+    margin: 0;
+  }
+
+  .feature-lead__figure img {
+    display: block;
+    inline-size: 100%;
+    block-size: clamp(200px, 30vw, 360px);
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    background-color: var(--c-panel);
+  }
+
+  .feature-lead__credit {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step--2);
+    line-height: 1.4;
+    color: var(--c-text-faint);
+  }
+
+  .feature-lead__credit :global(a) {
+    color: inherit;
+  }
+
+  .feature-lead__body {
+    max-inline-size: var(--measure);
+  }
+
+  .feature-lead__title {
+    margin-block-start: var(--space-s);
+    font-size: var(--step-3);
+  }
+
+  .feature-lead__meta {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step--1);
+    font-style: italic;
+    color: var(--c-text-muted);
+  }
+
+  .feature-lead__prose {
+    margin-block-start: var(--space-m);
+  }
+
+  .feature-lead__more {
+    margin-block-start: var(--space-l);
+  }
+
+  .feature-archive__more {
+    margin-block-start: var(--space-s);
+  }
+</style>

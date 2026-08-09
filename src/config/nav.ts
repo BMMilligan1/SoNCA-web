@@ -35,6 +35,7 @@ export const primaryNav: NavItem[] = [
       { label: 'Resources and news', href: '/resources/' },
     ],
   },
+  { label: 'Features', href: '/features/' },
   { label: 'Contact', href: '/contact/' },
 ];
 
@@ -57,6 +58,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: 'Events and get involved', href: '/events/' },
       { label: 'Technical working group', href: '/technical-working-group/' },
       { label: 'Resources and news', href: '/resources/' },
+      { label: 'Features', href: '/features/' },
       { label: 'Organisational partners', href: '/partners/' },
     ],
   },

@@ -6,6 +6,7 @@ import Card from '../components/Card.astro';
 import PersonCard from '../components/PersonCard.astro';
 import JoinBanner from '../components/JoinBanner.astro';
 import Motif from '../components/Motif.astro';
+import FeatureBox from '../components/FeatureBox.astro';
 import { links } from '../config/links';
 import { site, membership, launchEvent } from '../config/site';
 import { committee } from '../data/committee';
@@ -272,6 +273,17 @@ import { programme, streams, benefits } from '../data/programme';
           <Cta href="/events/" variant="arrow">All events and ways to take part</Cta>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Feature of the week -->
+  <section class="section section--ruled" aria-labelledby="feature">
+    <div class="page feature-home">
+      <SectionHeading num="08" eyebrow="From the Society" title="Feature of the week" id="feature">
+        A short, changing spotlight on the people, publications and debates shaping natural capital
+        accounting.
+      </SectionHeading>
+      <FeatureBox />
     </div>
   </section>
 
@@ -726,5 +738,10 @@ import { programme, streams, benefits } from '../data/programme';
   .latest__body .lead {
     color: var(--c-heading);
     font-variant-numeric: lining-nums;
+  }
+
+  /* --- feature of the week ------------------------------------------------ */
+  .feature-home :global(.feature-box) {
+    max-inline-size: 42rem;
   }
 </style>

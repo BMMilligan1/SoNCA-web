@@ -1,0 +1,105 @@
+---
+/**
+ * Compact "Feature of the week" card. Shows the most recent feature and links
+ * to the Features archive (/features/). Used on the home page.
+ */
+import { features } from '../data/features';
+
+const current = [...features].sort(
+  (a, b) => +new Date(b.date) - +new Date(a.date)
+)[0];
+---
+
+{
+  current && (
+    <aside class="feature-box">
+      <a
+        class="feature-box__link"
+        href="/features/"
+        aria-label={`Feature of the week: ${current.title}. See all features.`}
+      >
+        <img
+          class="feature-box__img"
+          src={current.image}
+          alt={current.imageAlt}
+          loading="lazy"
+        />
+        <div class="feature-box__text">
+          <p class="eyebrow">
+            <span class="eyebrow__rule" />Feature of the week
+          </p>
+          <h3 class="feature-box__title">{current.title}</h3>
+          <p class="feature-box__meta">by {current.author}</p>
+          <p class="feature-box__blurb">{current.blurb}</p>
+          <span class="feature-box__more">See all features &rarr;</span>
+        </div>
+      </a>
+    </aside>
+  )
+}
+
+<style>
+  .feature-box {
+    background-color: var(--c-paper-raised);
+    border: 1px solid var(--c-rule);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  }
+
+  .feature-box:hover {
+    border-color: var(--c-rule-strong);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .feature-box__link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .feature-box__img {
+    display: block;
+    inline-size: 100%;
+    block-size: clamp(150px, 22vw, 210px);
+    object-fit: cover;
+    background-color: var(--c-panel);
+  }
+
+  .feature-box__text {
+    padding: var(--space-l);
+  }
+
+  .feature-box__title {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step-1);
+  }
+
+  .feature-box__meta {
+    margin-block-start: var(--space-3xs);
+    font-size: var(--step--1);
+    font-style: italic;
+    color: var(--c-text-muted);
+  }
+
+  .feature-box__blurb {
+    margin-block-start: var(--space-s);
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
+  }
+
+  .feature-box__more {
+    display: inline-block;
+    margin-block-start: var(--space-m);
+    font-family: var(--font-sans);
+    font-weight: 650;
+    font-size: var(--step--1);
+    color: var(--c-accent);
+  }
+
+  .feature-box__link:hover .feature-box__more {
+    text-decoration: underline;
+  }
+</style>
