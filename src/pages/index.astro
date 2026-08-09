@@ -7,6 +7,7 @@ import PersonCard from '../components/PersonCard.astro';
 import JoinBanner from '../components/JoinBanner.astro';
 import Motif from '../components/Motif.astro';
 import FeatureBox from '../components/FeatureBox.astro';
+import FeatureTeaser from '../components/FeatureTeaser.astro';
 import { links } from '../config/links';
 import { site, membership, launchEvent } from '../config/site';
 import { committee } from '../data/committee';
@@ -68,6 +69,9 @@ import { programme, streams, benefits } from '../data/programme';
       </aside>
     </div>
   </section>
+
+  <!-- Feature teaser (prominent, just under the hero) -->
+  <FeatureTeaser />
 
   <!-- 2 — What is natural capital accounting? -->
   <section class="section section--panel" aria-labelledby="what-is">

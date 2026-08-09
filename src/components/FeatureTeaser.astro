@@ -1,0 +1,112 @@
+---
+/**
+ * Prominent "Feature of the week" teaser for near the top of the home page.
+ * Auto-pulls the most recent feature and links through to /features/.
+ * Update it by changing the current feature in src/data/features.ts.
+ */
+import { features } from '../data/features';
+
+const current = [...features].sort(
+  (a, b) => +new Date(b.date) - +new Date(a.date)
+)[0];
+
+// A short lead auto-derived from the feature's blurb (trimmed at a word boundary).
+function snippet(text: string, max = 130): string {
+  if (!text || text.length <= max) return text;
+  const cut = text.slice(0, max);
+  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]+$/, '') + '…';
+}
+const lead = current ? snippet(current.blurb) : '';
+---
+
+{
+  current && (
+    <section class="feature-teaser section section--tight" aria-labelledby="feature-teaser-title">
+      <div class="page">
+        <a class="feature-teaser__link" href="/features/">
+          <img
+            class="feature-teaser__img"
+            src={current.image}
+            alt={current.imageAlt}
+            loading="lazy"
+          />
+          <div class="feature-teaser__text">
+            <p class="eyebrow">
+              <span class="eyebrow__rule" />Feature of the week
+            </p>
+            <h2 class="feature-teaser__title" id="feature-teaser-title">
+              {current.title}
+            </h2>
+            <p class="feature-teaser__lead">{lead}</p>
+            <span class="feature-teaser__more">Read the feature &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .feature-teaser__link {
+    display: grid;
+    grid-template-columns: minmax(0, 13rem) 1fr;
+    gap: var(--space-l);
+    align-items: center;
+    padding: var(--space-m) var(--space-l);
+    background-color: var(--c-paper-raised);
+    border: 1px solid var(--c-rule);
+    border-inline-start: 4px solid var(--c-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  }
+
+  .feature-teaser__link:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .feature-teaser__img {
+    inline-size: 100%;
+    block-size: 8rem;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    background-color: var(--c-panel-strong);
+  }
+
+  .feature-teaser__title {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step-1);
+  }
+
+  .feature-teaser__lead {
+    margin-block-start: var(--space-2xs);
+    max-inline-size: 62ch;
+    color: var(--c-text-muted);
+    font-size: var(--step--1);
+  }
+
+  .feature-teaser__more {
+    display: inline-block;
+    margin-block-start: var(--space-s);
+    font-family: var(--font-sans);
+    font-weight: 650;
+    font-size: var(--step--1);
+    color: var(--c-accent);
+  }
+
+  .feature-teaser__link:hover .feature-teaser__more {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 40rem) {
+    .feature-teaser__link {
+      grid-template-columns: 1fr;
+    }
+    .feature-teaser__img {
+      block-size: 10rem;
+    }
+  }
+</style>
