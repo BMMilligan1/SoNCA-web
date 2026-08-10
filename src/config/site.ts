@@ -9,6 +9,7 @@ export const site = {
   name: 'Society of Natural Capital Accounting',
   shortName: 'SoNCA',
   tagline: 'A professional home for people who produce, use and improve natural capital accounts.',
+  strapline: 'Better accounts · Better decisions · A sustainable future',
   description:
     'The Society of Natural Capital Accounting connects practitioners across government, business, research and civil society; supports professional development; and advances credible methods and standards. Incorporated in Australia, with members worldwide.',
   url: 'https://naturalcapitalaccounting.org',
