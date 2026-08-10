@@ -24,10 +24,11 @@ export const committee: CommitteeMember[] = [
       'Environmental-economic and ecosystem accounting; ANU Fenner School of Environment and Society.',
     affiliation: 'Australian National University',
     bio: [
-      'Senior Fellow at the ANU Fenner School of Environment and Society, specialising in natural capital and ecosystem accounting.',
+      'Honorary Associate Professor at the ANU Fenner School of Environment and Society, specialising in natural capital and ecosystem accounting.',
       'He spent fourteen years at the Australian Bureau of Statistics, including as Director of the Centre of Environment and Energy Statistics, with secondments to the United Nations, the National Water Commission and the Bureau of Meteorology.',
       "He has served on the editorial board of the UN SEEA and the World Bank's WAVES partnership, and contributes to the Australian Government's Technical Advisory Panel on Environmental-Economic Accounting and the current update of the SEEA Central Framework.",
     ],
+    profile: 'https://researchportalplus.anu.edu.au/en/persons/michael-vardon/',
   },
   {
     name: 'Heather Keith',
