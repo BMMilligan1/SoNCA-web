@@ -35,6 +35,11 @@ const slug = person.name.toLowerCase().replace(/[^a-z]+/g, '-');
             <p>{para}</p>
           ))}
           {person.pending && <p class="person__pending">{person.pending}</p>}
+          {person.profile && (
+            <p class="person__profile">
+              <a href={person.profile} rel="noopener">Institutional profile</a>
+            </p>
+          )}
         </div>
       )
     }
