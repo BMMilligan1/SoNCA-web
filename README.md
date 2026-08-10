@@ -1,6 +1,6 @@
 # SoNCA — website
 
-The website for the Society for Natural Capital Accounting. A static site built
+The website for the Society of Natural Capital Accounting. A static site built
 with [Astro](https://astro.build) and deployed to Cloudflare.
 
 ## Getting started
