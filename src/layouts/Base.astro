@@ -21,6 +21,50 @@ const { title, description = site.description, bareTitle = false, ogImage = '/og
 const pageTitle = bareTitle ? title : `${title} — ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImageUrl = new URL(ogImage, Astro.site ?? site.url).href;
+
+const orgId = `${site.url}/#organization`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: site.name,
+      alternateName: site.shortName,
+      url: site.url,
+      logo: new URL('/apple-touch-icon.png', site.url).href,
+      image: new URL('/og-image.png', site.url).href,
+      description: site.description,
+      email: site.email,
+      foundingDate: '2026-08-10',
+      sameAs: [site.linkedin].filter(Boolean),
+      knowsAbout: [
+        'Natural capital accounting',
+        'Environmental-economic accounting',
+        'System of Environmental-Economic Accounting (SEEA)',
+        'Ecosystem accounting',
+      ],
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'ACT incorporated association number',
+        value: 'A06752',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: 'ACT',
+        addressCountry: 'AU',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      inLanguage: 'en-AU',
+      publisher: { '@id': orgId },
+    },
+  ],
+};
 ---
 
 <html lang="en-AU">
@@ -43,6 +87,8 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? site.url).href;
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:locale" content={site.locale} />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
     <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#10161c" media="(prefers-color-scheme: dark)" />
