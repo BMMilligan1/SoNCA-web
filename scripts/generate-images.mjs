@@ -42,7 +42,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" v
   </g>
 
   <g transform="translate(400, 176)">
-    <text x="0" y="0" font-family="Georgia, 'Times New Roman', serif" font-size="66" font-weight="600" fill="#12314f" letter-spacing="-1.5">Society for</text>
+    <text x="0" y="0" font-family="Georgia, 'Times New Roman', serif" font-size="66" font-weight="600" fill="#12314f" letter-spacing="-1.5">Society of</text>
     <text x="0" y="82" font-family="Georgia, 'Times New Roman', serif" font-size="66" font-weight="600" fill="#12314f" letter-spacing="-1.5">Natural Capital</text>
     <text x="0" y="164" font-family="Georgia, 'Times New Roman', serif" font-size="66" font-weight="600" fill="#12314f" letter-spacing="-1.5">Accounting</text>
     <rect x="2" y="206" width="96" height="4" fill="#b4652a"/>
