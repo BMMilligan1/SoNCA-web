@@ -6,25 +6,23 @@
  */
 
 export const site = {
-  name: 'Society for Natural Capital Accounting',
+  name: 'Society of Natural Capital Accounting',
   shortName: 'SoNCA',
   tagline: 'A professional home for people who produce, use and improve natural capital accounts.',
   description:
-    'The Society for Natural Capital Accounting connects practitioners across government, business, research and civil society; supports professional development; and advances credible methods and standards. Incorporated in Australia, with members worldwide.',
+    'The Society of Natural Capital Accounting connects practitioners across government, business, research and civil society; supports professional development; and advances credible methods and standards. Incorporated in Australia, with members worldwide.',
   url: 'https://naturalcapitalaccounting.org',
   locale: 'en_AU',
   email: 'inquiries@naturalcapitalaccounting.org',
-  linkedin: 'https://www.linkedin.com/company/sonca', // TO CONFIRM — exact LinkedIn page URL
+  linkedin: 'https://www.linkedin.com/company/society-of-natural-capital-accounting', // TO CONFIRM — exact LinkedIn page URL
   foundingYear: '2026–27',
 } as const;
 
-/** Incorporation details — certificate awaited (application lodged 11 July 2026). */
+/** Incorporation details — incorporated 10 August 2026 (application lodged 11 July 2026). */
 export const incorporation = {
   act: 'Associations Incorporation Act 1991 (ACT)',
-  /** TO CONFIRM (C1) — add once the certificate issues. */
-  number: null as string | null,
-  /** TO CONFIRM (C1) — date of incorporation. */
-  date: null as string | null,
+  number: 'A06752',
+  date: '10 August 2026',
   lodged: '11 July 2026',
 } as const;
 
