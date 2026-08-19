@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import Card from '../components/Card.astro';
 import Cta from '../components/Cta.astro';
 import { features, type Feature } from '../data/features';
 
@@ -24,6 +23,16 @@ const fmt = (d: string) =>
 
 const paras = (f: Feature) =>
   Array.isArray(f.body) ? f.body : [f.body ?? f.blurb];
+
+/** Stable in-page anchor for each past feature. */
+const slug = (f: Feature) =>
+  `feature-${f.date}-${f.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .split('-')
+    .slice(0, 5)
+    .join('-')}`;
 ---
 
 <Base title={title} description={lead}>
@@ -33,35 +42,54 @@ const paras = (f: Feature) =>
     current && (
       <section class="section">
         <div class="page">
-          <article class="feature-lead">
-            <figure class="feature-lead__figure">
-              <img src={current.image} alt={current.imageAlt} loading="lazy" />
-              {current.imageCredit && (
-                <figcaption class="feature-lead__credit" set:html={current.imageCredit} />
-              )}
-            </figure>
-            <div class="feature-lead__body">
-              <p class="eyebrow">
-                <span class="eyebrow__rule" />This week
-              </p>
-              <h2 class="feature-lead__title">{current.title}</h2>
-              <p class="feature-lead__meta">
-                by {current.author} &middot; {fmt(current.date)}
-              </p>
-              <div class="prose feature-lead__prose">
-                {paras(current).map((p) => (
-                  <p set:html={p} />
-                ))}
-              </div>
-              {current.link && (
-                <p class="feature-lead__more">
-                  <Cta href={current.link} variant="arrow">
-                    {current.linkLabel ?? 'Read more'}
-                  </Cta>
+          <div class="feature-layout">
+            <article class="feature-lead">
+              <figure class="feature-lead__figure">
+                <img src={current.image} alt={current.imageAlt} loading="lazy" />
+                {current.imageCredit && (
+                  <figcaption class="feature-lead__credit" set:html={current.imageCredit} />
+                )}
+              </figure>
+              <div class="feature-lead__body">
+                <p class="eyebrow">
+                  <span class="eyebrow__rule" />This week
                 </p>
-              )}
-            </div>
-          </article>
+                <h2 class="feature-lead__title">{current.title}</h2>
+                <p class="feature-lead__meta">
+                  by {current.author} &middot; {fmt(current.date)}
+                </p>
+                <div class="prose feature-lead__prose">
+                  {paras(current).map((p) => (
+                    <p set:html={p} />
+                  ))}
+                </div>
+                {current.link && (
+                  <p class="feature-lead__more">
+                    <Cta href={current.link} variant="arrow">
+                      {current.linkLabel ?? 'Read more'}
+                    </Cta>
+                  </p>
+                )}
+              </div>
+            </article>
+
+            {past.length > 0 && (
+              <aside class="feature-index" aria-labelledby="feature-index-title">
+                <p class="eyebrow"><span class="eyebrow__rule" />Archive</p>
+                <h2 class="feature-index__title" id="feature-index-title">Past features</h2>
+                <ol class="feature-index__list">
+                  {past.map((f) => (
+                    <li class="feature-index__item">
+                      <a class="feature-index__link" href={`#${slug(f)}`}>
+                        <span class="feature-index__date">{fmt(f.date)}</span>
+                        <span class="feature-index__name">{f.title}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </aside>
+            )}
+          </div>
         </div>
       </section>
     )
@@ -72,18 +100,32 @@ const paras = (f: Feature) =>
       <section class="section section--panel section--ruled">
         <div class="page">
           <SectionHeading eyebrow="Archive" title="Past features" />
-          <div class="grid grid--3">
+          <div class="feature-archive">
             {past.map((f) => (
-              <Card title={f.title} meta={fmt(f.date)}>
-                <p>{f.blurb}</p>
-                {f.link && (
-                  <Fragment slot="footer">
-                    <p class="feature-archive__more">
+              <article class="feature-past" id={slug(f)}>
+                <figure class="feature-past__figure">
+                  <img src={f.image} alt={f.imageAlt} loading="lazy" />
+                  {f.imageCredit && (
+                    <figcaption class="feature-lead__credit" set:html={f.imageCredit} />
+                  )}
+                </figure>
+                <div class="feature-past__body">
+                  <h3 class="feature-past__title">{f.title}</h3>
+                  <p class="feature-lead__meta">
+                    by {f.author} &middot; {fmt(f.date)}
+                  </p>
+                  <div class="prose feature-past__prose">
+                    {paras(f).map((p) => (
+                      <p set:html={p} />
+                    ))}
+                  </div>
+                  {f.link && (
+                    <p class="feature-lead__more">
                       <Cta href={f.link} variant="arrow">{f.linkLabel ?? 'Read more'}</Cta>
                     </p>
-                  </Fragment>
-                )}
-              </Card>
+                  )}
+                </div>
+              </article>
             ))}
           </div>
         </div>
@@ -93,6 +135,19 @@ const paras = (f: Feature) =>
 </Base>
 
 <style>
+  .feature-layout {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .feature-layout {
+      grid-template-columns: minmax(0, 1fr) 17rem;
+      gap: var(--space-2xl);
+    }
+  }
+
   .feature-lead {
     display: grid;
     gap: var(--space-l);
@@ -105,7 +160,8 @@ const paras = (f: Feature) =>
   .feature-lead__figure img {
     display: block;
     inline-size: 100%;
-    block-size: clamp(200px, 30vw, 360px);
+    aspect-ratio: 3 / 1;
+    block-size: auto;
     object-fit: cover;
     border-radius: var(--radius-md);
     background-color: var(--c-panel);
@@ -146,7 +202,100 @@ const paras = (f: Feature) =>
     margin-block-start: var(--space-l);
   }
 
-  .feature-archive__more {
+  /* --- index of past features, beside the current one ---------------------- */
+
+  .feature-index {
+    padding-block-start: var(--space-s);
+    border-block-start: 2px solid var(--c-accent, currentColor);
+  }
+
+  @media (min-width: 62rem) {
+    .feature-index {
+      position: sticky;
+      inset-block-start: var(--space-xl);
+    }
+  }
+
+  .feature-index__title {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step-1);
+  }
+
+  .feature-index__list {
+    margin: var(--space-m) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .feature-index__item + .feature-index__item {
     margin-block-start: var(--space-s);
+    padding-block-start: var(--space-s);
+    border-block-start: 1px solid var(--c-rule, rgb(0 0 0 / 0.12));
+  }
+
+  .feature-index__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .feature-index__link:hover .feature-index__name,
+  .feature-index__link:focus-visible .feature-index__name {
+    text-decoration: underline;
+  }
+
+  .feature-index__date {
+    display: block;
+    font-size: var(--step--2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-text-faint);
+  }
+
+  .feature-index__name {
+    display: block;
+    margin-block-start: var(--space-3xs);
+    font-size: var(--step--1);
+    line-height: 1.35;
+  }
+
+  /* --- past features in full ---------------------------------------------- */
+
+  .feature-archive {
+    display: grid;
+    gap: var(--space-3xl);
+  }
+
+  .feature-past {
+    display: grid;
+    gap: var(--space-l);
+    max-inline-size: var(--measure);
+    scroll-margin-block-start: var(--space-2xl);
+  }
+
+  .feature-past__figure {
+    margin: 0;
+  }
+
+  .feature-past__figure img {
+    display: block;
+    inline-size: 100%;
+    aspect-ratio: 3 / 1;
+    block-size: auto;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    background-color: var(--c-panel);
+  }
+
+  .feature-past__body {
+    max-inline-size: var(--measure);
+  }
+
+  .feature-past__title {
+    font-size: var(--step-2);
+  }
+
+  .feature-past__prose {
+    margin-block-start: var(--space-m);
   }
 </style>
