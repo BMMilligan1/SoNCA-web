@@ -267,14 +267,19 @@ import { programme, streams, benefits } from '../data/programme';
   <!-- 9 — Latest -->
   <section class="section section--panel" aria-labelledby="latest">
     <div class="page latest">
-      <SectionHeading num="07" eyebrow="Latest" title="Launch seminar" id="latest" />
+      <SectionHeading num="07" eyebrow="Coming next" title="Online seminar programme" id="latest" />
       <div class="latest__body">
         <p class="lead">
-          {launchEvent.date} · {launchEvent.platform}
+          A regular series of presentations and workshops through the foundation year, including
+          technical sessions tracking the update to the SEEA Central Framework.
         </p>
-        <p>{launchEvent.summary} {launchEvent.audience}.</p>
+        <p>
+          Twenty five people offered to present at the launch on {launchEvent.date}, which is a
+          speaker list before the calendar is even set. Dates will be published as they are
+          confirmed. The launch recording and slides are on the events page.
+        </p>
         <div class="button-row">
-          <Cta href={links.launchRecording} variant="primary">Watch the launch recording</Cta>
+          <Cta href={links.offerSession} variant="primary">Offer to present</Cta>
           <Cta href="/events/" variant="arrow">All events and ways to take part</Cta>
         </div>
       </div>
