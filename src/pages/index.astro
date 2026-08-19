@@ -49,24 +49,28 @@ import { programme, streams, benefits } from '../data/programme';
       </div>
 
       <aside class="hero__aside" aria-labelledby="hero-event">
-        <p class="eyebrow"><span class="eyebrow__rule" />Next</p>
-        <h2 class="hero__aside-title" id="hero-event">{launchEvent.title}</h2>
+        <p class="eyebrow"><span class="eyebrow__rule" />Coming next</p>
+        <h2 class="hero__aside-title" id="hero-event">Online seminar programme</h2>
         <dl class="hero__event">
           <div>
-            <dt>Date</dt>
-            <dd><time datetime={launchEvent.dateISO}>{launchEvent.date}</time></dd>
+            <dt>Frequency</dt>
+            <dd>At least six sessions in the foundation year</dd>
           </div>
           <div>
             <dt>Format</dt>
-            <dd>{launchEvent.platform} · {launchEvent.duration}</dd>
+            <dd>Online</dd>
           </div>
           <div>
-            <dt>Who</dt>
-            <dd>{launchEvent.audience}</dd>
+            <dt>Dates</dt>
+            <dd>Being set now</dd>
           </div>
         </dl>
-        <p class="hero__event-summary">{launchEvent.summary}</p>
-        <Cta href={links.registerLaunch} variant="secondary">Register</Cta>
+        <p class="hero__event-summary">
+          Presentations and workshops through the foundation year, including technical sessions
+          tracking the update to the SEEA Central Framework. Twenty five people offered to present
+          at the launch.
+        </p>
+        <Cta href={links.offerSession} variant="secondary">Offer to present</Cta>
       </aside>
     </div>
   </section>
