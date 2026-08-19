@@ -74,7 +74,7 @@ export const faqs: FaqItem[] = [
     group: 'Taking part',
     question: 'Can non-members attend events?',
     answer: [
-      'The launch seminar is open to all. The online professional programme is provided principally for members, with selected sessions opened more widely.',
+      'The launch seminar was open to all, and its recording is on the events page. The online professional programme is provided principally for members, with selected sessions opened more widely.',
     ],
   },
   {
