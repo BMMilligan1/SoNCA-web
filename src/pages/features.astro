@@ -56,7 +56,7 @@ const paras = (f: Feature) =>
               {current.link && (
                 <p class="feature-lead__more">
                   <Cta href={current.link} variant="arrow">
-                    More on the London Group
+                    {current.linkLabel ?? 'Read more'}
                   </Cta>
                 </p>
               )}
@@ -79,7 +79,7 @@ const paras = (f: Feature) =>
                 {f.link && (
                   <Fragment slot="footer">
                     <p class="feature-archive__more">
-                      <Cta href={f.link} variant="arrow">Read more</Cta>
+                      <Cta href={f.link} variant="arrow">{f.linkLabel ?? 'Read more'}</Cta>
                     </p>
                   </Fragment>
                 )}
