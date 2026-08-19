@@ -10,18 +10,18 @@ export interface ProgrammeItem {
 export const programme: ProgrammeItem[] = [
   {
     when: '18 August 2026',
-    title: 'Public launch seminar',
+    title: 'Public launch seminar — held',
     detail:
-      'An introduction to the Society, with Carl Obst on the SEEA Central Framework update process. Online, 60 minutes, open to all.',
+      'The Society was launched online, with 124 people registered. The recording and the slides are on the events page.',
     href: '/events/',
-    status: 'next',
   },
   {
     when: 'August – December 2026',
     title: 'Online professional programme',
     detail:
-      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update.',
+      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update. Twenty five people offered to present at the launch; the calendar is being set now.',
     href: '/events/',
+    status: 'next',
   },
   {
     when: 'Late 2026',

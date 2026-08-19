@@ -19,6 +19,13 @@ export const links = {
 
   /** Recording of the launch seminar, 18 August 2026. */
   launchRecording: 'https://youtu.be/CbehJIHV0Dk',
+
+  /** Slides from the launch seminar, 18 August 2026. */
+  launchSlides: '/downloads/SoNCA-launch-slides-18-August-2026.pdf',
+
+  /** Offering to deliver a session in the online programme. */
+  offerSession:
+    'mailto:inquiries@naturalcapitalaccounting.org?subject=Offering%20to%20present%20in%20the%20online%20programme',
   
   /** Single expression-of-interest form (sessions, conference, working group, mailing list). */
   expressInterest: null as string | null,

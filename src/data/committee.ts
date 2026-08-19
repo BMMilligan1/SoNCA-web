@@ -92,7 +92,7 @@ export const committee: CommitteeMember[] = [
     bio: [
       'Director of the IDEEA Group and the lead author and editor of the UN System of Environmental-Economic Accounting (SEEA).',
       'He previously headed Australia’s national accounts and now works to narrow the gap between national and corporate approaches to natural capital accounting and to reconcile the perspectives of accountants and economists on valuation.',
-      'He will present on the SEEA Central Framework update at the Society’s launch seminar.',
+      'He presented on the SEEA Central Framework update at the Society’s launch seminar.',
     ],
   },
 ];
