@@ -24,6 +24,7 @@ export const incorporation = {
   act: 'Associations Incorporation Act 1991 (ACT)',
   number: 'A06752',
   date: '10 August 2026',
+  abn: '34 512 560 709',
   lodged: '11 July 2026',
 } as const;
 
@@ -36,11 +37,11 @@ export const membership = {
   launchConcession: 81,
   launchDiscountPct: 10,
   /** D7 — launch-offer closing date. */
-  launchCloses: '30 September 2026',
-  /** D4 — common renewal date; foundation year runs to this date. */
-  renewalDate: '30 June 2027',
-  /** D5 — TO CONFIRM: depends on GST registration. */
-  gstNote: 'Fees are shown in Australian dollars. GST treatment will be confirmed before launch.',
+  launchCloses: '30 November 2026',
+  /** D4 — membership runs for 12 months from the date of joining. */
+  term: '12 months from the date you join',
+  /** D5 — the Society is not registered for GST. */
+  gstNote: 'Fees are in Australian dollars. The Society is not registered for GST, so no GST is charged.',
 } as const;
 
 /** The launch seminar. */
