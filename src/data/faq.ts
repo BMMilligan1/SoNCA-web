@@ -53,7 +53,7 @@ export const faqs: FaqItem[] = [
     group: 'Membership',
     question: 'When does my membership run to?',
     answer: [
-      'Memberships share a common renewal date of 30 June. Foundation-year membership runs to 30 June 2027, whenever in the first year you join.',
+      'Membership runs for 12 months from the date you join.',
     ],
   },
   {
