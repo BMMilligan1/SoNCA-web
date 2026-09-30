@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Cta from '../components/Cta.astro';
-import Callout from '../components/Callout.astro';
 import { links } from '../config/links';
 import { membership, site } from '../config/site';
 import { benefits } from '../data/programme';
@@ -15,11 +14,19 @@ const lead =
 const terms = [
   {
     q: 'What does membership cost?',
-    a: `Foundation-year membership is ${membership.currency}${membership.standard}, with a concession rate of ${membership.currency}${membership.concession} for students. Join by ${membership.launchCloses} and the launch discount of ${membership.launchDiscountPct}% applies to both rates: ${membership.currency}${membership.launchStandard} and ${membership.currency}${membership.launchConcession}.`,
+    a: `Foundation-year membership is ${membership.currency}${membership.standard}, with a concession rate of ${membership.currency}${membership.concession} for students. Join by ${membership.launchCloses} and a ${membership.launchDiscountPct} per cent discount applies to both rates: ${membership.currency}${membership.launchStandard} and ${membership.currency}${membership.launchConcession}. Fees are in Australian dollars. The Society is not registered for GST, so no GST is charged.`,
   },
   {
     q: 'When does membership run to?',
-    a: `Memberships share a common renewal date of 30 June. The foundation year runs to ${membership.renewalDate}, whenever during the first year you join.`,
+    a: 'Membership runs for 12 months from the date you join. For example, if you join on 15 October 2026 your membership runs to 14 October 2027.',
+  },
+  {
+    q: 'How do I pay?',
+    a: 'Online by credit or debit card through Stripe, our payment provider. The Society does not see or store your card details. You will receive a receipt by email.',
+  },
+  {
+    q: 'Does membership renew automatically?',
+    a: 'No. Membership is a single payment for 12 months. We will write to you before it ends to invite you to renew.',
   },
   {
     q: 'What is a foundation member?',
@@ -39,7 +46,7 @@ const terms = [
   },
   {
     q: 'Are fees refundable?',
-    a: 'Membership fees are generally not refundable. If you join in error or your circumstances change, write to us within 14 days and the committee will consider the request.',
+    a: 'Membership fees are generally not refundable. If you join in error or your circumstances change, write to us within 14 days and the committee will consider the request. Approved refunds are paid to the card used for payment.',
   },
 ];
 ---
@@ -96,7 +103,7 @@ const terms = [
 
         <p class="rate-card__note">{membership.gstNote}</p>
         <p class="rate-card__note">
-          Membership runs to {membership.renewalDate}.
+          Membership runs for {membership.term}.
         </p>
 
         <Cta href={links.join} variant="primary" class="rate-card__cta">
@@ -132,13 +139,6 @@ const terms = [
           ))
         }
       </dl>
-
-      <Callout tone="pending" title="Before launch" class="terms__pending">
-        <p>
-          GST treatment depends on whether the Society registers for GST. Once confirmed, state the
-          fee as GST-inclusive or note that GST does not apply.
-        </p>
-      </Callout>
     </div>
   </section>
 
