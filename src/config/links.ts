@@ -10,8 +10,17 @@
  */
 
 export const links = {
-  /** Membership application / payment (e.g. Microsoft Forms, Stripe, TidyHQ). */
-  join: null as string | null,
+  /** Stripe Payment Link for standard membership. Paste the buy.stripe.com URL here. */
+  joinStandard: 'https://buy.stripe.com/9B63cxfjE0PR1vzfA2a3u00' as string | null,
+
+  /** Stripe Payment Link for the student concession. Paste the buy.stripe.com URL here. */
+  joinConcession: 'https://buy.stripe.com/dRm28t1sOeGH8Y10F8a3u01' as string | null,
+
+  /** Every "Become a member" button. Goes to the payment options on the membership
+   *  page once both Stripe links above are filled in; until then shows "Soon". */
+  get join(): string | null {
+    return this.joinStandard && this.joinConcession ? '/membership/#join' : null;
+  },
 
   /** Launch seminar registration form. The launch was held on 18 August 2026;
    *  kept for the record, no longer used by any call to action. */
