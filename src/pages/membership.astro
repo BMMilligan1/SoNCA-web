@@ -77,7 +77,7 @@ const terms = [
         </p>
       </div>
 
-      <aside class="rate-card">
+      <aside class="rate-card" id="join">
         <p class="eyebrow"><span class="eyebrow__rule" />Foundation year {site.foundingYear}</p>
 
         <div class="rate-card__rates">
@@ -106,9 +106,17 @@ const terms = [
           Membership runs for {membership.term}.
         </p>
 
-        <Cta href={links.join} variant="primary" class="rate-card__cta">
-          Become a foundation member
-        </Cta>
+        <div class="rate-card__ctas">
+          <Cta href={links.joinStandard} variant="primary" class="rate-card__cta">
+            Join: standard {membership.currency}{membership.launchStandard}
+          </Cta>
+          <Cta href={links.joinConcession} variant="secondary" class="rate-card__cta">
+            Join: student {membership.currency}{membership.launchConcession}
+          </Cta>
+        </div>
+        <p class="rate-card__note">
+          Payment is by card through Stripe. You will receive a receipt by email.
+        </p>
       </aside>
     </div>
   </section>
@@ -182,6 +190,12 @@ const terms = [
     box-shadow: var(--shadow-md);
     position: sticky;
     inset-block-start: 6.5rem;
+  }
+
+  .rate-card__ctas {
+    display: grid;
+    gap: var(--space-s);
+    margin-block-start: var(--space-m);
   }
 
   .rate-card__rates {
