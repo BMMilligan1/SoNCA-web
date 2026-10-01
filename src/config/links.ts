@@ -11,10 +11,10 @@
 
 export const links = {
   /** Stripe Payment Link for standard membership. Paste the buy.stripe.com URL here. */
-  joinStandard: null as string | null,
+  joinStandard: 'https://buy.stripe.com/9B63cxfjE0PR1vzfA2a3u00' as string | null,
 
   /** Stripe Payment Link for the student concession. Paste the buy.stripe.com URL here. */
-  joinConcession: null as string | null,
+  joinConcession: 'https://buy.stripe.com/dRm28t1sOeGH8Y10F8a3u01' as string | null,
 
   /** Every "Become a member" button. Goes to the payment options on the membership
    *  page once both Stripe links above are filled in; until then shows "Soon". */
