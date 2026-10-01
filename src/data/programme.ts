@@ -16,10 +16,17 @@ export const programme: ProgrammeItem[] = [
     href: '/events/',
   },
   {
+    when: '1 October 2026',
+    title: 'Membership opens',
+    detail:
+      'Foundation membership is open, paid online by card. Join by 30 November 2026 for the 10 per cent launch discount: A$162, or A$81 for students.',
+    href: '/membership/#join',
+  },
+  {
     when: 'August – December 2026',
     title: 'Online professional programme',
     detail:
-      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update. Twenty five people offered to present at the launch; the calendar is being set now.',
+      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update. The first seminar, Comparing natural capital accounting frameworks, is on Wednesday 21 October 2026 at 8 am AEDT; further dates follow.',
     href: '/events/',
     status: 'next',
   },
