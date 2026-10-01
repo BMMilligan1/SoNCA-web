@@ -51,6 +51,13 @@ export const faqs: FaqItem[] = [
   },
   {
     group: 'Membership',
+    question: 'How do I join?',
+    answer: [
+      'Choose standard or student membership on the membership page and pay online by card through Stripe, our payment provider. You will receive a receipt by email. Join by 30 November 2026 for the 10 per cent launch discount.',
+    ],
+  },
+  {
+    group: 'Membership',
     question: 'When does my membership run to?',
     answer: [
       'Membership runs for 12 months from the date you join.',
