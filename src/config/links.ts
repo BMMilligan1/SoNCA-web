@@ -23,6 +23,10 @@ export const links = {
   /** Slides from the launch seminar, 18 August 2026. */
   launchSlides: '/downloads/SoNCA-launch-slides-18-August-2026.pdf',
 
+  /** Registration for the first seminar, Comparing natural capital accounting
+   *  frameworks, 8 am AEDT Wednesday 21 October 2026. */
+  registerSeminar1: 'https://events.humanitix.com/sonca-comparing-nca-frameworks',
+
   /** Offering to deliver a session in the online programme. */
   offerSession:
     'mailto:inquiries@naturalcapitalaccounting.org?subject=Offering%20to%20present%20in%20the%20online%20programme',
