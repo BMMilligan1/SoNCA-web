@@ -15,7 +15,7 @@ const involvement = [
   'Offer to deliver or coordinate an online session',
   'Express interest in attending the inaugural conference',
   'Suggest a topic for the conference',
-  'Express interest in the technical working group',
+  'Express interest in a working group',
   'Join the mailing list',
 ];
 ---
@@ -38,11 +38,28 @@ const involvement = [
             calendar is even set. The first seminar, <em>Comparing natural capital accounting
             frameworks: what does the profession need to understand?</em>, is on Wednesday 21 October
             2026 at 8 am AEDT (5 pm EDT on Tuesday 20 October; 11 pm CEST). It is free and open to
-            everyone. Further dates will be published here as they are confirmed. If you would like to deliver or coordinate a session, tell us.
+            everyone, and the recording will be public. Further dates will be published here as they
+            are confirmed. Anyone may propose a seminar: the forms are below.
           </p>
+          <dl class="speakers" aria-label="Speakers and panellists">
+            <div>
+              <dt>Presenters</dt>
+              <dd>John Finisdore, Sustainable Flows</dd>
+              <dd>Joël Houdet, The Biodiversity Footprint Company</dd>
+            </div>
+            <div>
+              <dt>Panel</dt>
+              <dd>Carter Ingram, Pollination</dd>
+              <dd>Carl Obst, IDEEA Group</dd>
+            </div>
+            <div>
+              <dt>Chair</dt>
+              <dd>Michael Vardon, Society of Natural Capital Accounting</dd>
+            </div>
+          </dl>
           <div class="button-row feature__actions">
             <Cta href={links.registerSeminar1} variant="primary">Register for the first seminar</Cta>
-            <Cta href={links.offerSession} variant="secondary">Offer to present</Cta>
+            <Cta href={links.offerSession} variant="secondary">Propose a seminar</Cta>
           </div>
         </div>
 
@@ -57,7 +74,7 @@ const involvement = [
           </div>
           <div>
             <dt>Who</dt>
-            <dd>Principally members, with selected sessions opened more widely</dd>
+            <dd>Free and open to everyone; recordings are public</dd>
           </div>
           <div>
             <dt>First seminar</dt>
@@ -99,21 +116,21 @@ const involvement = [
             <h3>Online programme</h3>
             <p>
               A regular series of presentations and workshops — at least six in the foundation year —
-              including technical sessions tracking the SEEA update. Sessions are provided
-              principally for members, with selected sessions opened more widely.
+              including technical sessions tracking the SEEA update. In the foundation year every
+              seminar is free and open to everyone, and the recordings are public.
             </p>
-            <p class="event__aside">Members can offer to deliver or coordinate a session.</p>
+            <p class="event__aside"><a href="#propose">Anyone may propose a seminar.</a></p>
           </div>
         </article>
 
         <article class="event">
-          <p class="event__when">February 2027 · Canberra</p>
+          <p class="event__when">June 2027 or later</p>
           <div>
             <h3>Inaugural conference</h3>
             <p>
               One to two days of presentations and papers. Members attend at the reduced member rate.
-              An organising committee will be formed and a call for contributions issued in due
-              course.
+              The date will be confirmed in December 2026. An organising committee will be formed
+              and a call for contributions issued in due course.
             </p>
             <p class="event__aside">
               Presentation materials and selected papers will be published after the conference.
@@ -122,7 +139,7 @@ const involvement = [
         </article>
 
         <article class="event">
-          <p class="event__when">First half of 2027</p>
+          <p class="event__when">2027</p>
           <div>
             <h3>First annual general meeting</h3>
             <p>
@@ -138,9 +155,44 @@ const involvement = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="propose">
     <div class="page interest">
-      <SectionHeading num="03" eyebrow="Get involved" title="Register your interest">
+      <SectionHeading num="03" eyebrow="Propose" title="Propose a seminar or a working group">
+        Anyone may propose a seminar, member or not. Working groups are led by members. These forms
+        are a first version, and we will refine them as we use them.
+      </SectionHeading>
+
+      <div class="interest__body">
+        <ul class="interest__list downloads">
+          <li>
+            <a href={links.formSeminar}>Form SEM-1: proposal for a seminar</a>
+            <span>A single online session of about an hour, built around a question, with more than one speaker and time for discussion. Most people should start here. Word.</span>
+          </li>
+          <li>
+            <a href={links.formWorkingGroup}>Form WG-1: proposal for a working group</a>
+            <span>A group of members working on a question for 12 months, with a lead, a co-lead and at least one further core member. Word.</span>
+          </li>
+          <li>
+            <a href={links.formSpeaker}>Form SPK-1: speaker declaration</a>
+            <span>For speakers, not proposers. Everyone who presents, speaks on a panel or leads a seminar completes their own, at least one week before. Word.</span>
+          </li>
+          <li>
+            <a href={links.guideProposing}>Proposing a seminar or a working group: a guide</a>
+            <span>What the committee looks for and what happens after you send a form. You do not need it to complete the forms. PDF.</span>
+          </li>
+        </ul>
+        <p class="text-small text-muted">
+          Send completed forms to <a href={links.contact}>inquiries@naturalcapitalaccounting.org</a>.
+          People take part in the Society’s seminars in their individual professional capacity, and
+          the Society does not endorse what is said in them.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--panel section--ruled">
+    <div class="page interest">
+      <SectionHeading num="04" eyebrow="Get involved" title="Register your interest">
         One form covers every way of taking part. Tell us which apply and we will be in touch.
       </SectionHeading>
 
@@ -301,6 +353,54 @@ const involvement = [
     padding: var(--space-s) 0 var(--space-s) 1.75rem;
     border-block-end: 1px solid var(--c-rule);
     font-size: var(--step--1);
+  }
+
+  .downloads li {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .downloads a {
+    font-weight: 600;
+  }
+
+  .downloads span {
+    color: var(--c-text-muted);
+  }
+
+  .speakers {
+    margin-block-start: var(--space-m);
+    max-width: var(--measure);
+    border-block-start: 1px solid var(--c-rule);
+  }
+
+  .speakers > div {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0 var(--space-s);
+    padding-block: 0.5rem;
+    border-block-end: 1px solid var(--c-rule);
+    font-size: var(--step--1);
+  }
+
+  .speakers dt {
+    grid-row: span 2;
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--c-text-faint);
+    padding-block-start: 0.2em;
+  }
+
+  .speakers dd {
+    grid-column: 2;
+    margin: 0;
+    color: var(--c-heading);
+  }
+
+  .speakers dd + dd {
+    margin-block-start: 0.3rem;
   }
 
   .interest__list li::before {
