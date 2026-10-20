@@ -45,7 +45,7 @@ export const programme: ProgrammeItem[] = [
     href: '/events/',
   },
   {
-    when: 'First half of 2027',
+    when: '2027',
     title: 'First annual general meeting',
     detail:
       'Election of the committee in accordance with the rules, and publication of the foundation-year report.',
