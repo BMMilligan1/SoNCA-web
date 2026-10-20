@@ -50,25 +50,31 @@ import { programme, streams, benefits } from '../data/programme';
 
       <aside class="hero__aside" aria-labelledby="hero-event">
         <p class="eyebrow"><span class="eyebrow__rule" />Coming next</p>
-        <h2 class="hero__aside-title" id="hero-event">Online seminar programme</h2>
+        <h2 class="hero__aside-title" id="hero-event">
+          First seminar: Comparing natural capital accounting frameworks
+        </h2>
         <dl class="hero__event">
           <div>
-            <dt>Frequency</dt>
-            <dd>At least six sessions in the foundation year</dd>
+            <dt>When</dt>
+            <dd>Wednesday 21 October, 8 am AEDT (5 pm EDT Tuesday 20 October)</dd>
           </div>
           <div>
-            <dt>Format</dt>
-            <dd>Online</dd>
+            <dt>Presenters</dt>
+            <dd>
+              <span>John Finisdore, Sustainable Flows</span>
+              <span>Joël Houdet, The Biodiversity Footprint Company</span>
+            </dd>
           </div>
           <div>
-            <dt>First seminar</dt>
-            <dd>Comparing natural capital accounting frameworks, Wednesday 21 October, 8 am AEDT</dd>
+            <dt>Panel</dt>
+            <dd>
+              <span>Carter Ingram, Pollination</span>
+              <span>Carl Obst, IDEEA Group</span>
+            </dd>
           </div>
         </dl>
         <p class="hero__event-summary">
-          Presentations and workshops through the foundation year, including technical sessions
-          tracking the update to the SEEA Central Framework. Twenty five people offered to present
-          at the launch.
+          Free and open to everyone. The first of at least six seminars in the foundation year.
         </p>
         <Cta href={links.registerSeminar1} variant="secondary">Register for the first seminar</Cta>
       </aside>
@@ -170,11 +176,16 @@ import { programme, streams, benefits } from '../data/programme';
         <SectionHeading num="04" eyebrow="Membership" title="What members receive" id="membership" />
         <p class="membership-block__price">
           <span class="membership-block__amount">
-            {membership.currency}{membership.standard}
+            {membership.currency}{membership.launchStandard}
           </span>
           <span class="membership-block__price-note">
-            foundation-year membership, {site.foundingYear} · {membership.currency}
-            {membership.concession} concession
+            foundation-year membership, {site.foundingYear} · {membership.currency}{membership.launchConcession}{' '}
+            for students
+          </span>
+          <span class="membership-block__offer">
+            Join by {membership.launchCloses} for the {membership.launchDiscountPct} per cent launch
+            discount (usually {membership.currency}{membership.standard}, or {membership.currency}{membership.concession}{' '}
+            for students).
           </span>
         </p>
         <div class="button-row">
@@ -420,7 +431,7 @@ import { programme, streams, benefits } from '../data/programme';
 
   .hero__event > div {
     display: grid;
-    grid-template-columns: 4.5rem 1fr;
+    grid-template-columns: 5.75rem 1fr;
     gap: var(--space-s);
     padding-block: 0.6rem;
     border-block-end: 1px solid var(--c-rule);
@@ -440,6 +451,14 @@ import { programme, streams, benefits } from '../data/programme';
     margin: 0;
     color: var(--c-heading);
     font-weight: 500;
+  }
+
+  .hero__event dd span {
+    display: block;
+  }
+
+  .hero__event dd span + span {
+    margin-block-start: 0.3rem;
   }
 
   .hero__event-summary {
@@ -551,6 +570,12 @@ import { programme, streams, benefits } from '../data/programme';
     font-size: var(--step--1);
     color: var(--c-text-muted);
     max-width: 22ch;
+  }
+
+  .membership-block__offer {
+    flex-basis: 100%;
+    font-size: var(--step--1);
+    color: var(--c-text-muted);
   }
 
   .benefits {
