@@ -36,9 +36,14 @@ export const links = {
    *  frameworks, 8 am AEDT Wednesday 21 October 2026. */
   registerSeminar1: 'https://events.humanitix.com/sonca-comparing-nca-frameworks',
 
-  /** Offering to deliver a session in the online programme. */
-  offerSession:
-    'mailto:inquiries@naturalcapitalaccounting.org?subject=Offering%20to%20present%20in%20the%20online%20programme',
+  /** Proposing a seminar or working group: the forms section of the events page. */
+  offerSession: '/events/#propose',
+
+  /** Proposal forms and the guide (first version, 20 October 2026). */
+  formSeminar: '/downloads/SoNCA-Form-SEM-1-seminar-proposal.docx',
+  formWorkingGroup: '/downloads/SoNCA-Form-WG-1-working-group-proposal.docx',
+  formSpeaker: '/downloads/SoNCA-Form-SPK-1-speaker-declaration.docx',
+  guideProposing: '/downloads/SoNCA-guide-to-proposing-a-seminar-or-working-group.pdf',
   
   /** Single expression-of-interest form (sessions, conference, working group, mailing list). */
   expressInterest: null as string | null,

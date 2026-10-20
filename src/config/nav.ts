@@ -31,7 +31,7 @@ export const primaryNav: NavItem[] = [
     href: '/events/',
     children: [
       { label: 'Events and get involved', href: '/events/' },
-      { label: 'Technical working group', href: '/technical-working-group/' },
+      { label: 'Working groups', href: '/working-groups/' },
       { label: 'Resources and news', href: '/resources/' },
     ],
   },
@@ -56,7 +56,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
     items: [
       { label: 'Membership', href: '/membership/' },
       { label: 'Events and get involved', href: '/events/' },
-      { label: 'Technical working group', href: '/technical-working-group/' },
+      { label: 'Working groups', href: '/working-groups/' },
       { label: 'Resources and news', href: '/resources/' },
       { label: 'Features', href: '/features/' },
       { label: 'Organisational partners', href: '/partners/' },

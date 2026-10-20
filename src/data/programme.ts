@@ -26,7 +26,7 @@ export const programme: ProgrammeItem[] = [
     when: 'August – December 2026',
     title: 'Online professional programme',
     detail:
-      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update. The first seminar, Comparing natural capital accounting frameworks, is on Wednesday 21 October 2026 at 8 am AEDT; further dates follow.',
+      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update. The first seminar, Comparing natural capital accounting frameworks, is on Wednesday 21 October 2026 at 8 am AEDT. Seminars are free and open to everyone; further dates follow.',
     href: '/events/',
     status: 'next',
   },
@@ -38,10 +38,10 @@ export const programme: ProgrammeItem[] = [
     href: '/priorities/',
   },
   {
-    when: 'February 2027',
-    title: 'Inaugural conference, Canberra',
+    when: 'June 2027 or later',
+    title: 'Inaugural conference',
     detail:
-      'One to two days of presentations and papers, with a reduced registration rate for members.',
+      'One to two days of presentations and papers, with a reduced registration rate for members. The date will be confirmed in December 2026.',
     href: '/events/',
   },
   {
@@ -77,7 +77,7 @@ export const streams: Stream[] = [
     name: 'Advance',
     summary: 'Methods, standards and research.',
     detail:
-      'A technical working group for the harder measurement and implementation questions, anchored in the SEEA while engaging with related public, corporate and community frameworks.',
+      'Working groups, formed by members around the harder measurement and implementation questions, anchored in the SEEA while engaging with related public, corporate and community frameworks.',
   },
   {
     name: 'Represent',
@@ -90,10 +90,9 @@ export const streams: Stream[] = [
 /** Foundation-year membership benefits. */
 export const benefits: string[] = [
   'A programme of online seminars and workshops, at least six per year',
-  'Access to recordings and presentation materials',
   'Quarterly member newsletters',
   'Voting rights and participation in the first annual general meeting',
-  'Eligibility to join working groups',
+  'Eligibility to lead and join working groups',
   'Consultation on the competency framework and professional priorities',
   'Reduced registration for the inaugural conference',
   'An optional profile in the member directory',
@@ -119,7 +118,7 @@ export const priorities: { title: string; detail: string }[] = [
   {
     title: 'Hold the inaugural conference',
     detail:
-      'A first gathering of the profession in Canberra in February 2027, with presentation materials and selected papers published afterwards.',
+      'A first gathering of the profession, in June 2027 or later, with presentation materials and selected papers published afterwards.',
   },
   {
     title: 'Establish sustainable governance and member services',

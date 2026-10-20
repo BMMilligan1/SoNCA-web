@@ -1,0 +1,70 @@
+---
+import Page from '../layouts/Page.astro';
+import Callout from '../components/Callout.astro';
+import Cta from '../components/Cta.astro';
+import { links } from '../config/links';
+
+const title = 'Working groups';
+const lead =
+  'Members working together, for a year at a time, on a question the profession needs to answer.';
+---
+
+<Page title={title} eyebrow="Programme" lead={lead}>
+  <p class="lead">
+    A working group has the Society’s name and is built around issues and questions relevant to the
+    Society’s aims. It runs for 12 months and may be renewed, reports to the committee each quarter,
+    holds at least one seminar for the Society each year, and otherwise works largely independently
+    of the committee.
+  </p>
+
+  <Callout tone="pending" title="No groups yet">
+    <p>
+      The Society has no working groups yet. The first will form from the seminar programme and
+      from proposals made on Form WG-1.
+    </p>
+  </Callout>
+
+  <h2>How a group starts</h2>
+  <p>
+    The usual route is a seminar that finishes with an open invitation to form a group. The group is
+    then formed by the people who come forward, rather than chosen in advance. Anyone may propose a
+    seminar.
+  </p>
+  <p>
+    If you already have the people, propose a group directly on Form WG-1. A group needs a lead, a
+    co-lead and at least one further core member, all members of the Society and all willing before
+    the proposal is made. Between them they should bring more than one country, sector or
+    discipline, and at least one must have substantial experience of the SEEA. A working group is
+    approved at a committee meeting.
+  </p>
+  <p>
+    <Cta href={links.offerSession} variant="primary">Proposal forms and guide</Cta>
+  </p>
+
+  <h2>Who takes part</h2>
+  <p>
+    Every working group is open to all members of the Society, and a group may invite speakers who
+    are not members to its seminars and sessions. Members take part in their individual professional
+    capacity, and the Society does not endorse what is said in a group or at its seminars.
+  </p>
+
+  <h2>The SEEA as reference point, not boundary</h2>
+  <p>
+    The Society's technical work is anchored in the <a href={links.seea} rel="noopener">SEEA</a> while
+    engaging constructively with related public, corporate and community sector frameworks. A group
+    may work with any framework. Where it works to a different standard, it says which, and how it
+    compares with the SEEA.
+  </p>
+
+  <h2>Possible topics</h2>
+  <p>
+    Groups could form on ecosystem accounting, water, oceans, corporate applications, valuation, data
+    quality, or the use of accounts in policy. They should emerge from member demand rather than all
+    being promised at the start.
+  </p>
+
+  <p class="text-small text-muted">
+    Not yet a member? <a href="/membership/">Join the Society</a>. The lead, co-lead and core members
+    of a working group must be members.
+  </p>
+</Page>

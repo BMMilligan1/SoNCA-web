@@ -81,7 +81,7 @@ export const faqs: FaqItem[] = [
     group: 'Taking part',
     question: 'Can non-members attend events?',
     answer: [
-      'The launch seminar was open to all, and its recording is on the events page. The online professional programme is provided principally for members, with selected sessions opened more widely.',
+      'Yes. In the foundation year the Society’s seminars are free and open to everyone, and the recordings are public. Anyone may also propose a seminar, member or not.',
     ],
   },
   {
@@ -95,7 +95,7 @@ export const faqs: FaqItem[] = [
     group: 'Taking part',
     question: 'How can I contribute to a working group?',
     answer: [
-      'Join as a member and register your interest. The technical working group’s terms of reference set out how to take part.',
+      'Working groups are formed by members around a question, and every group is open to all members. There are none yet. Most groups will start from a seminar that ends with an open invitation; if you already have a lead, a co-lead and a third core member, propose a group on Form WG-1. See the working groups page.',
     ],
   },
   {

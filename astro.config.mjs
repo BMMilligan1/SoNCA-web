@@ -6,6 +6,9 @@ export default defineConfig({
   site: 'https://naturalcapitalaccounting.org',
   trailingSlash: 'always',
   integrations: [sitemap()],
+  redirects: {
+    '/technical-working-group/': '/working-groups/',
+  },
   build: {
     inlineStylesheets: 'auto',
   },
