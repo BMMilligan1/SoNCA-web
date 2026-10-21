@@ -38,7 +38,7 @@ export const links = {
   registerSeminar1: 'https://events.humanitix.com/sonca-comparing-nca-frameworks',
 
   /** Recording of the first seminar, 21 October 2026 (unlisted on YouTube). */
-  seminar1Recording: 'YOUTUBE_URL_TBC',
+  seminar1Recording: 'https://youtu.be/8DXpjk9p1qk',
 
   /** Slides from the first seminar, 21 October 2026. */
   seminar1Slides: '/downloads/SoNCA-seminar-slides-Comparing-NCA-frameworks-21-October-2026.pdf',
