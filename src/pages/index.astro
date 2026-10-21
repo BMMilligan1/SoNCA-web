@@ -49,14 +49,14 @@ import { programme, streams, benefits } from '../data/programme';
       </div>
 
       <aside class="hero__aside" aria-labelledby="hero-event">
-        <p class="eyebrow"><span class="eyebrow__rule" />Coming next</p>
+        <p class="eyebrow"><span class="eyebrow__rule" />Recording now available</p>
         <h2 class="hero__aside-title" id="hero-event">
           First seminar: Comparing natural capital accounting frameworks
         </h2>
         <dl class="hero__event">
           <div>
-            <dt>When</dt>
-            <dd>Wednesday 21 October, 8 am AEDT (5 pm EDT Tuesday 20 October)</dd>
+            <dt>Held</dt>
+            <dd>21 October 2026</dd>
           </div>
           <div>
             <dt>Presenters</dt>
@@ -74,9 +74,10 @@ import { programme, streams, benefits } from '../data/programme';
           </div>
         </dl>
         <p class="hero__event-summary">
-          Free and open to everyone. The first of at least six seminars in the foundation year.
+          The first of at least six seminars in the foundation year. The recording and slides are
+          on the events page.
         </p>
-        <Cta href={links.registerSeminar1} variant="secondary">Register for the first seminar</Cta>
+        <Cta href={links.seminar1Recording} variant="secondary">Watch the recording</Cta>
       </aside>
     </div>
   </section>
@@ -291,14 +292,14 @@ import { programme, streams, benefits } from '../data/programme';
         <p>
           Twenty five people offered to present at the launch on {launchEvent.date}, which is a
           speaker list before the calendar is even set. The first seminar, <em>Comparing natural
-          capital accounting frameworks: what does the profession need to understand?</em>, is on
-          Wednesday 21 October 2026 at 8 am AEDT (5 pm EDT on Tuesday 20 October). John Finisdore
-          and Joël Houdet present, with Carter Ingram and Carl Obst on the panel. Seminars are free
-          and open to everyone. The launch recording and slides are on the events page.
+          capital accounting frameworks: what does the profession need to understand?</em>, was held
+          on 21 October 2026, with John Finisdore and Joël Houdet presenting and Carter Ingram and
+          Carl Obst on the panel. Seminars are free and open to everyone. The recordings and slides
+          are on the events page.
         </p>
         <div class="button-row">
-          <Cta href={links.registerSeminar1} variant="primary">Register for the first seminar</Cta>
-          <Cta href={links.offerSession} variant="secondary">Propose a seminar</Cta>
+          <Cta href={links.offerSession} variant="primary">Propose a seminar</Cta>
+          <Cta href={links.seminar1Recording} variant="secondary">Watch the first seminar</Cta>
           <Cta href="/events/" variant="arrow">All events and ways to take part</Cta>
         </div>
       </div>

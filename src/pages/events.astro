@@ -34,32 +34,14 @@ const involvement = [
             technical sessions tracking the update to the SEEA Central Framework.
           </p>
           <p>
-            Twenty five people offered to present at the launch, which is a speaker list before the
-            calendar is even set. The first seminar, <em>Comparing natural capital accounting
-            frameworks: what does the profession need to understand?</em>, is on Wednesday 21 October
-            2026 at 8 am AEDT (5 pm EDT on Tuesday 20 October; 11 pm CEST). It is free and open to
-            everyone, and the recording will be public. Further dates will be published here as they
-            are confirmed. Anyone may propose a seminar: the forms are below.
+            The first seminar, <em>Comparing natural capital accounting frameworks: what does the
+            profession need to understand?</em>, was held on 21 October 2026. The recording and
+            slides are below. Further dates will be published here as they are confirmed. Anyone may
+            propose a seminar: the forms are below.
           </p>
-          <dl class="speakers" aria-label="Speakers and panellists">
-            <div>
-              <dt>Presenters</dt>
-              <dd>John Finisdore, Sustainable Flows</dd>
-              <dd>Joël Houdet, The Biodiversity Footprint Company</dd>
-            </div>
-            <div>
-              <dt>Panel</dt>
-              <dd>Carter Ingram, Pollination</dd>
-              <dd>Carl Obst, IDEEA Group</dd>
-            </div>
-            <div>
-              <dt>Chair</dt>
-              <dd>Michael Vardon, Society of Natural Capital Accounting</dd>
-            </div>
-          </dl>
           <div class="button-row feature__actions">
-            <Cta href={links.registerSeminar1} variant="primary">Register for the first seminar</Cta>
-            <Cta href={links.offerSession} variant="secondary">Propose a seminar</Cta>
+            <Cta href={links.offerSession} variant="primary">Propose a seminar</Cta>
+            <Cta href={links.seminar1Recording} variant="secondary">Watch the first seminar</Cta>
           </div>
         </div>
 
@@ -78,7 +60,7 @@ const involvement = [
           </div>
           <div>
             <dt>First seminar</dt>
-            <dd>Wednesday 21 October 2026, 8 am AEDT</dd>
+            <dd>Held 21 October 2026</dd>
           </div>
         </dl>
       </article>
@@ -87,7 +69,23 @@ const involvement = [
 
   <section class="section section--panel">
     <div class="page">
-      <SectionHeading num="01" eyebrow="Past events" title="Launch seminar" />
+      <SectionHeading num="01" eyebrow="Past events" title="Seminars and the launch" />
+      <article class="event">
+        <p class="event__when">21 October 2026 · Online via Microsoft Teams</p>
+        <div>
+          <h3>Comparing natural capital accounting frameworks: what does the profession need to understand?</h3>
+          <p>
+            The Society’s first seminar. John Finisdore (Sustainable Flows) and Joël Houdet (The
+            Biodiversity Footprint Company) presented, with Carter Ingram (Pollination) and Carl Obst
+            (IDEEA Group) on the panel and Michael Vardon in the chair. Nearly 100 people registered.
+          </p>
+          <p class="event__aside">
+            <a href={links.seminar1Recording} target="_blank" rel="noopener">Watch the recording</a>
+            {' \u00b7 '}
+            <a href={links.seminar1Slides} target="_blank" rel="noopener">Read the slides (PDF)</a>
+          </p>
+        </div>
+      </article>
       <article class="event">
         <p class="event__when">{launchEvent.date} · {launchEvent.platform}</p>
         <div>
