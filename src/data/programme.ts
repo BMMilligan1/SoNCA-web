@@ -26,7 +26,7 @@ export const programme: ProgrammeItem[] = [
     when: 'August – December 2026',
     title: 'Online professional programme',
     detail:
-      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update. The first seminar, Comparing natural capital accounting frameworks, is on Wednesday 21 October 2026 at 8 am AEDT. Seminars are free and open to everyone; further dates follow.',
+      'A regular series of presentations and workshops, including technical sessions tracking the SEEA update. The first seminar, Comparing natural capital accounting frameworks, was held on 21 October 2026; the recording and slides are on the events page. Seminars are free and open to everyone; further dates follow.',
     href: '/events/',
     status: 'next',
   },
