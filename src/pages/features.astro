@@ -3,15 +3,14 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Cta from '../components/Cta.astro';
-import { features, type Feature } from '../data/features';
+import { sortedFeatures, featureUrl, type Feature } from '../data/features';
+import '../styles/features.css';
 
 const title = 'Features';
 const lead =
   'A changing spotlight on the people, publications, data and debates shaping natural capital accounting.';
 
-const sorted = [...features].sort(
-  (a, b) => +new Date(b.date) - +new Date(a.date)
-);
+const sorted = sortedFeatures();
 const [current, ...past] = sorted;
 
 const fmt = (d: string) =>
@@ -25,7 +24,7 @@ const isBlock = (p: string) => ['<ul', '<ol', '<h3'].some((t) => p.startsWith(t)
 const paras = (f: Feature) =>
   Array.isArray(f.body) ? f.body : [f.body ?? f.blurb];
 
-/** Stable in-page anchor for each past feature. */
+/** In-page anchor for each past feature (kept so older links still land). */
 const slug = (f: Feature) =>
   `feature-${f.date}-${f.title
     .toLowerCase()
@@ -55,7 +54,7 @@ const slug = (f: Feature) =>
                 <p class="eyebrow">
                   <span class="eyebrow__rule" />This week
                 </p>
-                <h2 class="feature-lead__title">{current.title}</h2>
+                <h2 class="feature-lead__title"><a href={featureUrl(current)}>{current.title}</a></h2>
                 <p class="feature-lead__meta">
                   by {current.author} &middot; {fmt(current.date)}
                 </p>
@@ -81,7 +80,7 @@ const slug = (f: Feature) =>
                 <ol class="feature-index__list">
                   {past.map((f) => (
                     <li class="feature-index__item">
-                      <a class="feature-index__link" href={`#${slug(f)}`}>
+                      <a class="feature-index__link" href={featureUrl(f)}>
                         <span class="feature-index__date">{fmt(f.date)}</span>
                         <span class="feature-index__name">{f.title}</span>
                       </a>
@@ -111,7 +110,7 @@ const slug = (f: Feature) =>
                   )}
                 </figure>
                 <div class="feature-past__body">
-                  <h3 class="feature-past__title">{f.title}</h3>
+                  <h3 class="feature-past__title"><a href={featureUrl(f)}>{f.title}</a></h3>
                   <p class="feature-lead__meta">
                     by {f.author} &middot; {fmt(f.date)}
                   </p>
@@ -134,169 +133,3 @@ const slug = (f: Feature) =>
     )
   }
 </Base>
-
-<style>
-  .feature-layout {
-    display: grid;
-    gap: var(--space-xl);
-    align-items: start;
-  }
-
-  @media (min-width: 62rem) {
-    .feature-layout {
-      grid-template-columns: minmax(0, 1fr) 17rem;
-      gap: var(--space-2xl);
-    }
-  }
-
-  .feature-lead {
-    display: grid;
-    gap: var(--space-l);
-  }
-
-  .feature-lead__figure {
-    margin: 0;
-  }
-
-  .feature-lead__figure img {
-    display: block;
-    inline-size: 100%;
-    aspect-ratio: 3 / 1;
-    block-size: auto;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    background-color: var(--c-panel);
-  }
-
-  .feature-lead__credit {
-    margin-block-start: var(--space-2xs);
-    font-size: var(--step--2);
-    line-height: 1.4;
-    color: var(--c-text-faint);
-  }
-
-  .feature-lead__credit :global(a) {
-    color: inherit;
-  }
-
-  .feature-lead__body {
-    max-inline-size: var(--measure);
-  }
-
-  .feature-lead__title {
-    margin-block-start: var(--space-s);
-    font-size: var(--step-3);
-  }
-
-  .feature-lead__meta {
-    margin-block-start: var(--space-2xs);
-    font-size: var(--step--1);
-    font-style: italic;
-    color: var(--c-text-muted);
-  }
-
-  .feature-lead__prose {
-    margin-block-start: var(--space-m);
-  }
-
-  .feature-lead__more {
-    margin-block-start: var(--space-l);
-  }
-
-  /* --- index of past features, beside the current one ---------------------- */
-
-  .feature-index {
-    padding-block-start: var(--space-s);
-    border-block-start: 2px solid var(--c-accent, currentColor);
-  }
-
-  @media (min-width: 62rem) {
-    .feature-index {
-      position: sticky;
-      inset-block-start: var(--space-xl);
-    }
-  }
-
-  .feature-index__title {
-    margin-block-start: var(--space-2xs);
-    font-size: var(--step-1);
-  }
-
-  .feature-index__list {
-    margin: var(--space-m) 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .feature-index__item + .feature-index__item {
-    margin-block-start: var(--space-s);
-    padding-block-start: var(--space-s);
-    border-block-start: 1px solid var(--c-rule, rgb(0 0 0 / 0.12));
-  }
-
-  .feature-index__link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .feature-index__link:hover .feature-index__name,
-  .feature-index__link:focus-visible .feature-index__name {
-    text-decoration: underline;
-  }
-
-  .feature-index__date {
-    display: block;
-    font-size: var(--step--2);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--c-text-faint);
-  }
-
-  .feature-index__name {
-    display: block;
-    margin-block-start: var(--space-3xs);
-    font-size: var(--step--1);
-    line-height: 1.35;
-  }
-
-  /* --- past features in full ---------------------------------------------- */
-
-  .feature-archive {
-    display: grid;
-    gap: var(--space-3xl);
-  }
-
-  .feature-past {
-    display: grid;
-    gap: var(--space-l);
-    max-inline-size: var(--measure);
-    scroll-margin-block-start: var(--space-2xl);
-  }
-
-  .feature-past__figure {
-    margin: 0;
-  }
-
-  .feature-past__figure img {
-    display: block;
-    inline-size: 100%;
-    aspect-ratio: 3 / 1;
-    block-size: auto;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    background-color: var(--c-panel);
-  }
-
-  .feature-past__body {
-    max-inline-size: var(--measure);
-  }
-
-  .feature-past__title {
-    font-size: var(--step-2);
-  }
-
-  .feature-past__prose {
-    margin-block-start: var(--space-m);
-  }
-</style>

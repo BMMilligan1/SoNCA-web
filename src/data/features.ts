@@ -10,7 +10,10 @@
  *   To publish a new weekly feature, add an entry with a newer `date`.
  *
  * FIELDS
- *   title, author, image, imageAlt, blurb, date are required.
+ *   slug, title, author, image, imageAlt, blurb, date are required.
+ *   slug        PERMANENT web address of the feature: /features/<slug>/. Lower case,
+ *               words joined by hyphens. Never change it once published, because
+ *               posts on LinkedIn and elsewhere link to it. (Editing the title is fine.)
  *   blurb       ~50 words, PLAIN TEXT — shown in the box and archive cards.
  *               (No links: the whole box is itself a link.)
  *   body        optional; a string OR an array of paragraphs. May contain inline
@@ -22,6 +25,7 @@
  */
 
 export interface Feature {
+  slug: string;
   title: string;
   author: string;
   image: string;
@@ -34,8 +38,16 @@ export interface Feature {
   linkLabel?: string;
 }
 
+/** Permanent address of a feature page. */
+export const featureUrl = (f: Pick<Feature, 'slug'>) => `/features/${f.slug}/`;
+
+/** Features, newest first. */
+export const sortedFeatures = (): Feature[] =>
+  [...features].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
 export const features: Feature[] = [
   {
+    slug: 'one-profession-many-frameworks',
     title: 'One profession, many frameworks: reflections on our first seminar',
     author: 'Michael Vardon, President, Society of Natural Capital Accounting',
     image: '/features/one-profession-many-frameworks-2026.jpg',
@@ -74,6 +86,7 @@ export const features: Feature[] = [
     ],
   },
   {
+    slug: 'comparing-nca-frameworks',
     title: 'Comparing natural capital accounting frameworks',
     author: 'John Finisdore, Sustainable Flows',
     image: '/features/comparing-nca-frameworks-seminar-2026.jpg',
@@ -97,6 +110,7 @@ export const features: Feature[] = [
     ],
   },
   {
+    slug: 'society-launches-what-you-asked-for',
     title: 'The Society launches: what you asked for',
     author: 'Michael Vardon',
     image: '/features/sonca-launch-18-august-2026.jpg',
@@ -116,6 +130,7 @@ export const features: Feature[] = [
     ],
   },
   {
+    slug: 'meet-the-london-group',
     title: 'Meet the London Group: debating and developing the SEEA',
     author: 'Michael Vardon',
     image: '/features/london-group-guatemala.jpg',

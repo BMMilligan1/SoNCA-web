@@ -1,14 +1,12 @@
 ---
 /**
  * Prominent "Feature of the week" teaser for near the top of the home page.
- * Auto-pulls the most recent feature and links through to /features/.
+ * Auto-pulls the most recent feature and links through to its own page.
  * Update it by changing the current feature in src/data/features.ts.
  */
-import { features } from '../data/features';
+import { sortedFeatures, featureUrl } from '../data/features';
 
-const current = [...features].sort(
-  (a, b) => +new Date(b.date) - +new Date(a.date)
-)[0];
+const current = sortedFeatures()[0];
 
 // A short lead auto-derived from the feature's blurb (trimmed at a word boundary).
 function snippet(text: string, max = 130): string {
@@ -23,7 +21,7 @@ const lead = current ? snippet(current.blurb) : '';
   current && (
     <section class="feature-teaser section section--tight" aria-labelledby="feature-teaser-title">
       <div class="page">
-        <a class="feature-teaser__link" href="/features/">
+        <a class="feature-teaser__link" href={featureUrl(current)}>
           <img
             class="feature-teaser__img"
             src={current.image}

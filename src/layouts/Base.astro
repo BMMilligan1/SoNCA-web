@@ -13,9 +13,11 @@ interface Props {
   /** Omit the site name suffix (used on the home page). */
   bareTitle?: boolean;
   ogImage?: string;
+  /** Open Graph type: 'website' (default) or 'article' for features. */
+  ogType?: 'website' | 'article';
 }
 
-const { title, description = site.description, bareTitle = false, ogImage = '/og-image.png' } =
+const { title, description = site.description, bareTitle = false, ogImage = '/og-image.png', ogType = 'website' } =
   Astro.props;
 
 const pageTitle = bareTitle ? title : `${title} — ${site.shortName}`;
@@ -86,7 +88,7 @@ const structuredData = {
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
