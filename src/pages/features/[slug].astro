@@ -1,0 +1,93 @@
+---
+/**
+ * One page per feature, at a permanent address: /features/<slug>/.
+ * Share these links (LinkedIn, email); /features/ always shows the newest one.
+ */
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+import { sortedFeatures, featureUrl, type Feature } from '../../data/features';
+import '../../styles/features.css';
+
+export function getStaticPaths() {
+  return sortedFeatures().map((feature) => ({ params: { slug: feature.slug }, props: { feature } }));
+}
+
+interface Props {
+  feature: Feature;
+}
+
+const { feature } = Astro.props;
+const all = sortedFeatures();
+const isCurrent = all[0]?.slug === feature.slug;
+
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString('en-AU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+const isBlock = (p: string) => ['<ul', '<ol', '<h3'].some((t) => p.startsWith(t));
+const paras = Array.isArray(feature.body) ? feature.body : [feature.body ?? feature.blurb];
+---
+
+<Base title={feature.title} description={feature.blurb} ogImage={feature.image} ogType="article">
+  <PageHeader title="Features" eyebrow="From the Society" />
+
+  <section class="section">
+    <div class="page">
+      <div class="feature-layout">
+        <article class="feature-lead">
+          <figure class="feature-lead__figure">
+            <img src={feature.image} alt={feature.imageAlt} />
+            {feature.imageCredit && (
+              <figcaption class="feature-lead__credit" set:html={feature.imageCredit} />
+            )}
+          </figure>
+          <div class="feature-lead__body">
+            <p class="eyebrow">
+              <span class="eyebrow__rule" />{isCurrent ? 'Feature of the week' : 'Feature'}
+            </p>
+            <h2 class="feature-lead__title">{feature.title}</h2>
+            <p class="feature-lead__meta">
+              by {feature.author} &middot; {fmt(feature.date)}
+            </p>
+            <div class="prose feature-lead__prose">
+              {paras.map((p) => (
+                isBlock(p) ? <Fragment set:html={p} /> : <p set:html={p} />
+              ))}
+            </div>
+            {feature.link && (
+              <p class="feature-lead__more">
+                <Cta href={feature.link} variant="arrow">
+                  {feature.linkLabel ?? 'Read more'}
+                </Cta>
+              </p>
+            )}
+            <p class="feature-back"><a href="/features/">&larr; All features</a></p>
+          </div>
+        </article>
+
+        <aside class="feature-index" aria-labelledby="feature-index-title">
+          <p class="eyebrow"><span class="eyebrow__rule" />Features</p>
+          <h2 class="feature-index__title" id="feature-index-title">All features</h2>
+          <ol class="feature-index__list">
+            {all.map((f) => (
+              <li class={`feature-index__item${f.slug === feature.slug ? ' feature-index__item--current' : ''}`}>
+                <a
+                  class="feature-index__link"
+                  href={featureUrl(f)}
+                  aria-current={f.slug === feature.slug ? 'page' : undefined}
+                >
+                  <span class="feature-index__date">{fmt(f.date)}</span>
+                  <span class="feature-index__name">{f.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
