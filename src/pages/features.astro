@@ -21,6 +21,7 @@ const fmt = (d: string) =>
     year: 'numeric',
   });
 
+const isBlock = (p: string) => ['<ul', '<ol', '<h3'].some((t) => p.startsWith(t));
 const paras = (f: Feature) =>
   Array.isArray(f.body) ? f.body : [f.body ?? f.blurb];
 
@@ -60,7 +61,7 @@ const slug = (f: Feature) =>
                 </p>
                 <div class="prose feature-lead__prose">
                   {paras(current).map((p) => (
-                    <p set:html={p} />
+                    isBlock(p) ? <Fragment set:html={p} /> : <p set:html={p} />
                   ))}
                 </div>
                 {current.link && (
@@ -116,7 +117,7 @@ const slug = (f: Feature) =>
                   </p>
                   <div class="prose feature-past__prose">
                     {paras(f).map((p) => (
-                      <p set:html={p} />
+                      isBlock(p) ? <Fragment set:html={p} /> : <p set:html={p} />
                     ))}
                   </div>
                   {f.link && (
