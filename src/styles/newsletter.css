@@ -1,0 +1,220 @@
+/* Newsletter issue pages: /newsletter/ and /newsletter/<slug>/ */
+
+.nl-layout {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .nl-layout {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    gap: var(--space-2xl);
+  }
+}
+
+.nl-issue {
+  min-inline-size: 0;
+  max-inline-size: 46rem;
+}
+
+.nl-masthead {
+  padding-block-end: var(--space-s);
+  border-block-end: 2px solid var(--c-accent);
+}
+
+.nl-masthead__title {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step-3);
+}
+
+.nl-masthead__meta {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step--1);
+  font-style: italic;
+  color: var(--c-text-muted);
+}
+
+.nl-contents {
+  margin-block-start: var(--space-l);
+  padding: var(--space-s) var(--space-m);
+  background-color: var(--c-panel);
+  border-radius: var(--radius-md);
+}
+
+.nl-contents__title {
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.nl-contents ol {
+  margin: var(--space-2xs) 0 0;
+  padding-inline-start: 1.25rem;
+  columns: 2 14rem;
+  column-gap: var(--space-l);
+}
+
+.nl-contents li {
+  margin-block: 0.15rem;
+}
+
+.nl-body {
+  margin-block-start: var(--space-l);
+  max-inline-size: none;
+}
+
+.nl-body h2 {
+  margin-block-start: var(--space-xl);
+  padding-block-start: var(--space-s);
+  border-block-start: 1px solid var(--c-rule);
+  scroll-margin-block-start: var(--space-xl);
+}
+
+.nl-body h3 {
+  scroll-margin-block-start: var(--space-xl);
+}
+
+.nl-body a {
+  overflow-wrap: anywhere;
+}
+
+/* Releases table: scrolls sideways on small screens rather than squashing. */
+.nl-table {
+  overflow-x: auto;
+  margin-block-start: var(--space-s);
+  border: 1px solid var(--c-rule);
+  border-radius: var(--radius-md);
+}
+
+.nl-table table {
+  inline-size: 100%;
+  min-inline-size: 40rem;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+  line-height: 1.4;
+}
+
+.nl-table th,
+.nl-table td {
+  padding: 0.5rem 0.65rem;
+  text-align: start;
+  vertical-align: top;
+  border-block-end: 1px solid var(--c-rule);
+}
+
+.nl-table th {
+  background-color: var(--c-panel);
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.nl-table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+.nl-table td:first-child {
+  white-space: nowrap;
+}
+
+.nl-small {
+  font-size: var(--step--1);
+  color: var(--c-text-muted);
+}
+
+.nl-papers {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.nl-papers > li + li {
+  margin-block-start: var(--space-s);
+}
+
+.nl-papers p {
+  margin: 0;
+}
+
+.nl-papers .nl-note {
+  margin-block-start: 0.2rem;
+  padding-inline-start: var(--space-s);
+  border-inline-start: 2px solid var(--c-accent-soft);
+  font-style: italic;
+  color: var(--c-text-muted);
+}
+
+.nl-notice {
+  margin-block-start: var(--space-xl);
+  padding: var(--space-s) var(--space-m);
+  border-inline-start: 4px solid var(--c-accent);
+  background-color: var(--c-paper-raised);
+  border-radius: var(--radius-md);
+}
+
+/* --- list of issues, beside the current one ------------------------------ */
+
+.nl-index {
+  padding-block-start: var(--space-s);
+  border-block-start: 2px solid var(--c-accent);
+}
+
+@media (min-width: 62rem) {
+  .nl-index {
+    position: sticky;
+    inset-block-start: var(--space-xl);
+  }
+}
+
+.nl-index__title {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step-1);
+}
+
+.nl-index__list {
+  margin: var(--space-m) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nl-index__item + .nl-index__item {
+  margin-block-start: var(--space-s);
+  padding-block-start: var(--space-s);
+  border-block-start: 1px solid var(--c-rule);
+}
+
+.nl-index__item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nl-index__item a:hover .nl-index__name,
+.nl-index__item a:focus-visible .nl-index__name {
+  text-decoration: underline;
+}
+
+.nl-index__date {
+  display: block;
+  font-size: var(--step--2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+}
+
+.nl-index__name {
+  display: block;
+  margin-block-start: var(--space-3xs);
+  font-size: var(--step--1);
+  line-height: 1.35;
+}
+
+.nl-index__item--current .nl-index__name {
+  font-weight: 600;
+}
+
+.nl-index__join {
+  margin-block-start: var(--space-l);
+  font-size: var(--step--1);
+}

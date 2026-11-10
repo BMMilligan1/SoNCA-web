@@ -1,0 +1,70 @@
+---
+/**
+ * Slim "Current newsletter" strip for the top of the home page.
+ * Auto-pulls the newest issue from src/data/newsletters.ts.
+ */
+import { sortedNewsletters, newsletterUrl, newsletterMonth } from '../data/newsletters';
+
+const current = sortedNewsletters()[0];
+---
+
+{
+  current && (
+    <div class="nl-strip">
+      <div class="page">
+        <a class="nl-strip__link" href={newsletterUrl(current)}>
+          <span class="nl-strip__label">Current newsletter</span>
+          <span class="nl-strip__month">{newsletterMonth(current)}</span>
+          <span class="nl-strip__headline">{current.headline}</span>
+          <span class="nl-strip__more" aria-hidden="true">Read &rarr;</span>
+        </a>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .nl-strip {
+    background-color: var(--c-panel);
+    border-block: 1px solid var(--c-rule);
+  }
+
+  .nl-strip__link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem var(--space-s);
+    padding-block: var(--space-xs);
+    color: inherit;
+    text-decoration: none;
+    font-size: var(--step--1);
+  }
+
+  .nl-strip__label {
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: var(--step--2);
+    color: var(--c-accent);
+  }
+
+  .nl-strip__month {
+    font-weight: 600;
+    color: var(--c-heading);
+  }
+
+  .nl-strip__headline {
+    flex: 1 1 20rem;
+    color: var(--c-text-muted);
+  }
+
+  .nl-strip__more {
+    font-weight: 600;
+    color: var(--c-link);
+  }
+
+  .nl-strip__link:hover .nl-strip__headline,
+  .nl-strip__link:focus-visible .nl-strip__headline {
+    text-decoration: underline;
+  }
+</style>

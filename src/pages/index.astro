@@ -8,13 +8,25 @@ import JoinBanner from '../components/JoinBanner.astro';
 import Motif from '../components/Motif.astro';
 import FeatureBox from '../components/FeatureBox.astro';
 import FeatureTeaser from '../components/FeatureTeaser.astro';
+import NewsletterStrip from '../components/NewsletterStrip.astro';
+import {
+  sortedNewsletters,
+  newsletterUrl,
+  newsletterMonth,
+  newsletterSections,
+} from '../data/newsletters';
 import { links } from '../config/links';
 import { site, membership, launchEvent } from '../config/site';
 import { committee } from '../data/committee';
 import { programme, streams, benefits } from '../data/programme';
+
+const currentIssue = sortedNewsletters()[0];
 ---
 
 <Base title={`${site.name}`} bareTitle description={site.description}>
+  <!-- Current newsletter strip (above the hero) -->
+  <NewsletterStrip />
+
   <!-- 1 — Hero -->
   <section class="hero">
     <div class="hero__motif" aria-hidden="true">
@@ -316,6 +328,35 @@ import { programme, streams, benefits } from '../data/programme';
       <FeatureBox />
     </div>
   </section>
+
+  <!-- Newsletter -->
+  {
+    currentIssue && (
+      <section class="section section--panel" aria-labelledby="newsletter">
+        <div class="page newsletter-home">
+          <SectionHeading num="09" eyebrow="Newsletter" title="The monthly newsletter" id="newsletter">
+            Society news, new accounts from statistics offices and central banks, recent papers and
+            standards, on the first Tuesday of each month. Free to read here; members receive notice of
+            each issue.
+          </SectionHeading>
+          <a class="newsletter-card" href={newsletterUrl(currentIssue)}>
+            <p class="eyebrow">
+              <span class="eyebrow__rule" />Issue {currentIssue.issue} &middot; {newsletterMonth(currentIssue)}
+            </p>
+            <h3 class="newsletter-card__title">{currentIssue.headline}</h3>
+            <ul class="newsletter-card__sections">
+              {newsletterSections(currentIssue).map((s) => <li>{s.title}</li>)}
+            </ul>
+            <span class="newsletter-card__more">Read the {newsletterMonth(currentIssue)} newsletter &rarr;</span>
+          </a>
+          <div class="button-row newsletter-home__buttons">
+            <Cta href="/membership/" variant="primary">Join to receive notice of each issue</Cta>
+            <Cta href="/newsletter/" variant="arrow">All issues</Cta>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- 10 — Join -->
   <JoinBanner />
@@ -796,5 +837,57 @@ import { programme, streams, benefits } from '../data/programme';
   /* --- feature of the week ------------------------------------------------ */
   .feature-home :global(.feature-box) {
     max-inline-size: 42rem;
+  }
+
+  /* --- newsletter --------------------------------------------------------- */
+
+  .newsletter-card {
+    display: block;
+    max-inline-size: 46rem;
+    padding: var(--space-m) var(--space-l);
+    background-color: var(--c-paper-raised);
+    border: 1px solid var(--c-rule);
+    border-inline-start: 4px solid var(--c-accent);
+    border-radius: var(--radius-md);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .newsletter-card:hover .newsletter-card__title,
+  .newsletter-card:focus-visible .newsletter-card__title {
+    text-decoration: underline;
+  }
+
+  .newsletter-card__title {
+    margin-block-start: var(--space-xs);
+    font-size: var(--step-1);
+  }
+
+  .newsletter-card__sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    margin: var(--space-s) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--step--1);
+  }
+
+  .newsletter-card__sections li {
+    padding: 0.1rem 0.6rem;
+    background-color: var(--c-panel);
+    border-radius: 999px;
+    color: var(--c-text-muted);
+  }
+
+  .newsletter-card__more {
+    display: inline-block;
+    margin-block-start: var(--space-s);
+    font-weight: 600;
+    color: var(--c-link);
+  }
+
+  .newsletter-home__buttons {
+    margin-block-start: var(--space-l);
   }
 </style>

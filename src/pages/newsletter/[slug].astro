@@ -1,0 +1,25 @@
+---
+/**
+ * One page per issue, at a permanent address: /newsletter/<slug>/.
+ * Share these links (Zoho email, LinkedIn); /newsletter/ always shows the newest.
+ */
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import NewsletterIssue from '../../components/NewsletterIssue.astro';
+import { sortedNewsletters, newsletterMonth, type NewsletterIssue as Issue } from '../../data/newsletters';
+
+export function getStaticPaths() {
+  return sortedNewsletters().map((issue) => ({ params: { slug: issue.slug }, props: { issue } }));
+}
+
+interface Props {
+  issue: Issue;
+}
+
+const { issue } = Astro.props;
+---
+
+<Base title={`Newsletter, ${newsletterMonth(issue)}`} description={issue.headline} ogType="article">
+  <PageHeader title="Newsletter" eyebrow="From the Society" />
+  <NewsletterIssue issue={issue} />
+</Base>

@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import NewsletterIssue from '../components/NewsletterIssue.astro';
+import { sortedNewsletters } from '../data/newsletters';
+
+const current = sortedNewsletters()[0];
+const lead =
+  'A short monthly round-up of Society news, new environmental-economic accounts, recent papers and standards. Published on the first Tuesday of each month.';
+---
+
+<Base title="Newsletter" description={lead}>
+  <PageHeader title="Newsletter" eyebrow="From the Society" lead={lead} />
+  {current && <NewsletterIssue issue={current} />}
+</Base>

@@ -1,0 +1,69 @@
+---
+/** One newsletter issue in full, with "In this issue" and the list of issues. */
+import Cta from './Cta.astro';
+import {
+  sortedNewsletters,
+  newsletterUrl,
+  newsletterMonth,
+  newsletterDate,
+  newsletterSections,
+  type NewsletterIssue,
+} from '../data/newsletters';
+import '../styles/newsletter.css';
+
+interface Props {
+  issue: NewsletterIssue;
+}
+
+const { issue } = Astro.props;
+const all = sortedNewsletters();
+const sections = newsletterSections(issue);
+---
+
+<section class="section">
+  <div class="page">
+    <div class="nl-layout">
+      <article class="nl-issue">
+        <header class="nl-masthead">
+          <p class="eyebrow"><span class="eyebrow__rule" />Issue {issue.issue}</p>
+          <h2 class="nl-masthead__title">{newsletterMonth(issue)}</h2>
+          <p class="nl-masthead__meta">{newsletterDate(issue)}</p>
+        </header>
+
+        <nav class="nl-contents" aria-label="In this issue">
+          <p class="nl-contents__title">In this issue</p>
+          <ol>
+            {sections.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
+          </ol>
+        </nav>
+
+        <div class="prose nl-body" set:html={issue.html} />
+
+        <aside class="nl-notice">
+          <p>
+            The newsletter is free to read here. To receive notice of each issue,
+            <a href="/membership/">join the Society</a>.
+          </p>
+        </aside>
+      </article>
+
+      <aside class="nl-index" aria-labelledby="nl-index-title">
+        <p class="eyebrow"><span class="eyebrow__rule" />Newsletter</p>
+        <h2 class="nl-index__title" id="nl-index-title">All issues</h2>
+        <ol class="nl-index__list">
+          {all.map((n) => (
+            <li class={`nl-index__item${n.slug === issue.slug ? ' nl-index__item--current' : ''}`}>
+              <a href={newsletterUrl(n)} aria-current={n.slug === issue.slug ? 'page' : undefined}>
+                <span class="nl-index__date">Issue {n.issue} &middot; {newsletterMonth(n)}</span>
+                <span class="nl-index__name">{n.headline}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+        <p class="nl-index__join">
+          <Cta href="/membership/" variant="arrow">Join to receive notice of each issue</Cta>
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
