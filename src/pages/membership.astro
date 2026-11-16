@@ -113,11 +113,10 @@ const terms = [
           <Cta href={links.joinConcession} variant="secondary" class="rate-card__cta">
             Join: student {membership.currency}{membership.launchConcession}
           </Cta>
+          <Cta href="#reduced-fees" variant="secondary" class="rate-card__cta rate-card__cta--reduced">
+            Middle and low income countries: reduced fees
+          </Cta>
         </div>
-        <p class="rate-card__note">
-          Living in a middle or low income economy? See the{' '}
-          <a href="#reduced-fees">reduced fees</a>.
-        </p>
         <p class="rate-card__note">
           Payment is by card through Stripe. You will receive a receipt by email.
         </p>
@@ -336,6 +335,16 @@ const terms = [
   :global(.rate-card__cta) {
     margin-block-start: var(--space-m);
     width: 100%;
+  }
+
+  :global(.rate-card__cta--reduced) {
+    margin-block-start: var(--space-l);
+    text-align: center;
+    justify-content: center;
+  }
+
+  .rate-card__ctas + .rate-card__note {
+    margin-block-start: var(--space-m);
   }
 
   .benefits-block {
