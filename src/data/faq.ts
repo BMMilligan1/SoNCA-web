@@ -53,7 +53,7 @@ export const faqs: FaqItem[] = [
     group: 'Membership',
     question: 'How do I join?',
     answer: [
-      'Choose standard or student membership on the membership page and pay online by card through Stripe, our payment provider. You will receive a receipt by email. Join by 30 November 2026 for the 10 per cent launch discount.',
+      'Choose standard or student membership on the membership page and pay online by card through Stripe, our payment provider. You will receive a receipt by email. Reduced fees apply if you live in an economy the World Bank classifies as upper-middle, lower-middle or low income. Join by 30 November 2026 for the 10 per cent launch discount.',
     ],
   },
   {
@@ -102,7 +102,7 @@ export const faqs: FaqItem[] = [
     group: 'Taking part',
     question: 'I am a student or early-career practitioner. Is this for me?',
     answer: [
-      'Yes. A concession rate is available, and welcoming newcomers and early-career members is written into the Society’s member participation code.',
+      'Yes. A student concession is available, as are reduced fees for people in middle and low income economies, and welcoming newcomers and early-career members is written into the Society’s member participation code.',
     ],
   },
 ];

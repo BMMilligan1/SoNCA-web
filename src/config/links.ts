@@ -16,6 +16,17 @@ export const links = {
   /** Stripe Payment Link for the student concession. Paste the buy.stripe.com URL here. */
   joinConcession: 'https://buy.stripe.com/dRm28t1sOeGH8Y10F8a3u01' as string | null,
 
+  /** Stripe Payment Links for the reduced fees by World Bank income category
+   *  (committee decision of 16 November 2026). `null` shows the button as "Soon".
+   *  Students in low-income economies use the low-income link. */
+  joinReduced: {
+    upperMiddle: 'https://buy.stripe.com/14A7sN1sOdCDcad9bEa3u02' as string | null,
+    upperMiddleStudent: 'https://buy.stripe.com/00w28tefA423b69cnQa3u03' as string | null,
+    lowerMiddle: 'https://buy.stripe.com/4gMaEZ7Rc8ijb694Voa3u04' as string | null,
+    lowerMiddleStudent: 'https://buy.stripe.com/00wdRb3AWdCDfmp9bEa3u05' as string | null,
+    low: 'https://buy.stripe.com/6oUaEZ4F0fKL1vz4Voa3u06' as string | null,
+  },
+
   /** Every "Become a member" button. Goes to the payment options on the membership
    *  page once both Stripe links above are filled in; until then shows "Soon". */
   get join(): string | null {
