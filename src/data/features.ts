@@ -47,6 +47,28 @@ export const sortedFeatures = (): Feature[] =>
 
 export const features: Feature[] = [
   {
+    slug: 'reduced-fees-low-middle-income-countries',
+    title: 'Reduced fees for members in low and middle income countries',
+    author: 'Michael Vardon, President, Society of Natural Capital Accounting',
+    image: '/features/reduced-fees-low-middle-income-2026.jpg',
+    imageAlt: 'Reduced membership fees for people living in low and middle income countries: A$80 a year for upper-middle income, A$40 for lower-middle income and A$20 for low income',
+    blurb:
+      'The Society now has reduced membership fees for people living in low and middle income countries, using the World Bank income groups: A$80 for upper-middle income, A$40 for lower-middle income and A$20 for low income. Much of the natural capital accounting being done today is in these countries.',
+    date: '2026-11-16',
+    link: '/membership/#reduced-fees',
+    linkLabel: 'Join at the reduced fee',
+    body: [
+      `The Society of Natural Capital Accounting now has reduced membership fees for people living in low and middle income countries. Details are on the <a href="/membership/#reduced-fees">membership page</a>.`,
+      `Much of the natural capital accounting being done today is in countries where A$180 a year is a lot to ask. Statistical offices, environment ministries, universities and consultants in these countries are compiling and using accounts. We want them in the Society.`,
+      `The fees are:`,
+      `<div class="feature-table"><table><thead><tr><th scope="col">Country income group</th><th scope="col">Fee</th><th scope="col">Student fee</th></tr></thead><tbody><tr><td>Upper-middle income</td><td>A$80</td><td>A$40</td></tr><tr><td>Lower-middle income</td><td>A$40</td><td>A$20</td></tr><tr><td>Low income</td><td>A$20</td><td>A$20</td></tr></tbody></table></div>`,
+      `The 10 per cent early joining discount applies until 30 November 2026. Joining before then brings the fees down to A$72, A$36 and A$18 for the three groups, and A$36 and A$18 for students in the upper-middle and lower-middle income groups.`,
+      `The rate depends on the country where you live, not your nationality, and is on your own declaration. You can check your country on the World Bank’s <a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups" target="_blank" rel="noopener">Country and Lending Groups</a> page. As with all memberships, it runs for 12 months from the date you join.`,
+      `There are three ways you can help:`,
+      `<ul><li>Join, if you haven’t already.</li><li>Pass this on to colleagues working on natural capital accounting in low and middle income countries.</li><li><a href="/events/#propose">Propose a seminar</a> on the work being done in your country.</li></ul>`,
+    ],
+  },
+  {
     slug: 'common-organisation-different-presentations',
     title: 'Common organisation, different presentations: advancing natural capital accounting together',
     author: 'John Finisdore, Sustainable Flows',

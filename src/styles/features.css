@@ -182,3 +182,35 @@
   margin-block-start: var(--space-xl);
   font-size: var(--step--1);
 }
+
+/* Simple data table inside a feature body (wrap in <div class="feature-table">). */
+.feature-table {
+  overflow-x: auto;
+  margin-block-start: var(--space-s);
+  border: 1px solid var(--c-rule);
+  border-radius: var(--radius-md);
+}
+
+.feature-table table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+  line-height: 1.4;
+}
+
+.feature-table th,
+.feature-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: start;
+  border-block-end: 1px solid var(--c-rule);
+}
+
+.feature-table th {
+  background-color: var(--c-panel);
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.feature-table tbody tr:last-child td {
+  border-block-end: 0;
+}

@@ -20,7 +20,7 @@ const fmt = (d: string) =>
     year: 'numeric',
   });
 
-const isBlock = (p: string) => ['<ul', '<ol', '<h3'].some((t) => p.startsWith(t));
+const isBlock = (p: string) => ['<ul', '<ol', '<h3', '<div'].some((t) => p.startsWith(t));
 const paras = (f: Feature) =>
   Array.isArray(f.body) ? f.body : [f.body ?? f.blurb];
 
