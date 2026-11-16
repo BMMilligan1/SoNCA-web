@@ -102,7 +102,7 @@ export const faqs: FaqItem[] = [
     group: 'Taking part',
     question: 'I am a student or early-career practitioner. Is this for me?',
     answer: [
-      'Yes. A student concession is available, as are reduced fees for people in middle and low income economies, and welcoming newcomers and early-career members is written into the Society’s member participation code.',
+      'Yes. A student concession is available, as are reduced fees for people in middle and low income countries, and welcoming newcomers and early-career members is written into the Society’s member participation code.',
     ],
   },
 ];
