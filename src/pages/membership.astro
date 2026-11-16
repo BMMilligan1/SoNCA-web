@@ -4,7 +4,7 @@ import PageHeader from '../components/PageHeader.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Cta from '../components/Cta.astro';
 import { links } from '../config/links';
-import { membership, site } from '../config/site';
+import { membership, reducedFees, site } from '../config/site';
 import { benefits } from '../data/programme';
 
 const title = 'Membership';
@@ -14,7 +14,7 @@ const lead =
 const terms = [
   {
     q: 'What does membership cost?',
-    a: `Foundation-year membership is ${membership.currency}${membership.standard}, with a concession rate of ${membership.currency}${membership.concession} for students. Join by ${membership.launchCloses} and a ${membership.launchDiscountPct} per cent discount applies to both rates: ${membership.currency}${membership.launchStandard} and ${membership.currency}${membership.launchConcession}. Fees are in Australian dollars. The Society is not registered for GST, so no GST is charged.`,
+    a: `Foundation-year membership is ${membership.currency}${membership.standard}, with a concession rate of ${membership.currency}${membership.concession} for students. Reduced fees apply if you live in an economy the World Bank classifies as upper-middle, lower-middle or low income (see Reduced fees above). Join by ${membership.launchCloses} and a ${membership.launchDiscountPct} per cent discount applies to all rates, including ${membership.currency}${membership.launchStandard} standard and ${membership.currency}${membership.launchConcession} for students. Fees are in Australian dollars. The Society is not registered for GST, so no GST is charged.`,
   },
   {
     q: 'When does membership run to?',
@@ -38,7 +38,7 @@ const terms = [
   },
   {
     q: 'Are other concessions available?',
-    a: 'In the foundation year, the student concession is the only reduced rate. Retired and unwaged concessions will be reviewed at the first annual general meeting.',
+    a: 'In the foundation year there are two kinds of reduced rate: the student concession, and reduced fees for people living in upper-middle, lower-middle and low income economies, as classified by the World Bank. The two do not combine, except that students pay half the rate for their country category. A rate for retirees is under consideration by the committee.',
   },
   {
     q: 'Will my name be published?',
@@ -115,15 +115,102 @@ const terms = [
           </Cta>
         </div>
         <p class="rate-card__note">
+          Living in a middle or low income economy? See the{' '}
+          <a href="#reduced-fees">reduced fees</a>.
+        </p>
+        <p class="rate-card__note">
           Payment is by card through Stripe. You will receive a receipt by email.
         </p>
       </aside>
     </div>
   </section>
 
+
+  <section class="section section--ruled" id="reduced-fees">
+    <div class="page">
+      <SectionHeading num="01" eyebrow="Reduced fees" title="Fees by country income category">
+        Reduced fees apply if you live in an economy the World Bank classifies as upper-middle,
+        lower-middle or low income. Check your country's category on the World Bank's{' '}
+        <a href={reducedFees.worldBankUrl}>Country and Lending Groups</a> page. Eligibility is by
+        the country where you live, not your nationality, on your own declaration, and the category
+        current on the day you pay applies. Students pay half the applicable rate, with a minimum
+        fee of {membership.currency}20 ({membership.currency}18 until {membership.launchCloses}).
+      </SectionHeading>
+
+      <div class="fee-table">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">World Bank category</th>
+              <th scope="col">Fee</th>
+              <th scope="col">Student fee</th>
+              <th scope="col">Join</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">High income</th>
+              <td>
+                {membership.currency}{membership.launchStandard}{' '}
+                <span class="fee-table__was">(<s>{membership.currency}{membership.standard}</s>)</span>
+              </td>
+              <td>
+                {membership.currency}{membership.launchConcession}{' '}
+                <span class="fee-table__was">(<s>{membership.currency}{membership.concession}</s>)</span>
+              </td>
+              <td><a href="#join">Standard or student, above</a></td>
+            </tr>
+            {
+              reducedFees.categories.map((c) => (
+                <tr>
+                  <th scope="row">{c.label}</th>
+                  <td>
+                    {membership.currency}{c.launch}{' '}
+                    <span class="fee-table__was">(<s>{membership.currency}{c.full}</s>)</span>
+                  </td>
+                  <td>
+                    {c.key === 'low' ? (
+                      <span>As for other members</span>
+                    ) : (
+                      <span>
+                        {membership.currency}{c.launchStudent}{' '}
+                        <span class="fee-table__was">(<s>{membership.currency}{c.student}</s>)</span>
+                      </span>
+                    )}
+                  </td>
+                  <td>
+                    <div class="fee-table__ctas">
+                    <Cta href={links.joinReduced[c.key]} variant="arrow" pendingLabel="Soon">
+                      Join
+                    </Cta>
+                    {c.key !== 'low' && (
+                      <Cta
+                        href={links.joinReduced[`${c.key}Student` as 'upperMiddleStudent' | 'lowerMiddleStudent']}
+                        variant="arrow"
+                        pendingLabel="Soon"
+                      >
+                        Join as a student
+                      </Cta>
+                    )}
+                    </div>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="fee-table__note">
+        Fees shown are with the {membership.launchDiscountPct} per cent early joining discount, for
+        joining by {membership.launchCloses}; the usual fee is in brackets. Economies the World Bank
+        does not classify pay the lower-middle income rate. {membership.gstNote}
+      </p>
+    </div>
+  </section>
+
   <section class="section section--panel section--ruled">
     <div class="page benefits-block">
-      <SectionHeading num="01" eyebrow="Membership" title="What you receive" />
+      <SectionHeading num="02" eyebrow="Membership" title="What you receive" />
       <ul class="benefits">
         {benefits.map((benefit) => <li>{benefit}</li>)}
       </ul>
@@ -132,7 +219,7 @@ const terms = [
 
   <section class="section">
     <div class="page">
-      <SectionHeading num="02" eyebrow="Terms" title="Membership questions">
+      <SectionHeading num="03" eyebrow="Terms" title="Membership questions">
         The practical detail, settled for the foundation year. Anything the committee revisits will
         be updated here.
       </SectionHeading>
@@ -328,6 +415,60 @@ const terms = [
   .join-cta .lead {
     margin-block-start: var(--space-m);
     color: var(--c-inverse-muted);
+    max-width: var(--measure);
+  }
+  .fee-table {
+    overflow-x: auto;
+    margin-block-start: var(--space-l);
+  }
+
+  .fee-table table {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+  }
+
+  .fee-table th,
+  .fee-table td {
+    text-align: start;
+    vertical-align: top;
+    padding: var(--space-xs) var(--space-s);
+    border-block-end: 1px solid var(--c-rule);
+  }
+
+  .fee-table thead th {
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-faint);
+  }
+
+  .fee-table tbody th {
+    font-weight: 600;
+    color: var(--c-heading);
+  }
+
+  .fee-table td {
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .fee-table__was {
+    color: var(--c-text-faint);
+    font-size: var(--step--2);
+  }
+
+  .fee-table__ctas {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .fee-table__note {
+    margin-block-start: var(--space-s);
+    font-size: var(--step--2);
+    color: var(--c-text-muted);
     max-width: var(--measure);
   }
 </style>
