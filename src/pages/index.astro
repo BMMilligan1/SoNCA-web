@@ -61,35 +61,37 @@ const currentIssue = sortedNewsletters()[0];
       </div>
 
       <aside class="hero__aside" aria-labelledby="hero-event">
-        <p class="eyebrow"><span class="eyebrow__rule" />Recording now available</p>
+        <p class="eyebrow"><span class="eyebrow__rule" />Next seminar · free</p>
         <h2 class="hero__aside-title" id="hero-event">
-          First seminar: Comparing natural capital accounting frameworks
+          Valuing water in natural capital accounting
         </h2>
         <dl class="hero__event">
           <div>
-            <dt>Held</dt>
-            <dd>21 October 2026</dd>
+            <dt>When</dt>
+            <dd>
+              <span>Thursday 3 December 2026, 7–8.30 am Australia (AEDT)</span>
+              <span>Wednesday 2 December in the Americas, Europe and Africa</span>
+            </dd>
           </div>
           <div>
-            <dt>Presenters</dt>
+            <dt>Presenter</dt>
             <dd>
-              <span>John Finisdore, Sustainable Flows</span>
-              <span>Joël Houdet, The Biodiversity Footprint Company</span>
+              <span>Kirsten Oleson, University of Hawaiʻi at Mānoa</span>
             </dd>
           </div>
           <div>
             <dt>Panel</dt>
             <dd>
-              <span>Carter Ingram, Pollination</span>
-              <span>Carl Obst, IDEEA Group</span>
+              <span>Silvia Ferrini, University of East Anglia</span>
+              <span>Greg Smith, CSIRO</span>
             </dd>
           </div>
         </dl>
         <p class="hero__event-summary">
-          The first of at least six seminars in the foundation year. The recording and slides are
-          on the events page.
+          What does valuing water have to do with natural capital accounting, and how is the SEEA
+          update dealing with it? Online, 90 minutes, open to everyone.
         </p>
-        <Cta href={links.seminar1Recording} variant="secondary">Watch the recording</Cta>
+        <Cta href={links.registerSeminar2} variant="secondary">Register free</Cta>
       </aside>
     </div>
   </section>
@@ -303,16 +305,16 @@ const currentIssue = sortedNewsletters()[0];
           technical sessions tracking the update to the SEEA Central Framework.
         </p>
         <p>
-          Twenty five people offered to present at the launch on {launchEvent.date}, which is a
-          speaker list before the calendar is even set. The first seminar, <em>Comparing natural
-          capital accounting frameworks: what does the profession need to understand?</em>, was held
-          on 21 October 2026, with John Finisdore and Joël Houdet presenting and Carter Ingram and
-          Carl Obst on the panel. Seminars are free and open to everyone. The recordings and slides
-          are on the events page.
+          The next seminar, <em>Valuing water in natural capital accounting</em>, is on Thursday
+          3 December 2026 at 7 am Australia (AEDT), which is Wednesday 2 December at 10 am in Hawaiʻi,
+          3 pm in New York and 8 pm in London. Kirsten Oleson presents the SEEA Central Framework update note on the
+          valuation of water, followed by a panel and questions. The first seminar, <em>Comparing
+          natural capital accounting frameworks</em>, was held on 21 October 2026, and its recording
+          and slides are on the events page. Seminars are free and open to everyone.
         </p>
         <div class="button-row">
-          <Cta href={links.offerSession} variant="primary">Propose a seminar</Cta>
-          <Cta href={links.seminar1Recording} variant="secondary">Watch the first seminar</Cta>
+          <Cta href={links.registerSeminar2} variant="primary">Register for the next seminar</Cta>
+          <Cta href={links.offerSession} variant="secondary">Propose a seminar</Cta>
           <Cta href="/events/" variant="arrow">All events and ways to take part</Cta>
         </div>
       </div>
