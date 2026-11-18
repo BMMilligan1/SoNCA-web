@@ -54,6 +54,11 @@ export const links = {
   /** Slides from the first seminar, 21 October 2026. */
   seminar1Slides: '/downloads/SoNCA-seminar-slides-Comparing-NCA-frameworks-21-October-2026.pdf',
 
+  /** Registration for the second seminar, Valuing water in natural capital accounting,
+   *  7 am AEDT Thursday 3 December 2026 (10 am HST Wednesday 2 December).
+   *  Paste the Humanitix event URL here; `null` shows the button as "Soon". */
+  registerSeminar2: 'https://events.humanitix.com/sonca-valuing-water' as string | null,
+
   /** Proposing a seminar or working group: the forms section of the events page. */
   offerSession: '/events/#propose',
 
